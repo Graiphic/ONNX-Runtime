@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :112,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :261,"ts" :5402,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :45,"ts" :47462,"ph" : "X","name" :"Trilu_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Trilu","input_type_shape" : [{"float":[4,4]},{"int64":[1]}],"node_index" : "0","output_type_shape" : [{"float":[4,4]}],"activation_size" : "72","output_size" : "64","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-150-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"22564": {"num_run": 0, "core": -1},"5368": {"num_run": 0, "core": -1},"5040": {"num_run": 0, "core": -1},"20040": {"num_run": 0, "core": -1},"12248": {"num_run": 0, "core": -1},"19524": {"num_run": 0, "core": -1},"1164": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :67,"ts" :47450,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :85,"ts" :47437,"ph" : "X","name" :"model_run","args" : {}}
+]

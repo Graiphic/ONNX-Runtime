@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :82,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :257,"ts" :182,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :37,"ts" :1008,"ph" : "X","name" :"LpNormalization_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "LpNormalization","input_type_shape" : [{"float":[3,4]}],"node_index" : "0","output_type_shape" : [{"float":[3,4]}],"activation_size" : "48","output_size" : "48","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-104-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"21228": {"num_run": 0, "core": -1},"14992": {"num_run": 0, "core": -1},"23144": {"num_run": 0, "core": -1},"14008": {"num_run": 0, "core": -1},"13792": {"num_run": 0, "core": -1},"5716": {"num_run": 0, "core": -1},"23108": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :50,"ts" :1002,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :63,"ts" :993,"ph" : "X","name" :"model_run","args" : {}}
+]

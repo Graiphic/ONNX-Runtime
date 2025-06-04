@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :95,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :707,"ts" :217,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :59,"ts" :3840,"ph" : "X","name" :"LpPool_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "LpPool","input_type_shape" : [{"float":[1,1,4,4]}],"node_index" : "0","output_type_shape" : [{"float":[1,1,2,2]}],"activation_size" : "64","output_size" : "16","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-257-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"2592": {"num_run": 0, "core": -1},"24580": {"num_run": 0, "core": -1},"4936": {"num_run": 0, "core": -1},"10916": {"num_run": 0, "core": -1},"22856": {"num_run": 0, "core": -1},"23208": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :78,"ts" :3830,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :110,"ts" :3811,"ph" : "X","name" :"model_run","args" : {}}
+]

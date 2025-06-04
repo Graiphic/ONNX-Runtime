@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :101,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :710,"ts" :231,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :47,"ts" :9743,"ph" : "X","name" :"EyeLike_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "EyeLike","input_type_shape" : [{"float":[4,4]}],"node_index" : "0","output_type_shape" : [{"float":[4,4]}],"activation_size" : "64","output_size" : "64","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-243-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"25424": {"num_run": 0, "core": -1},"7284": {"num_run": 0, "core": -1},"24744": {"num_run": 0, "core": -1},"19588": {"num_run": 0, "core": -1},"11848": {"num_run": 0, "core": -1},"20784": {"num_run": 0, "core": -1},"16624": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :65,"ts" :9733,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :93,"ts" :9715,"ph" : "X","name" :"model_run","args" : {}}
+]

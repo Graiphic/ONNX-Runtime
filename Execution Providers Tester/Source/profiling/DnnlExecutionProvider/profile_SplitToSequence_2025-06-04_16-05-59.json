@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :87,"ts" :23,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :241,"ts" :209,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :45,"ts" :29497,"ph" : "X","name" :"SplitToSequence_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "SplitToSequence","input_type_shape" : [{"float":[4,2]}],"node_index" : "0","output_type_shape" : [],"activation_size" : "32","output_size" : "0","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-145-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"4200": {"num_run": 0, "core": -1},"15812": {"num_run": 0, "core": -1},"19828": {"num_run": 0, "core": -1},"25252": {"num_run": 0, "core": -1},"10380": {"num_run": 0, "core": -1},"20416": {"num_run": 0, "core": -1},"6132": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :66,"ts" :29486,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :82,"ts" :29473,"ph" : "X","name" :"model_run","args" : {}}
+]

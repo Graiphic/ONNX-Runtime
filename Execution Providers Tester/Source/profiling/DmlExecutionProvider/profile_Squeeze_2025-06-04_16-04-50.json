@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :110,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :11227,"ts" :20482,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :288,"ts" :49204,"ph" : "X","name" :"Squeeze_0_kernel_time","args" : {"parameter_size" : "16","provider" : "DmlExecutionProvider","op_name" : "Squeeze","input_type_shape" : [{"float":[1,3,1]},{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[3]}],"activation_size" : "12","output_size" : "12","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-41-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"22868": {"num_run": 0, "core": -1},"23812": {"num_run": 0, "core": -1},"24964": {"num_run": 0, "core": -1},"17832": {"num_run": 0, "core": -1},"23268": {"num_run": 0, "core": -1},"21272": {"num_run": 0, "core": -1},"10276": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :310,"ts" :49191,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :1782,"ts" :48619,"ph" : "X","name" :"model_run","args" : {}}
+]

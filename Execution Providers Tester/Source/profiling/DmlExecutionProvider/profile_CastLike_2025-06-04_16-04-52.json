@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :100,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :701,"ts" :20299,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :261,"ts" :34909,"ph" : "X","name" :"CastLike_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "CastLike","input_type_shape" : [{"float":[2,2]},{"int32":[2,2]}],"node_index" : "0","output_type_shape" : [{"int32":[2,2]}],"activation_size" : "32","output_size" : "16","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-73-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"6324": {"num_run": 0, "core": -1},"11600": {"num_run": 0, "core": -1},"11280": {"num_run": 0, "core": -1},"14568": {"num_run": 0, "core": -1},"24932": {"num_run": 0, "core": -1},"25424": {"num_run": 0, "core": -1},"23800": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :280,"ts" :34898,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2117,"ts" :34195,"ph" : "X","name" :"model_run","args" : {}}
+]

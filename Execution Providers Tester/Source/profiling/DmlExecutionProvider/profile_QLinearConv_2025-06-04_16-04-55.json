@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :12960,"ts" :19,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :10910,"ts" :55686,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :383,"ts" :70847,"ph" : "X","name" :"QLinearConv_0_kernel_time","args" : {"parameter_size" : "15","provider" : "DmlExecutionProvider","op_name" : "QLinearConv","input_type_shape" : [{"uint8":[1,1,5,5]},{"float":[]},{"uint8":[]},{"uint8":[1,1,3,3]},{"float":[]},{"uint8":[]},{"float":[]},{"uint8":[]}],"node_index" : "0","output_type_shape" : [{"uint8":[1,1,3,3]}],"activation_size" : "34","output_size" : "9","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-120-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"23572": {"num_run": 0, "core": -1},"2472": {"num_run": 0, "core": -1},"12224": {"num_run": 0, "core": -1},"20172": {"num_run": 0, "core": -1},"24876": {"num_run": 0, "core": -1},"20608": {"num_run": 0, "core": -1},"8104": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :405,"ts" :70834,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2456,"ts" :70028,"ph" : "X","name" :"model_run","args" : {}}
+]

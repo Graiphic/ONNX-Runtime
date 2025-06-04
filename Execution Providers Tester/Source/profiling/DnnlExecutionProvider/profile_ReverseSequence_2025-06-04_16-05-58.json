@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :85,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :247,"ts" :176,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :45,"ts" :2884,"ph" : "X","name" :"ReverseSequence_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "ReverseSequence","input_type_shape" : [{"float":[4,3]},{"int64":[3]}],"node_index" : "0","output_type_shape" : [{"float":[4,3]}],"activation_size" : "72","output_size" : "48","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-130-intra-op", "thread_id": "19496", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"23920": {"num_run": 0, "core": -1},"23712": {"num_run": 0, "core": -1},"9632": {"num_run": 0, "core": -1},"3324": {"num_run": 0, "core": -1},"20744": {"num_run": 0, "core": -1},"4704": {"num_run": 0, "core": -1},"18796": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :61,"ts" :2876,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :75,"ts" :2865,"ph" : "X","name" :"model_run","args" : {}}
+]

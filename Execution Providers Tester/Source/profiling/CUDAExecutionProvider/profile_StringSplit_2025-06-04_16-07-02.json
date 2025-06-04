@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :92,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :682,"ts" :215,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :52,"ts" :3470,"ph" : "X","name" :"StringSplit_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "StringSplit","input_type_shape" : [{"string":[3]}],"node_index" : "0","output_type_shape" : [{"string":[3,3]},{"int64":[3]}],"activation_size" : "96","output_size" : "312","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-300-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"23508": {"num_run": 0, "core": -1},"19668": {"num_run": 0, "core": -1},"12340": {"num_run": 0, "core": -1},"1500": {"num_run": 0, "core": -1},"20016": {"num_run": 0, "core": -1},"24800": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :70,"ts" :3462,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :101,"ts" :3443,"ph" : "X","name" :"model_run","args" : {}}
+]

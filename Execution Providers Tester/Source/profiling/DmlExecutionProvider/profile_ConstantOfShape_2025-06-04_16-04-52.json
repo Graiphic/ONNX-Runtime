@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :101,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :601,"ts" :20524,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :1650,"ts" :24153,"ph" : "X","name" :"ConstantOfShape_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "ConstantOfShape","input_type_shape" : [{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[2,3]}],"activation_size" : "16","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-80-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"19276": {"num_run": 0, "core": -1},"8424": {"num_run": 0, "core": -1},"23132": {"num_run": 0, "core": -1},"20716": {"num_run": 0, "core": -1},"20700": {"num_run": 0, "core": -1},"4172": {"num_run": 0, "core": -1},"23096": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :1666,"ts" :24145,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2771,"ts" :24133,"ph" : "X","name" :"model_run","args" : {}}
+]

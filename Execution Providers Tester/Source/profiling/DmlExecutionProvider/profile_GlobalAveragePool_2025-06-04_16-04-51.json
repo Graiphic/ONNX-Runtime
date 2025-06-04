@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :85,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :596,"ts" :68042,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :53,"ts" :69868,"ph" : "X","name" :"GlobalAveragePool_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "GlobalAveragePool","input_type_shape" : [{"float":[1,3,32,32]}],"node_index" : "0","output_type_shape" : [{"float":[1,3,1,1]}],"activation_size" : "12288","output_size" : "12","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-59-intra-op", "thread_id": "19496", "block_size": [1], "core": 2, "Distribution": 4, "DistributionEnqueue": 3, "Run": 1, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"16108": {"num_run": 0, "core": -1},"22008": {"num_run": 0, "core": -1},"23164": {"num_run": 0, "core": -1},"20200": {"num_run": 0, "core": -1},"19560": {"num_run": 0, "core": -1},"23260": {"num_run": 0, "core": -1},"8948": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :79,"ts" :69853,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :101,"ts" :69837,"ph" : "X","name" :"model_run","args" : {}}
+]

@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :100,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :777,"ts" :224,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :1390,"ts" :33801,"ph" : "X","name" :"OneHot_0_kernel_time","args" : {"parameter_size" : "16","provider" : "CUDAExecutionProvider","op_name" : "OneHot","input_type_shape" : [{"int64":[3]},{"int64":[]},{"float":[2]}],"node_index" : "0","output_type_shape" : [{"float":[3,5]}],"activation_size" : "24","output_size" : "60","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-267-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"13680": {"num_run": 0, "core": -1},"14984": {"num_run": 0, "core": -1},"11548": {"num_run": 0, "core": -1},"21104": {"num_run": 0, "core": -1},"10468": {"num_run": 0, "core": -1},"24652": {"num_run": 0, "core": -1},"25256": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1433,"ts" :33768,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1810,"ts" :33509,"ph" : "X","name" :"model_run","args" : {}}
+]

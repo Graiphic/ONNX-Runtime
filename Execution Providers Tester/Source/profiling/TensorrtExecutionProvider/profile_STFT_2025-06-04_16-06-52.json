@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :92,"ts" :6309,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :23480,"ts" :6818,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :80,"ts" :33131,"ph" : "X","name" :"STFT_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "STFT","input_type_shape" : [{"float":[1,512,1]},{"int64":[]},{"float":[256]},{"int64":[]}],"node_index" : "0","output_type_shape" : [{"float":[1,3,129,2]}],"activation_size" : "3088","output_size" : "3096","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-132-intra-op", "thread_id": "4588", "block_size": [], "core": 4, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"7836": {"num_run": 0, "core": -1},"11820": {"num_run": 0, "core": -1},"25324": {"num_run": 0, "core": -1},"22908": {"num_run": 0, "core": -1},"7184": {"num_run": 0, "core": -1},"20244": {"num_run": 0, "core": -1},"18140": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :106,"ts" :33116,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :147,"ts" :33089,"ph" : "X","name" :"model_run","args" : {}}
+]

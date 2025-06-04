@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :97,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :478,"ts" :118,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :59,"ts" :1493,"ph" : "X","name" :"DequantizeLinear_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "DequantizeLinear","input_type_shape" : [{"uint8":[2,3]},{"float":[]},{"uint8":[]}],"node_index" : "0","output_type_shape" : [{"float":[2,3]}],"activation_size" : "11","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-391-intra-op", "thread_id": "4588", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"10296": {"num_run": 0, "core": -1},"24004": {"num_run": 0, "core": -1},"19148": {"num_run": 0, "core": -1},"12588": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :77,"ts" :1485,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :96,"ts" :1471,"ph" : "X","name" :"model_run","args" : {}}
+]

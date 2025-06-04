@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :90,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :825,"ts" :201,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :102,"ts" :3507,"ph" : "X","name" :"Concat_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CUDAExecutionProvider","op_name" : "Concat","input_type_shape" : [{"float":[2,3]},{"float":[2,3]},{"float":[2,3]}],"node_index" : "0","output_type_shape" : [{"float":[6,3]}],"activation_size" : "72","output_size" : "72","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-196-intra-op", "thread_id": "4588", "block_size": [], "core": 3, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"1484": {"num_run": 0, "core": -1},"11680": {"num_run": 0, "core": -1},"14808": {"num_run": 0, "core": -1},"18904": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"10488": {"num_run": 0, "core": -1},"24040": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :142,"ts" :3475,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :2139,"ts" :3202,"ph" : "X","name" :"model_run","args" : {}}
+]

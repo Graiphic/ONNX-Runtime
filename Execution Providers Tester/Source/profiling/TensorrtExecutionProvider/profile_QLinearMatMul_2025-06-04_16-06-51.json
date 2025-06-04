@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :237,"ts" :7107,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :56291,"ts" :7890,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :45,"ts" :66391,"ph" : "X","name" :"QLinearMatMul_0_kernel_time","args" : {"parameter_size" : "15","provider" : "CPUExecutionProvider","op_name" : "QLinearMatMul","input_type_shape" : [{"uint8":[2,3]},{"float":[]},{"uint8":[]},{"uint8":[3,4]},{"float":[]},{"uint8":[]},{"float":[]},{"uint8":[]}],"node_index" : "0","output_type_shape" : [{"uint8":[2,4]}],"activation_size" : "18","output_size" : "8","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-121-intra-op", "thread_id": "4588", "block_size": [], "core": 4, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"7772": {"num_run": 0, "core": -1},"17108": {"num_run": 0, "core": -1},"22816": {"num_run": 0, "core": -1},"15608": {"num_run": 0, "core": -1},"13336": {"num_run": 0, "core": -1},"9912": {"num_run": 0, "core": -1},"19528": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :72,"ts" :66376,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :113,"ts" :66352,"ph" : "X","name" :"model_run","args" : {}}
+]

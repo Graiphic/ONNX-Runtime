@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :142,"ts" :8,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :689,"ts" :185,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :57,"ts" :1898,"ph" : "X","name" :"LayerNormalization_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "LayerNormalization","input_type_shape" : [{"float":[2,4,8]},{"float":[8]},{"float":[8]}],"node_index" : "0","output_type_shape" : [{"float":[2,4,8]}],"activation_size" : "320","output_size" : "256","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-367-intra-op", "thread_id": "4588", "block_size": [1], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 2, "Wait": 1, "WaitRevoke": 0}, "sub_threads": {"11392": {"num_run": 1, "core": 1},"24720": {"num_run": 1, "core": 0},"23780": {"num_run": 1, "core": 7},"15940": {"num_run": 0, "core": -1},"24712": {"num_run": 1, "core": 6},"10096": {"num_run": 1, "core": 4},"17056": {"num_run": 1, "core": 3}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :74,"ts" :1890,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :91,"ts" :1877,"ph" : "X","name" :"model_run","args" : {}}
+]

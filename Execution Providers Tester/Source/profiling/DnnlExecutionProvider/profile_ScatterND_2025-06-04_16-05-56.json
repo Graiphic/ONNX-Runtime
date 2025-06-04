@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :98,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :281,"ts" :199,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :57,"ts" :33372,"ph" : "X","name" :"ScatterND_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "ScatterND","input_type_shape" : [{"float":[4,4]},{"int64":[2,1]},{"float":[2,4]}],"node_index" : "0","output_type_shape" : [{"float":[4,4]}],"activation_size" : "112","output_size" : "64","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-53-intra-op", "thread_id": "19496", "block_size": [], "core": 1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"19604": {"num_run": 0, "core": -1},"22928": {"num_run": 0, "core": -1},"588": {"num_run": 0, "core": -1},"6780": {"num_run": 0, "core": -1},"18676": {"num_run": 0, "core": -1},"20864": {"num_run": 0, "core": -1},"8884": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :79,"ts" :33361,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :97,"ts" :33346,"ph" : "X","name" :"model_run","args" : {}}
+]

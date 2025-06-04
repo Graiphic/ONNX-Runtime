@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :96,"ts" :8,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :287,"ts" :195,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :23804,"tid" :13004,"dur" :57,"ts" :1510,"ph" : "X","name" :"GatherElements_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "GatherElements","input_type_shape" : [{"float":[2,3]},{"int64":[2,3]}],"node_index" : "0","output_type_shape" : [{"float":[2,3]}],"activation_size" : "72","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-51-intra-op", "thread_id": "13004", "block_size": [1], "core": 6, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"19588": {"num_run": 1, "core": 5},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :77,"ts" :1499,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :96,"ts" :1486,"ph" : "X","name" :"model_run","args" : {}}
+]

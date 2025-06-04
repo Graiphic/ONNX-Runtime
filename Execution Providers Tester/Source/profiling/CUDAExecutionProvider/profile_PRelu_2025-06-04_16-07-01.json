@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :89,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :746,"ts" :210,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :71,"ts" :5948,"ph" : "X","name" :"PRelu_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CUDAExecutionProvider","op_name" : "PRelu","input_type_shape" : [{"float":[2,3]},{"float":[1,3]}],"node_index" : "0","output_type_shape" : [{"float":[2,3]}],"activation_size" : "36","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-271-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"24132": {"num_run": 0, "core": -1},"24308": {"num_run": 0, "core": -1},"3456": {"num_run": 0, "core": -1},"21792": {"num_run": 0, "core": -1},"22156": {"num_run": 0, "core": -1},"9816": {"num_run": 0, "core": -1},"23092": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :102,"ts" :5926,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1400,"ts" :5679,"ph" : "X","name" :"model_run","args" : {}}
+]

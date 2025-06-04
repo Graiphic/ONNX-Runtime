@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :94,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :433,"ts" :115,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :48,"ts" :4563,"ph" : "X","name" :"BitShift_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "BitShift","input_type_shape" : [{"uint32":[2,2]},{"uint32":[2,2]}],"node_index" : "0","output_type_shape" : [{"uint32":[2,2]}],"activation_size" : "32","output_size" : "16","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-373-intra-op", "thread_id": "4588", "block_size": [], "core": 3, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"0": {"num_run": 0, "core": -1},"13920": {"num_run": 0, "core": -1},"21048": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"8468": {"num_run": 0, "core": -1},"15868": {"num_run": 0, "core": -1},"3152": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :65,"ts" :4554,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :81,"ts" :4542,"ph" : "X","name" :"model_run","args" : {}}
+]

@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :95,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :12563,"ts" :20375,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :1782,"ts" :50724,"ph" : "X","name" :"Tile_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "Tile","input_type_shape" : [{"float":[2,2]},{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[4,6]}],"activation_size" : "32","output_size" : "96","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-48-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"19468": {"num_run": 0, "core": -1},"19484": {"num_run": 0, "core": -1},"2396": {"num_run": 0, "core": -1},"22640": {"num_run": 0, "core": -1},"8088": {"num_run": 0, "core": -1},"11384": {"num_run": 0, "core": -1},"21688": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :1806,"ts" :50710,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :3436,"ts" :50160,"ph" : "X","name" :"model_run","args" : {}}
+]

@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :102,"ts" :6794,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :53713,"ts" :7327,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :90,"ts" :63690,"ph" : "X","name" :"MelWeightMatrix_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "MelWeightMatrix","input_type_shape" : [{"int64":[]},{"int64":[]},{"int64":[]},{"float":[]},{"float":[]}],"node_index" : "0","output_type_shape" : [{"float":[257,40]}],"activation_size" : "32","output_size" : "41120","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-110-intra-op", "thread_id": "4588", "block_size": [], "core": 4, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"10840": {"num_run": 0, "core": -1},"25540": {"num_run": 0, "core": -1},"14952": {"num_run": 0, "core": -1},"10244": {"num_run": 0, "core": -1},"8740": {"num_run": 0, "core": -1},"25572": {"num_run": 0, "core": -1},"18164": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :118,"ts" :63674,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :174,"ts" :63638,"ph" : "X","name" :"model_run","args" : {}}
+]

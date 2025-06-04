@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :95,"ts" :6696,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :32298,"ts" :7179,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :92,"ts" :43077,"ph" : "X","name" :"AffineGrid_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "AffineGrid","input_type_shape" : [{"float":[1,2,3]},{"int64":[4]}],"node_index" : "0","output_type_shape" : [{"float":[1,64,64,2]}],"activation_size" : "56","output_size" : "32768","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-65-intra-op", "thread_id": "4588", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"21064": {"num_run": 0, "core": -1},"22468": {"num_run": 0, "core": -1},"20412": {"num_run": 0, "core": -1},"14312": {"num_run": 0, "core": -1},"24124": {"num_run": 0, "core": -1},"22060": {"num_run": 0, "core": -1},"19936": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :113,"ts" :43065,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :145,"ts" :43046,"ph" : "X","name" :"model_run","args" : {}}
+]

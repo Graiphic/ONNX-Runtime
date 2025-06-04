@@ -1,0 +1,6 @@
+[
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :74,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :233,"ts" :179,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :1,"ts" :32673,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :27,"ts" :32652,"ph" : "X","name" :"model_run","args" : {}}
+]

@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :86,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :672,"ts" :202,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :48,"ts" :3615,"ph" : "X","name" :"Size_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Size","input_type_shape" : [{"float":[2,3,4]}],"node_index" : "0","output_type_shape" : [{"int64":[]}],"activation_size" : "96","output_size" : "8","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-294-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"25436": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"23728": {"num_run": 0, "core": -1},"22088": {"num_run": 0, "core": -1},"25420": {"num_run": 0, "core": -1},"13056": {"num_run": 0, "core": -1},"25584": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :65,"ts" :3607,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :96,"ts" :3589,"ph" : "X","name" :"model_run","args" : {}}
+]

@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :142,"ts" :11,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :5240,"ts" :293,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :1240,"ts" :10635,"ph" : "X","name" :"LRN_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CUDAExecutionProvider","op_name" : "LRN","input_type_shape" : [{"float":[1,3,5,5]}],"node_index" : "0","output_type_shape" : [{"float":[1,3,5,5]}],"activation_size" : "300","output_size" : "300","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-253-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"18460": {"num_run": 0, "core": -1},"22944": {"num_run": 0, "core": -1},"20428": {"num_run": 0, "core": -1},"14148": {"num_run": 0, "core": -1},"18700": {"num_run": 0, "core": -1},"20800": {"num_run": 0, "core": -1},"9324": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1277,"ts" :10607,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1684,"ts" :10355,"ph" : "X","name" :"model_run","args" : {}}
+]

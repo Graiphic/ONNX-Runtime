@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :104,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :421,"ts" :125,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :49,"ts" :3689,"ph" : "X","name" :"DFT_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "DFT","input_type_shape" : [{"float":[2,16,1]},{"int64":[1]},{"int64":[1]}],"node_index" : "0","output_type_shape" : [{"float":[2,16,2]}],"activation_size" : "144","output_size" : "256","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-389-intra-op", "thread_id": "4588", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"19712": {"num_run": 0, "core": -1},"19864": {"num_run": 0, "core": -1},"4128": {"num_run": 0, "core": -1},"21984": {"num_run": 0, "core": -1},"9456": {"num_run": 0, "core": -1},"14880": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :65,"ts" :3681,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :82,"ts" :3668,"ph" : "X","name" :"model_run","args" : {}}
+]

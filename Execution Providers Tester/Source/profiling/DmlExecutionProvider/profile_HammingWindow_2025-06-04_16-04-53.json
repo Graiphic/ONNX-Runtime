@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :87,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :574,"ts" :23084,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :29,"ts" :29652,"ph" : "X","name" :"HammingWindow_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "HammingWindow","input_type_shape" : [{"int64":[]}],"node_index" : "0","output_type_shape" : [{"float":[64]}],"activation_size" : "8","output_size" : "256","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-94-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"20880": {"num_run": 0, "core": -1},"15820": {"num_run": 0, "core": -1},"22104": {"num_run": 0, "core": -1},"24736": {"num_run": 0, "core": -1},"11892": {"num_run": 0, "core": -1},"24528": {"num_run": 0, "core": -1},"32": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :45,"ts" :29643,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :64,"ts" :29629,"ph" : "X","name" :"model_run","args" : {}}
+]

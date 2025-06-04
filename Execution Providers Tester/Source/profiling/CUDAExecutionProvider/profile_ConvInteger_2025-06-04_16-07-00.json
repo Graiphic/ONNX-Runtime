@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :118,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :742,"ts" :252,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :97,"ts" :3105,"ph" : "X","name" :"ConvInteger_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "ConvInteger","input_type_shape" : [{"uint8":[1,3,32,32]},{"uint8":[6,3,3,3]},{"uint8":[]},{"uint8":[]}],"node_index" : "0","output_type_shape" : [{"int32":[1,6,32,32]}],"activation_size" : "3236","output_size" : "24576","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-235-intra-op", "thread_id": "4588", "block_size": [1], "core": 0, "Distribution": 1, "DistributionEnqueue": 1, "Run": 8, "Wait": 13, "WaitRevoke": 0}, "sub_threads": {"7916": {"num_run": 1, "core": 4},"7924": {"num_run": 1, "core": 5},"0": {"num_run": 0, "core": -1},"21064": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"20412": {"num_run": 0, "core": -1},"14312": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :116,"ts" :3096,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :153,"ts" :3073,"ph" : "X","name" :"model_run","args" : {}}
+]

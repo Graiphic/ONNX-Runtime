@@ -1,0 +1,7 @@
+[
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :120,"ts" :6808,"ph" : "X","name" :"model_loading_array","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :89063,"ts" :7414,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :328,"ts" :98476,"ph" : "X","name" :"TensorrtExecutionProvider_TRTKernel_graph_Max_graph_16417567319079243109_0_0_kernel_time","args" : {"parameter_size" : "0","provider" : "TensorrtExecutionProvider","op_name" : "TRTKernel_graph_Max_graph_16417567319079243109_0","input_type_shape" : [{"float":[2,2]},{"float":[2,2]},{"float":[2,2]}],"node_index" : "1","output_type_shape" : [{"float":[2,2]}],"activation_size" : "48","output_size" : "16","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-32-intra-op", "thread_id": "4588", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"11464": {"num_run": 0, "core": -1},"24080": {"num_run": 0, "core": -1},"21752": {"num_run": 0, "core": -1},"21668": {"num_run": 0, "core": -1},"23404": {"num_run": 0, "core": -1},"23528": {"num_run": 0, "core": -1},"20288": {"num_run": 0, "core": -1}}}}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :362,"ts" :98452,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :697,"ts" :98188,"ph" : "X","name" :"model_run","args" : {}}
+]

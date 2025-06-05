@@ -1,3 +1,5 @@
+# utils.py
+
 import os
 import onnx
 import onnx.helper
@@ -19,28 +21,27 @@ SpecialInputGenerators = {}
 
 def map_execution_provider(provider_name):
     mapping = {
-    "CPUExecutionProvider": "CPU",
-    "CUDAExecutionProvider":       "NVIDIA - CUDA",
-    "TensorrtExecutionProvider":   "NVIDIA - TensorRT",
-    "OpenVINOExecutionProvider":   "Intel - OpenVINO™",
-    "DnnlExecutionProvider":       "Intel - oneDNN",
-    "DmlExecutionProvider":        "Windows - DirectML",
-    "QNNExecutionProvider":        "Qualcomm - QNN",
-    "NnapiExecutionProvider":      "Android - NNAPI",
-    "CoreMLExecutionProvider":     "Apple - CoreML",
-    "XnnpackExecutionProvider":    "XNNPACK",
-    "ROCMExecutionProvider":       "AMD - ROCm",
-    "MIGraphXExecutionProvider":   "AMD - MIGraphX",
-    "VitisAIExecutionProvider":    "AMD - Vitis AI",
-    "AzureExecutionProvider":      "Cloud - Azure",
-    "ACLExecutionProvider":        "Arm - ACL",
-    "ArmNNExecutionProvider":      "Arm - Arm NN",
-    "TVMExecutionProvider":        "Apache - TVM",
-    "RknpuExecutionProvider":      "Rockchip - RKNPU",
-    "CANNExecutionProvider":       "Huawei - CANN"
+        "CPUExecutionProvider": "CPU",
+        "CUDAExecutionProvider":       "NVIDIA - CUDA",
+        "TensorrtExecutionProvider":   "NVIDIA - TensorRT",
+        "OpenVINOExecutionProvider":   "Intel - OpenVINO™",
+        "DnnlExecutionProvider":       "Intel - oneDNN",
+        "DmlExecutionProvider":        "Windows - DirectML",
+        "QNNExecutionProvider":        "Qualcomm - QNN",
+        "NnapiExecutionProvider":      "Android - NNAPI",
+        "CoreMLExecutionProvider":     "Apple - CoreML",
+        "XnnpackExecutionProvider":    "XNNPACK",
+        "ROCMExecutionProvider":       "AMD - ROCm",
+        "MIGraphXExecutionProvider":   "AMD - MIGraphX",
+        "VitisAIExecutionProvider":    "AMD - Vitis AI",
+        "AzureExecutionProvider":      "Cloud - Azure",
+        "ACLExecutionProvider":        "Arm - ACL",
+        "ArmNNExecutionProvider":      "Arm - Arm NN",
+        "TVMExecutionProvider":        "Apache - TVM",
+        "RknpuExecutionProvider":      "Rockchip - RKNPU",
+        "CANNExecutionProvider":       "Huawei - CANN"
     }
     return mapping.get(provider_name, "Unknown")
-
 
 
 def default_model_builder(op_type, cfg=None):
@@ -280,19 +281,17 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
             results.append((op, provider, None, f"FAIL parsing JSON: {e}"))
             continue
 
-    
     # --- Generate the README in Markdown (with pie chart) ---
-    map_name     = map_execution_provider(provider)  # ex. "Nvidia - CUDA", "AMD - Rocm", etc.
-    # On remonte toujours à la racine du projet, quel que soit profiling_dir
+    map_name     = map_execution_provider(provider)  # e.g. "NVIDIA - CUDA", "AMD - ROCm", etc.
+    # Always navigate to the project root by looking at the folder of this file
     project_root  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     base_output_dir = os.path.join(project_root, map_name)
     os.makedirs(base_output_dir, exist_ok=True)
-    
+
     # --- Generate the detailed and aggregated Excel reports ---
     generate_report(results, provider, base_output_dir, models_dir)
     generate_report_aggregated(results, provider, base_output_dir, models_dir)
     generate_readme(results, provider, base_output_dir)
-
 
 
 def run_all_providers_and_generate_reports(test_file="test.txt",

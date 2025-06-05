@@ -1,6 +1,9 @@
 # Summary of ONNX Execution Provider Results
 
-Ce document rassemble tous les résultats de tests par Execution Provider (EP).  Chaque EP a généré son propre README avec statistiques détaillées.  Ci-dessous, vous trouverez d’abord les informations matérielles et logicielles utilisées,  puis un tableau récapitulatif du nombre de nœuds ayant réussi directement (SUCCESS), tombé en fallback (FALLBACK) ou échoué (FAIL), pour chaque EP.
+This document gathers all test results by Execution Provider (EP).  
+Each EP has generated its own README with detailed statistics.  
+Below, you will first find the hardware and software information used,  
+followed by a summary table of the number of nodes that succeeded directly (SUCCESS), fell back (FALLBACK), or failed (FAIL) for each EP.
 
 ## Hardware and Software
 
@@ -13,7 +16,7 @@ Ce document rassemble tous les résultats de tests par Execution Provider (EP). 
 - **ONNXRuntime version:** 1.23.0
 - **Operating System (OS):** Windows 10
 
-## Tableau récapitulatif
+## Summary Table
 
 | Execution Provider | SUCCESS | FALLBACK | FAIL |
 |:------------------:|:-------:|:--------:|:----:|

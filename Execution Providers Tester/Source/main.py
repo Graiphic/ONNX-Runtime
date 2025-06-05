@@ -24,4 +24,4 @@ print("Done: tests completed and both reports generated.")
 
 
 # Generate a ReadMe summarising the results of each EP already carried out.
-#generate_root_summary()
+generate_root_summary()

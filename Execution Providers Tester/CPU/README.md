@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `CPUExecutionProvider`
 
-**Test Date:** 2025-06-05 09:17:08
+**Test Date:** 2025-06-05 09:34:32
 
 ## Environment and Installation Details
 

@@ -282,9 +282,9 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
 
     
     # --- Generate the README in Markdown (with pie chart) ---
-    map_name = map_execution_provider(provider)  # ex. "Nvidia - CUDA", "AMD - Rocm", etc.
-    abs_profiling = os.path.abspath(profiling_dir)
-    project_root = os.path.dirname(os.path.dirname(os.path.dirname(abs_profiling)))
+    map_name     = map_execution_provider(provider)  # ex. "Nvidia - CUDA", "AMD - Rocm", etc.
+    # On remonte toujours à la racine du projet, quel que soit profiling_dir
+    project_root  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     base_output_dir = os.path.join(project_root, map_name)
     os.makedirs(base_output_dir, exist_ok=True)
     

@@ -510,16 +510,12 @@ def get_tensorrt_version():
 
 def generate_readme(results, provider, output_dir):
     """
-    Generates a README_<provider>.md in English containing:
-      - Test date + statistics (direct / fallback / not executable / fail).
-      - A pie chart PNG showing the distribution.
-      - A detailed list of all nodes (name | status), each status as a colored badge.
-      - Information on how each Execution Provider was installed (including DNNL).
-      - Versions of ONNX / ONNXRuntime / CUDA / cuDNN / TensorRT.
-      - Hardware info: CPU name and GPU(s).
-      - Relative links to scripts and folders.
+    Génère un README_<provider>.md en anglais contenant désormais, dans cet ordre :
+      1) Environment and Installation Details (sans GPU/CUDA/cuDNN si le EP n'y est pas lié)
+      2) Node Details (tableau)
+      3) Global Statistics (statistiques + pie chart)
     """
-    # --- 1) Compute statistics ---
+    # --- 1) Calcul des statistiques (mêmes calculs que précédemment) ---
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     total = len(results) if results else 1
 
@@ -545,11 +541,11 @@ def generate_readme(results, provider, output_dir):
     pct_unknown = round((count_unknown / total) * 100, 1)
     pct_fail = round((count_fail / total) * 100, 1)
 
-    # --- 2) ONNX / ONNXRuntime versions ---
+    # --- 2) Versions ONNX / ONNXRuntime ---
     onnx_ver = onnx.__version__
     ort_ver = ort.__version__
 
-    # --- 3) CPU information ---
+    # --- 3) Informations CPU ---
     if cpuinfo:
         try:
             cpu_name = cpuinfo.get_cpu_info().get("brand_raw", platform.processor())
@@ -558,7 +554,7 @@ def generate_readme(results, provider, output_dir):
     else:
         cpu_name = platform.processor() or "Unknown"
 
-    # --- 4) GPU information via nvidia-smi ---
+    # --- 4) Informations GPU via nvidia-smi ---
     gpu_list = []
     try:
         res = subprocess.run(
@@ -570,7 +566,7 @@ def generate_readme(results, provider, output_dir):
     except Exception:
         gpu_list = []
 
-    # --- 5) CUDA version via nvcc ---
+    # --- 5) Version CUDA via nvcc ---
     cuda_version = "Unknown"
     try:
         res = subprocess.run(
@@ -584,13 +580,13 @@ def generate_readme(results, provider, output_dir):
     except Exception:
         cuda_version = "Unknown"
 
-    # --- 6) cuDNN version by reading the header file in CUDA ---
+    # --- 6) Version cuDNN (lecture du header) ---
     cudnn_version = get_cudnn_version()
 
-    # --- 7) TensorRT version ---
+    # --- 7) Version TensorRT ---
     trt_version = get_tensorrt_version()
 
-    # --- 8) Determine installation command by provider ---
+    # --- 8) Commande d'installation selon le provider ---
     installation_cmd = {
         "CUDAExecutionProvider":      "pip install onnxruntime-gpu",
         "OpenVINOExecutionProvider":  "pip install onnxruntime-openvino\npip install openvino==2025.1.0",
@@ -600,7 +596,7 @@ def generate_readme(results, provider, output_dir):
     }
     install_info = installation_cmd.get(provider, "Installation method not specified")
 
-    # --- 9) Generate pie chart PNG ---
+        # --- 9) Création du pie chart PNG (même logique que précédemment) ---
     labels = [
         f"Direct (SUCCESS): {count_direct}",
         f"Fallback: {count_fallback}",
@@ -611,18 +607,34 @@ def generate_readme(results, provider, output_dir):
     colors = ["#00AA44", "#FFAA00", "#DEDEDE", "#FF0000"]
 
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.pie(
-        sizes, labels=labels, autopct='%1.1f%%', startangle=140, colors=colors
-    )
-    ax.axis('equal')
+    total_sizes = sum(sizes)
+    if total_sizes > 0:
+        ax.pie(
+            sizes,
+            labels=labels,
+            autopct='%1.1f%%',
+            startangle=140,
+            colors=colors
+        )
+        ax.axis('equal')
+    else:
+        # aucun nœud testé, on affiche un texte alternatif au centre
+        ax.text(
+            0.5, 0.5, "No nodes tested", 
+            horizontalalignment='center', 
+            verticalalignment='center',
+            fontsize=12, 
+            color='gray'
+        )
+        ax.axis('off')
 
     os.makedirs(output_dir, exist_ok=True)
     pie_path = os.path.join(output_dir, f"stats_{provider}.png")
     plt.savefig(pie_path, bbox_inches="tight")
     plt.close(fig)
 
-    # --- 10) Build Markdown content (English) ---
-    # Map each status to its hex color
+
+    # --- 10) Construction du contenu Markdown dans le nouvel ordre souhaité ---  
     status_color_map = {
         "SUCCESS": "#00AA44",
         "SUCCESS (via decomposition)": "#007700",
@@ -633,10 +645,67 @@ def generate_readme(results, provider, output_dir):
     }
 
     lines = []
+    # 10.a) Titre + date de test
     lines.append(f"# ONNXRuntime Test Results — Provider: `{provider}`")
     lines.append("")
     lines.append(f"**Test Date:** {now}")
     lines.append("")
+
+    # 10.b) Section 1 : Environment and Installation Details
+    lines.append("## Environment and Installation Details")
+    lines.append("")
+    lines.append(f"- **ONNX version:** {onnx_ver}")
+    lines.append(f"- **ONNXRuntime version:** {ort_ver}")
+    lines.append(f"- **Target provider:** {provider}")
+    lines.append(f"- **Installation command for this provider:**\n```bash\n{install_info}\n```")
+    lines.append("")
+    lines.append("### Hardware and Software Versions")
+    lines.append("")
+
+    # On n'affiche GPU/CUDA/cuDNN que si le fournisseur en dépend directement
+    providers_gpu = ["CUDAExecutionProvider", "TensorrtExecutionProvider"]
+    # Par défaut, on affiche le CPU
+    lines.append(f"- **CPU:** {cpu_name}")
+    if provider in providers_gpu and gpu_list:
+        gpu_str = ", ".join(gpu_list)
+        lines.append(f"- **GPU(s):** {gpu_str}")
+        lines.append(f"- **CUDA version:** {cuda_version}")
+        lines.append(f"- **cuDNN version:** {cudnn_version}")
+        if provider == "TensorrtExecutionProvider":
+            lines.append(f"- **TensorRT version:** {trt_version}")
+    else:
+        # Si le provider n'utilise pas CUDA/TensorRT, on ne mentionne pas GPU/CUDA/cuDNN du tout
+        pass
+
+    lines.append("")
+    # 10.c) Section 2 : Node Details (tableau)
+    lines.append("## Node Details")
+    lines.append("")
+    lines.append("| ONNX Node | Status |")
+    lines.append("|:---------:|:------:|")
+    for op_name, _, _, status in results:
+        # Si le status commence par "FAIL", on affiche simplement "FAIL"
+        if status.startswith("FAIL"):
+            display_label = "FAIL"
+        else:
+            display_label = status
+
+        # Couleur du badge
+        hex_color = status_color_map.get(display_label, "#000000")
+        label_encoded = display_label.replace(" ", "%20")
+        badge_url = (
+            f"https://img.shields.io/badge/{label_encoded}-{hex_color.lstrip('#')}?style=flat&logoColor=white"
+        )
+        badge_md = f"![{display_label}]({badge_url})"
+
+        # Lien vers la documentation ONNX de l'op
+        op_url = f"https://onnx.ai/onnx/operators/onnx__{op_name}.html"
+        node_link = f"[`{op_name}`]({op_url})"
+
+        lines.append(f"| {node_link} | {badge_md} |")
+    lines.append("")
+
+    # 10.d) Section 3 : Global Statistics + Pie Chart
     lines.append("## Global Statistics")
     lines.append("")
     lines.append(f"- **Total nodes tested:** {total}")
@@ -650,67 +719,8 @@ def generate_readme(results, provider, output_dir):
     rel_pie = os.path.basename(pie_path)
     lines.append(f"![Node Status Distribution](./{rel_pie})")
     lines.append("")
-    lines.append("## Node Details")
-    lines.append("")
-    lines.append("| ONNX Node | Status |")
-    lines.append("|:---------:|:------:|")
 
-    for op_name, _, _, status in results:
-        # If status starts with "FAIL", display only "FAIL"
-        if status.startswith("FAIL"):
-            display_label = "FAIL"
-        else:
-            display_label = status
-
-        # Get the hex color for this display label (default to black if not found)
-        hex_color = status_color_map.get(display_label, "#000000")
-
-        # URL‐encode spaces in the label (for shields.io badge)
-        label_encoded = display_label.replace(" ", "%20")
-        badge_url = (
-            f"https://img.shields.io/badge/{label_encoded}-{hex_color.lstrip('#')}?style=flat&logoColor=white"
-        )
-        badge_md = f"![{display_label}]({badge_url})"
-
-        # --- UPDATED PART: link the operator name to its ONNX doc ---
-        # Build a Markdown link like [`Add`](https://onnx.ai/onnx/operators/onnx__Add.html)
-        # NOTE: we keep the code font around the op_name by wrapping it in backticks inside the link.
-        op_url = f"https://onnx.ai/onnx/operators/onnx__{op_name}.html"
-        node_link = f"[`{op_name}`]({op_url})"
-
-        # Final table row
-        lines.append(f"| {node_link} | {badge_md} |")
-    lines.append("")
-
-    lines.append("## Environment and Installation Details")
-    lines.append("")
-    lines.append(f"- **ONNX version:** {onnx_ver}")
-    lines.append(f"- **ONNXRuntime version:** {ort_ver}")
-    lines.append(f"- **Target provider:** {provider}")
-    lines.append(f"- **Installation command for this provider:**\n```bash\n{install_info}\n```")
-    lines.append("")
-    lines.append("### Hardware and Software Versions")
-    lines.append("")
-    lines.append(f"- **CPU:** {cpu_name}")
-    if gpu_list:
-        gpu_str = ", ".join(gpu_list)
-        lines.append(f"- **GPU(s):** {gpu_str}")
-        lines.append(f"- **CUDA version:** {cuda_version}")
-        lines.append(f"- **cuDNN version:** {cudnn_version}")
-        if provider == "TensorrtExecutionProvider":
-            lines.append(f"- **TensorRT version:** {trt_version}")
-    else:
-        lines.append("- **GPU:** No NVIDIA GPU detected")
-        lines.append(f"- **CUDA version:** {cuda_version}")
-        lines.append(f"- **cuDNN version:** {cudnn_version}")
-        if provider == "TensorrtExecutionProvider":
-            lines.append(f"- **TensorRT version:** {trt_version}")
-    lines.append("")
-    lines.append("### System Information")
-    lines.append("")
-    os_info = platform.system() + " " + platform.release()
-    lines.append(f"- **Operating System (OS):** {os_info}")
-    lines.append("")
+    # 10.e) Footer indiquant la génération automatique
     lines.append("## README Generation")
     lines.append("")
     lines.append("This file was automatically generated by `report.py` using the `generate_readme` function.")
@@ -724,7 +734,7 @@ def generate_readme(results, provider, output_dir):
     lines.append("_End of README_")
     lines.append("")
 
-    # --- 11) Write the README to disk ---
+    # --- 11) Écriture sur le disque ---
     readme_path = os.path.join(output_dir, f"README.md")
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
@@ -733,15 +743,16 @@ def generate_readme(results, provider, output_dir):
     print(f"Pie chart PNG saved as: {pie_path}")
 
 
+
 def generate_root_summary():
     """
     Parcourt tous les dossiers situés à la racine du projet (au-dessus de Source/).
-    Pour chaque dossier qui contient un README.md, extrait SUCCESS, FALLBACK et FAIL,
-    calcule les pourcentages, puis écrit un README.md unique à la racine du projet,
-    avec en plus une section décrivant la méthodologie de test et un résumé du
-    matériel et logiciels utilisés.
+    Pour chaque dossier contenant un README.md, extrait SUCCESS, FALLBACK et FAIL,
+    puis génère un README.md unique à la racine du projet dans l’ordre :
+      1) Explication
+      2) Hardware and Software
+      3) Tableau récapitulatif par EP
     """
-
     # 1) Déterminer le chemin du dossier racine (celui qui contient Source/)
     source_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(source_dir)
@@ -751,7 +762,7 @@ def generate_root_summary():
     FALLBACK_REGEX = re.compile(r"Executable\s+via\s+FALLBACK.*?:\s*\*\*\s*(\d+)\b", re.IGNORECASE)
     FAIL_REGEX     = re.compile(r"FAIL.*?[:\s]*\*\*\s*(\d+)\b", re.IGNORECASE)
 
-    # 3) Collecter une liste de tuples : (nom_dossier, success, fallback, fail)
+    # 3) Collecte des tuples : (nom_dossier, success, fallback, fail)
     table_rows = []
     for entry in os.listdir(project_root):
         folder_path = os.path.join(project_root, entry)
@@ -762,7 +773,6 @@ def generate_root_summary():
         if not os.path.isfile(readme_path):
             continue
 
-        # Par défaut : initialiser à zéro
         success_count  = 0
         fallback_count = 0
         fail_count     = 0
@@ -774,20 +784,16 @@ def generate_root_summary():
         except Exception:
             contenu = ""
 
-        # Extraction des trois compteurs
         m = SUCCESS_REGEX.search(contenu)
         if m:
             success_count = int(m.group(1))
-
         m = FALLBACK_REGEX.search(contenu)
         if m:
             fallback_count = int(m.group(1))
-
         m = FAIL_REGEX.search(contenu)
         if m:
             fail_count = int(m.group(1))
 
-        # Calcul du total et des pourcentages
         total = success_count + fallback_count + fail_count
         if total == 0:
             pct_succ = pct_fb = pct_fail = 0
@@ -796,7 +802,6 @@ def generate_root_summary():
             pct_fb   = round((fallback_count / total) * 100)
             pct_fail = round((fail_count / total) * 100)
 
-        # Conserver : nom_dossier et chaînes "count (pct%)"
         table_rows.append((
             entry,
             f"{success_count} ({pct_succ}%)",
@@ -809,43 +814,21 @@ def generate_root_summary():
         print("Aucun dossier EP trouvé à la racine pour générer un résumé.")
         return
 
-    # 5) Préparer le chemin du README global
+    # 5) Préparation et écriture du README global
     output_path = os.path.join(project_root, "README.md")
     with open(output_path, "w", encoding="utf-8") as out:
-
-        # 5.a) Titre et paragraphe introductif
+        # 5.a) Titre et paragraphe introductif (explication)
         out.write("# Summary of ONNX Execution Provider Results\n\n")
         out.write(
-            "This document gathers all per-provider test results in one place.  "
-            "Below is a table summarizing, for each Execution Provider (EP), "
-            "how many nodes ran successfully on the provider directly (SUCCESS), "
-            "how many fell back (FALLBACK), and how many failed (FAIL), "
-            "each with its percentage of the total.  "
-            "Refer to each EP’s own README for detailed charts and further statistics.\n\n"
+            "Ce document rassemble tous les résultats de tests par Execution Provider (EP).  "
+            "Chaque EP a généré son propre README avec statistiques détaillées.  "
+            "Ci-dessous, vous trouverez d’abord les informations matérielles et logicielles utilisées,  "
+            "puis un tableau récapitulatif du nombre de nœuds ayant réussi directement (SUCCESS), "
+            "tombé en fallback (FALLBACK) ou échoué (FAIL), pour chaque EP.\n\n"
         )
 
-        # 5.b) Tableau Markdown
-        out.write("| Execution Provider | SUCCESS | FALLBACK | FAIL |\n")
-        out.write("|:------------------:|:-------:|:--------:|:----:|\n")
-        for ep_name, succ_str, fb_str, fail_str in table_rows:
-            out.write(f"| {ep_name} | {succ_str} | {fb_str} | {fail_str} |\n")
-        out.write("\n")
-
-        # 5.c) Section: Testing Methodology
-        out.write("## Testing Methodology\n\n")
-        out.write(
-            "Each ONNX operator (node) is tested by dynamically building a minimal ONNX model containing only that single node.  "
-            "The test harness then creates an ONNXRuntime inference session with profiling enabled, "
-            "runs the model once, and inspects the generated profiling trace to determine whether the node was executed successfully.  "
-            "From the profiling events, we also identify which Execution Provider (EP) actually processed the node—"
-            "either directly on the target EP or via a fallback path.  "
-            "If the node did not produce any 'Node' event in the profiler output, it is marked as UNKNOWN; "
-            "otherwise, it is classified as SUCCESS (direct) or FALLBACK (if ONNXRuntime fell back to another EP).\n\n"
-        )
-
-        # 5.d) Section: Hardware and Software
+        # 5.b) Section : Hardware and Software
         out.write("## Hardware and Software\n\n")
-
         # -- CPU Info --
         if cpuinfo:
             try:
@@ -938,7 +921,7 @@ def generate_root_summary():
         cudnn_version = get_cudnn_version()
         out.write(f"- **cuDNN version:** {cudnn_version}\n")
 
-
+        # -- TensorRT Version --
         trt_version = get_tensorrt_version()
         out.write(f"- **TensorRT version:** {trt_version}\n")
 
@@ -951,7 +934,14 @@ def generate_root_summary():
         # -- OS Info --
         os_info = platform.system() + " " + platform.release()
         out.write(f"- **Operating System (OS):** {os_info}\n")
+        out.write("\n")
 
-        out.write("\n")  # ligne vide finale
+        # 5.c) Section : Tableau récapitulatif par EP
+        out.write("## Tableau récapitulatif\n\n")
+        out.write("| Execution Provider | SUCCESS | FALLBACK | FAIL |\n")
+        out.write("|:------------------:|:-------:|:--------:|:----:|\n")
+        for ep_name, succ_str, fb_str, fail_str in table_rows:
+            out.write(f"| {ep_name} | {succ_str} | {fb_str} | {fail_str} |\n")
+        out.write("\n")
 
-    print(f"→ Root README.md updated at: {output_path}")
+    print(f"→ Root README.md mis à jour à : {output_path}")

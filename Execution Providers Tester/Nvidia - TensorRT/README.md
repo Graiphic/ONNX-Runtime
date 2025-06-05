@@ -1,18 +1,24 @@
 # ONNXRuntime Test Results — Provider: `TensorrtExecutionProvider`
 
-**Test Date:** 2025-06-04 16:06:56
+**Test Date:** 2025-06-05 09:16:28
 
-## Global Statistics
+## Environment and Installation Details
 
-- **Total nodes tested:** 152
-- **Executable directly (SUCCESS):** 87 (57.2%)
-- **Executable via FALLBACK:** 59 (38.8%)
-- **UNKNOWN (no Node event):** 2 (1.3%)
-- **FAIL:** 4 (2.6%)
+- **ONNX version:** 1.18.0
+- **ONNXRuntime version:** 1.23.0
+- **Target provider:** TensorrtExecutionProvider
+- **Installation command for this provider:**
+```bash
+manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
+```
 
-### Statistics Pie Chart
+### Hardware and Software Versions
 
-![Node Status Distribution](./stats_TensorrtExecutionProvider.png)
+- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
+- **GPU(s):** NVIDIA GeForce RTX 2070
+- **CUDA version:** 12.5
+- **cuDNN version:** 9.2.1
+- **TensorRT version:** 10.9.0
 
 ## Node Details
 
@@ -171,27 +177,17 @@
 | [`Unique`](https://onnx.ai/onnx/operators/onnx__Unique.html) | ![SUCCESS WITH FALLBACK](https://img.shields.io/badge/SUCCESS%20WITH%20FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![SUCCESS (via decomposition)](https://img.shields.io/badge/SUCCESS%20(via%20decomposition)-007700?style=flat&logoColor=white) |
 
-## Environment and Installation Details
+## Global Statistics
 
-- **ONNX version:** 1.18.0
-- **ONNXRuntime version:** 1.23.0
-- **Target provider:** TensorrtExecutionProvider
-- **Installation command for this provider:**
-```bash
-manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
-```
+- **Total nodes tested:** 152
+- **Executable directly (SUCCESS):** 87 (57.2%)
+- **Executable via FALLBACK:** 59 (38.8%)
+- **UNKNOWN (no Node event):** 2 (1.3%)
+- **FAIL:** 4 (2.6%)
 
-### Hardware and Software Versions
+### Statistics Pie Chart
 
-- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
-- **GPU(s):** NVIDIA GeForce RTX 2070
-- **CUDA version:** 12.5
-- **cuDNN version:** 9.2.1
-- **TensorRT version:** 10.9.0
-
-### System Information
-
-- **Operating System (OS):** Windows 10
+![Node Status Distribution](./stats_TensorrtExecutionProvider.png)
 
 ## README Generation
 

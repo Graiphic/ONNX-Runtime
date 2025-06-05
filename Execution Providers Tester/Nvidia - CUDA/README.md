@@ -1,18 +1,23 @@
 # ONNXRuntime Test Results — Provider: `CUDAExecutionProvider`
 
-**Test Date:** 2025-06-04 16:07:02
+**Test Date:** 2025-06-05 09:16:34
 
-## Global Statistics
+## Environment and Installation Details
 
-- **Total nodes tested:** 152
-- **Executable directly (SUCCESS):** 74 (48.7%)
-- **Executable via FALLBACK:** 76 (50.0%)
-- **UNKNOWN (no Node event):** 2 (1.3%)
-- **FAIL:** 0 (0.0%)
+- **ONNX version:** 1.18.0
+- **ONNXRuntime version:** 1.23.0
+- **Target provider:** CUDAExecutionProvider
+- **Installation command for this provider:**
+```bash
+pip install onnxruntime-gpu
+```
 
-### Statistics Pie Chart
+### Hardware and Software Versions
 
-![Node Status Distribution](./stats_CUDAExecutionProvider.png)
+- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
+- **GPU(s):** NVIDIA GeForce RTX 2070
+- **CUDA version:** 12.5
+- **cuDNN version:** 9.2.1
 
 ## Node Details
 
@@ -171,26 +176,17 @@
 | [`Unique`](https://onnx.ai/onnx/operators/onnx__Unique.html) | ![SUCCESS WITH FALLBACK](https://img.shields.io/badge/SUCCESS%20WITH%20FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 
-## Environment and Installation Details
+## Global Statistics
 
-- **ONNX version:** 1.18.0
-- **ONNXRuntime version:** 1.23.0
-- **Target provider:** CUDAExecutionProvider
-- **Installation command for this provider:**
-```bash
-pip install onnxruntime-gpu
-```
+- **Total nodes tested:** 152
+- **Executable directly (SUCCESS):** 74 (48.7%)
+- **Executable via FALLBACK:** 76 (50.0%)
+- **UNKNOWN (no Node event):** 2 (1.3%)
+- **FAIL:** 0 (0.0%)
 
-### Hardware and Software Versions
+### Statistics Pie Chart
 
-- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
-- **GPU(s):** NVIDIA GeForce RTX 2070
-- **CUDA version:** 12.5
-- **cuDNN version:** 9.2.1
-
-### System Information
-
-- **Operating System (OS):** Windows 10
+![Node Status Distribution](./stats_CUDAExecutionProvider.png)
 
 ## README Generation
 

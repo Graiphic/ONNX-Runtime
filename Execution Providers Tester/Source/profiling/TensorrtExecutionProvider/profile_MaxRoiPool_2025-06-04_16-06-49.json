@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :92,"ts" :7307,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :47824,"ts" :7880,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :66,"ts" :58139,"ph" : "X","name" :"MaxRoiPool_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "MaxRoiPool","input_type_shape" : [{"float":[1,3,64,64]},{"float":[2,5]}],"node_index" : "0","output_type_shape" : [{"float":[2,3,7,7]}],"activation_size" : "49192","output_size" : "1176","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-107-intra-op", "thread_id": "4588", "block_size": [], "core": 4, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"15864": {"num_run": 0, "core": -1},"24372": {"num_run": 0, "core": -1},"21116": {"num_run": 0, "core": -1},"24980": {"num_run": 0, "core": -1},"18696": {"num_run": 0, "core": -1},"22200": {"num_run": 0, "core": -1},"19896": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :88,"ts" :58126,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :123,"ts" :58106,"ph" : "X","name" :"model_run","args" : {}}
-]

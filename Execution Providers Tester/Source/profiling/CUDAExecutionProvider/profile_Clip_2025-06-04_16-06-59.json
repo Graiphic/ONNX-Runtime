@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :202,"ts" :10,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :31693,"ts" :765,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :1428,"ts" :35104,"ph" : "X","name" :"Clip_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CUDAExecutionProvider","op_name" : "Clip","input_type_shape" : [{"float":[2,2]},{"float":[1]},{"float":[1]}],"node_index" : "0","output_type_shape" : [{"float":[2,2]}],"activation_size" : "24","output_size" : "16","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-227-intra-op", "thread_id": "4588", "block_size": [], "core": 3, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"19572": {"num_run": 0, "core": -1},"18044": {"num_run": 0, "core": -1},"5460": {"num_run": 0, "core": -1},"2868": {"num_run": 0, "core": -1},"4196": {"num_run": 0, "core": -1},"19820": {"num_run": 0, "core": -1},"18344": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1467,"ts" :35074,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1885,"ts" :34809,"ph" : "X","name" :"model_run","args" : {}}
-]

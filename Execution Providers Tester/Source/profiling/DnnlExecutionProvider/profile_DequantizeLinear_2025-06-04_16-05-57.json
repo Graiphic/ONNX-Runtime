@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :113,"ts" :6,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :376,"ts" :225,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :47715,"ts" :44463,"ph" : "X","name" :"DnnlExecutionProvider_DNNL_17210407743031467098_0_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DnnlExecutionProvider","op_name" : "DNNL_17210407743031467098_0","input_type_shape" : [{"uint8":[2,3]},{"float":[]},{"uint8":[]}],"node_index" : "1","output_type_shape" : [{"float":[2,3]}],"activation_size" : "11","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-87-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"23852": {"num_run": 0, "core": -1},"11204": {"num_run": 0, "core": -1},"19388": {"num_run": 0, "core": -1},"22896": {"num_run": 0, "core": -1},"14176": {"num_run": 0, "core": -1},"22508": {"num_run": 0, "core": -1},"5720": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :47732,"ts" :44461,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :47754,"ts" :44447,"ph" : "X","name" :"model_run","args" : {}}
-]

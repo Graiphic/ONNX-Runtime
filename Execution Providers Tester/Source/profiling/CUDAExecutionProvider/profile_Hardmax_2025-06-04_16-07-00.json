@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :142,"ts" :14,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :33057,"ts" :306,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :54,"ts" :48234,"ph" : "X","name" :"Hardmax_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Hardmax","input_type_shape" : [{"float":[1,1]}],"node_index" : "0","output_type_shape" : [{"float":[1,1]}],"activation_size" : "4","output_size" : "4","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-250-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"8932": {"num_run": 0, "core": -1},"18256": {"num_run": 0, "core": -1},"20936": {"num_run": 0, "core": -1},"4172": {"num_run": 0, "core": -1},"6472": {"num_run": 0, "core": -1},"23220": {"num_run": 0, "core": -1},"25476": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :76,"ts" :48220,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :107,"ts" :48201,"ph" : "X","name" :"model_run","args" : {}}
-]

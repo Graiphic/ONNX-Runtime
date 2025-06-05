@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :126,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :474,"ts" :147,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :77,"ts" :1435,"ph" : "X","name" :"LSTM_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "LSTM","input_type_shape" : [{"float":[5,2,3]},{"float":[1,16,3]},{"float":[1,16,4]},{"float":[1,32]},{"float":[1,2,4]},{"float":[1,2,4]}],"node_index" : "0","output_type_shape" : [{"float":[5,1,2,4]},{"float":[1,2,4]},{"float":[1,2,4]}],"activation_size" : "760","output_size" : "224","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-406-intra-op", "thread_id": "4588", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"20116": {"num_run": 0, "core": -1},"17116": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :93,"ts" :1428,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :111,"ts" :1414,"ph" : "X","name" :"model_run","args" : {}}
-]

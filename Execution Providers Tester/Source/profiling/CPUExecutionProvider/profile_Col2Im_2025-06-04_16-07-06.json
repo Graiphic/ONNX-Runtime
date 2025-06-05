@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :120,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :415,"ts" :143,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :64,"ts" :1551,"ph" : "X","name" :"Col2Im_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Col2Im","input_type_shape" : [{"float":[1,9,25]},{"int64":[2]},{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[1,1,5,5]}],"activation_size" : "932","output_size" : "100","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-380-intra-op", "thread_id": "4588", "block_size": [], "core": 3, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :92,"ts" :1535,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :117,"ts" :1515,"ph" : "X","name" :"model_run","args" : {}}
-]

@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :104,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :22538,"ts" :126,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :47,"ts" :57968,"ph" : "X","name" :"MaxUnpool_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "MaxUnpool","input_type_shape" : [{"float":[1,1,2,2]},{"int64":[1,1,2,2]},{"int64":[4]}],"node_index" : "0","output_type_shape" : [{"float":[1,1,4,4]}],"activation_size" : "80","output_size" : "64","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-412-intra-op", "thread_id": "4588", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"15184": {"num_run": 0, "core": -1},"24708": {"num_run": 0, "core": -1},"12924": {"num_run": 0, "core": -1},"21608": {"num_run": 0, "core": -1},"11364": {"num_run": 0, "core": -1},"24148": {"num_run": 0, "core": -1},"9336": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :68,"ts" :57956,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :86,"ts" :57943,"ph" : "X","name" :"model_run","args" : {}}
-]

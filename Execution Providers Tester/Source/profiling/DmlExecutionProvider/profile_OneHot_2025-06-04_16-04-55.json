@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :121,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2770,"ts" :46290,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :402,"ts" :51457,"ph" : "X","name" :"OneHot_0_kernel_time","args" : {"parameter_size" : "16","provider" : "DmlExecutionProvider","op_name" : "OneHot","input_type_shape" : [{"int64":[3]},{"int64":[]},{"float":[2]}],"node_index" : "0","output_type_shape" : [{"float":[3,5]}],"activation_size" : "24","output_size" : "60","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-115-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"22052": {"num_run": 0, "core": -1},"18544": {"num_run": 0, "core": -1},"21792": {"num_run": 0, "core": -1},"22156": {"num_run": 0, "core": -1},"3456": {"num_run": 0, "core": -1},"24308": {"num_run": 0, "core": -1},"22204": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :426,"ts" :51443,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2123,"ts" :50909,"ph" : "X","name" :"model_run","args" : {}}
-]

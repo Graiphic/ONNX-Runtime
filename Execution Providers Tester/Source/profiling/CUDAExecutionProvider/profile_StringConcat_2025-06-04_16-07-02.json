@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :90,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :721,"ts" :212,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :73,"ts" :33280,"ph" : "X","name" :"StringConcat_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "StringConcat","input_type_shape" : [{"string":[3]},{"string":[3]}],"node_index" : "0","output_type_shape" : [{"string":[3]}],"activation_size" : "192","output_size" : "96","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-298-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"14400": {"num_run": 0, "core": -1},"24856": {"num_run": 0, "core": -1},"12224": {"num_run": 0, "core": -1},"14012": {"num_run": 0, "core": -1},"11032": {"num_run": 0, "core": -1},"20756": {"num_run": 0, "core": -1},"19884": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :98,"ts" :33265,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :133,"ts" :33243,"ph" : "X","name" :"model_run","args" : {}}
-]

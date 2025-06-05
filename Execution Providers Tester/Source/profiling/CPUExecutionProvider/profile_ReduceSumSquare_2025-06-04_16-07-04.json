@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :105,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :474,"ts" :127,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :66,"ts" :33084,"ph" : "X","name" :"ReduceSumSquare_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "ReduceSumSquare","input_type_shape" : [{"float":[3,4,5]},{"int64":[1]}],"node_index" : "0","output_type_shape" : [{"float":[3,1,5]}],"activation_size" : "248","output_size" : "60","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-326-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"24500": {"num_run": 0, "core": -1},"20504": {"num_run": 0, "core": -1},"14956": {"num_run": 0, "core": -1},"4392": {"num_run": 0, "core": -1},"20640": {"num_run": 0, "core": -1},"22436": {"num_run": 0, "core": -1},"23828": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :86,"ts" :33072,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :104,"ts" :33058,"ph" : "X","name" :"model_run","args" : {}}
-]

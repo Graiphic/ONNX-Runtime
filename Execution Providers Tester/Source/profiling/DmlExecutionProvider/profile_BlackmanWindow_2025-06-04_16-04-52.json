@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :97,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :624,"ts" :53430,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :36,"ts" :55550,"ph" : "X","name" :"BlackmanWindow_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "BlackmanWindow","input_type_shape" : [{"int64":[]}],"node_index" : "0","output_type_shape" : [{"float":[16]}],"activation_size" : "8","output_size" : "64","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-71-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"21920": {"num_run": 0, "core": -1},"23416": {"num_run": 0, "core": -1},"2588": {"num_run": 0, "core": -1},"10124": {"num_run": 0, "core": -1},"24448": {"num_run": 0, "core": -1},"25480": {"num_run": 0, "core": -1},"10112": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :55,"ts" :55540,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :71,"ts" :55528,"ph" : "X","name" :"model_run","args" : {}}
-]

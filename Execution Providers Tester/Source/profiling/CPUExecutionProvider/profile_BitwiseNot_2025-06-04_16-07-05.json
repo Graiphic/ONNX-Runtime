@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :102,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :469,"ts" :126,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :58,"ts" :1589,"ph" : "X","name" :"BitwiseNot_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "BitwiseNot","input_type_shape" : [{"int32":[3,3]}],"node_index" : "0","output_type_shape" : [{"int32":[3,3]}],"activation_size" : "36","output_size" : "36","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-374-intra-op", "thread_id": "4588", "block_size": [], "core": 3, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"10688": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :78,"ts" :1579,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :99,"ts" :1564,"ph" : "X","name" :"model_run","args" : {}}
-]

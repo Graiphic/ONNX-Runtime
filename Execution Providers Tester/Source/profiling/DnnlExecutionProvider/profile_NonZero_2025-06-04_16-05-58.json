@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :76,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :258,"ts" :163,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :43,"ts" :1000,"ph" : "X","name" :"NonZero_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "NonZero","input_type_shape" : [{"float":[3,4]}],"node_index" : "0","output_type_shape" : [{"int64":[2,9]}],"activation_size" : "48","output_size" : "144","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-114-intra-op", "thread_id": "19496", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"0": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"11228": {"num_run": 0, "core": -1},"20468": {"num_run": 0, "core": -1},"20516": {"num_run": 0, "core": -1},"5376": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :57,"ts" :993,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :70,"ts" :983,"ph" : "X","name" :"model_run","args" : {}}
-]

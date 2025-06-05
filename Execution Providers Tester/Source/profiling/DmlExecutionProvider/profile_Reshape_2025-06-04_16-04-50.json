@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :127,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :1114,"ts" :19579,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :270,"ts" :29737,"ph" : "X","name" :"Reshape_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "Reshape","input_type_shape" : [{"float":[2,3,4]},{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[6,4]}],"activation_size" : "112","output_size" : "96","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-38-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"25040": {"num_run": 0, "core": -1},"18552": {"num_run": 0, "core": -1},"13688": {"num_run": 0, "core": -1},"20272": {"num_run": 0, "core": -1},"23856": {"num_run": 0, "core": -1},"13936": {"num_run": 0, "core": -1},"22336": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :292,"ts" :29725,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :1751,"ts" :29192,"ph" : "X","name" :"model_run","args" : {}}
-]

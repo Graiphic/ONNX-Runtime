@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :97,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :619,"ts" :50694,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :1821,"ts" :53630,"ph" : "X","name" :"CumSum_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "CumSum","input_type_shape" : [{"float":[3,4]},{"int32":[1]}],"node_index" : "0","output_type_shape" : [{"float":[3,4]}],"activation_size" : "52","output_size" : "48","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-84-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"24756": {"num_run": 0, "core": -1},"21024": {"num_run": 0, "core": -1},"17188": {"num_run": 0, "core": -1},"5344": {"num_run": 0, "core": -1},"19156": {"num_run": 0, "core": -1},"18700": {"num_run": 0, "core": -1},"7496": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :1839,"ts" :53620,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :3958,"ts" :53105,"ph" : "X","name" :"model_run","args" : {}}
-]

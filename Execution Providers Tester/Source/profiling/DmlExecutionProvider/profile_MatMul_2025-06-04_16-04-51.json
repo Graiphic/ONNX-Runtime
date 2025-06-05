@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :100,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :824,"ts" :37700,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :271,"ts" :40823,"ph" : "X","name" :"MatMul_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "MatMul","input_type_shape" : [{"float":[2,4]},{"float":[4,3]}],"node_index" : "0","output_type_shape" : [{"float":[2,3]}],"activation_size" : "80","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-55-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"20364": {"num_run": 0, "core": -1},"22192": {"num_run": 0, "core": -1},"23700": {"num_run": 0, "core": -1},"15104": {"num_run": 0, "core": -1},"21804": {"num_run": 0, "core": -1},"25256": {"num_run": 0, "core": -1},"16104": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :288,"ts" :40814,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2088,"ts" :40151,"ph" : "X","name" :"model_run","args" : {}}
-]

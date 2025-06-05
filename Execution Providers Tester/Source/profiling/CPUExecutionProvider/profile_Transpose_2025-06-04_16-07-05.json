@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :118,"ts" :7,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :494,"ts" :149,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :72,"ts" :34645,"ph" : "X","name" :"Transpose_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Transpose","input_type_shape" : [{"float":[2,3,4]}],"node_index" : "0","output_type_shape" : [{"float":[4,2,3]}],"activation_size" : "96","output_size" : "96","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-347-intra-op", "thread_id": "4588", "block_size": [1], "core": 3, "Distribution": 1, "DistributionEnqueue": 0, "Run": 0, "Wait": 2, "WaitRevoke": 0}, "sub_threads": {"24924": {"num_run": 1, "core": 5},"13224": {"num_run": 1, "core": 7},"1376": {"num_run": 0, "core": -1},"25088": {"num_run": 0, "core": -1},"25488": {"num_run": 1, "core": 2},"19744": {"num_run": 0, "core": -1},"6580": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :94,"ts" :34632,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :111,"ts" :34619,"ph" : "X","name" :"model_run","args" : {}}
-]

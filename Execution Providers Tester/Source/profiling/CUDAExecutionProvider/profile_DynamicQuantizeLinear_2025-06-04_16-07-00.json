@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :119,"ts" :7,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :32904,"ts" :270,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :60,"ts" :48555,"ph" : "X","name" :"DynamicQuantizeLinear_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "DynamicQuantizeLinear","input_type_shape" : [{"float":[2,3]}],"node_index" : "0","output_type_shape" : [{"uint8":[2,3]},{"float":[]},{"uint8":[]}],"activation_size" : "24","output_size" : "11","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-241-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"10276": {"num_run": 0, "core": -1},"24180": {"num_run": 0, "core": -1},"19560": {"num_run": 0, "core": -1},"19964": {"num_run": 0, "core": -1},"22852": {"num_run": 0, "core": -1},"20616": {"num_run": 0, "core": -1},"18036": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :82,"ts" :48543,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :116,"ts" :48523,"ph" : "X","name" :"model_run","args" : {}}
-]

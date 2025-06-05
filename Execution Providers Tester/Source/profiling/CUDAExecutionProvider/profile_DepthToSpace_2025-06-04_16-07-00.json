@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :97,"ts" :6,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :49010,"ts" :232,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :1091,"ts" :64865,"ph" : "X","name" :"DepthToSpace_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CUDAExecutionProvider","op_name" : "DepthToSpace","input_type_shape" : [{"float":[1,8,2,2]}],"node_index" : "0","output_type_shape" : [{"float":[1,2,4,4]}],"activation_size" : "128","output_size" : "128","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-238-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"7404": {"num_run": 0, "core": -1},"24284": {"num_run": 0, "core": -1},"12248": {"num_run": 0, "core": -1},"23244": {"num_run": 0, "core": -1},"20732": {"num_run": 0, "core": -1},"16688": {"num_run": 0, "core": -1},"22680": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1138,"ts" :64831,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1567,"ts" :64568,"ph" : "X","name" :"model_run","args" : {}}
-]

@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :80,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :234,"ts" :172,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :53,"ts" :35734,"ph" : "X","name" :"HannWindow_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "HannWindow","input_type_shape" : [{"int64":[]}],"node_index" : "0","output_type_shape" : [{"float":[10]}],"activation_size" : "8","output_size" : "40","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-95-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"23112": {"num_run": 0, "core": -1},"8872": {"num_run": 0, "core": -1},"9472": {"num_run": 0, "core": -1},"24548": {"num_run": 0, "core": -1},"23648": {"num_run": 0, "core": -1},"19864": {"num_run": 0, "core": -1},"19712": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :76,"ts" :35719,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :95,"ts" :35706,"ph" : "X","name" :"model_run","args" : {}}
-]

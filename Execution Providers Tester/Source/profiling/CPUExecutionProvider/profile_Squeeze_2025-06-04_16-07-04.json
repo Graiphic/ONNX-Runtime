@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :232,"ts" :7,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :1449,"ts" :267,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :28,"ts" :34258,"ph" : "X","name" :"Squeeze_0_kernel_time","args" : {"parameter_size" : "16","provider" : "CPUExecutionProvider","op_name" : "Squeeze","input_type_shape" : [{"float":[1,3,1]},{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[3]}],"activation_size" : "12","output_size" : "12","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-345-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"17076": {"num_run": 0, "core": -1},"9604": {"num_run": 0, "core": -1},"13820": {"num_run": 0, "core": -1},"9320": {"num_run": 0, "core": -1},"7836": {"num_run": 0, "core": -1},"11820": {"num_run": 0, "core": -1},"25324": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :47,"ts" :34247,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :63,"ts" :34235,"ph" : "X","name" :"model_run","args" : {}}
-]

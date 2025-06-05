@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :124,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :647,"ts" :43350,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :44,"ts" :45747,"ph" : "X","name" :"RNN_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "RNN","input_type_shape" : [{"float":[4,2,3]},{"float":[1,5,3]},{"float":[1,5,5]},{"float":[1,10]},{"float":[1,2,5]}],"node_index" : "0","output_type_shape" : [{"float":[4,1,2,5]},{"float":[1,2,5]}],"activation_size" : "336","output_size" : "200","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-123-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"24852": {"num_run": 0, "core": -1},"872": {"num_run": 0, "core": -1},"25420": {"num_run": 0, "core": -1},"13056": {"num_run": 0, "core": -1},"20264": {"num_run": 0, "core": -1},"7988": {"num_run": 0, "core": -1},"23628": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :64,"ts" :45735,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :83,"ts" :45720,"ph" : "X","name" :"model_run","args" : {}}
-]

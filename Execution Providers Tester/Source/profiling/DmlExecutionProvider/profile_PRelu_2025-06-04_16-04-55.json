@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :104,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2043,"ts" :37985,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :505,"ts" :54824,"ph" : "X","name" :"PRelu_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "PRelu","input_type_shape" : [{"float":[2,3]},{"float":[1,3]}],"node_index" : "0","output_type_shape" : [{"float":[2,3]}],"activation_size" : "36","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-119-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"18596": {"num_run": 0, "core": -1},"25172": {"num_run": 0, "core": -1},"1148": {"num_run": 0, "core": -1},"7772": {"num_run": 0, "core": -1},"20236": {"num_run": 0, "core": -1},"22816": {"num_run": 0, "core": -1},"920": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :534,"ts" :54808,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :13181,"ts" :43821,"ph" : "X","name" :"model_run","args" : {}}
-]

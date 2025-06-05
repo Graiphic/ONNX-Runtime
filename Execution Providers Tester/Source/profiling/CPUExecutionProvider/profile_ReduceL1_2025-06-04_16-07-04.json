@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :118,"ts" :7,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :543,"ts" :151,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :54,"ts" :1743,"ph" : "X","name" :"ReduceL1_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "ReduceL1","input_type_shape" : [{"float":[3,4,5]},{"int64":[1]}],"node_index" : "0","output_type_shape" : [{"float":[3,1,5]}],"activation_size" : "248","output_size" : "60","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-322-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"22900": {"num_run": 0, "core": -1},"0": {"num_run": 0, "core": -1},"20052": {"num_run": 0, "core": -1},"5240": {"num_run": 0, "core": -1},"18852": {"num_run": 0, "core": -1},"20036": {"num_run": 0, "core": -1},"19364": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :69,"ts" :1736,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :84,"ts" :1725,"ph" : "X","name" :"model_run","args" : {}}
-]

@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :98,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :469,"ts" :120,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :100,"ts" :33084,"ph" : "X","name" :"ReduceMean_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "ReduceMean","input_type_shape" : [{"float":[3,4,5]},{"int64":[1]}],"node_index" : "0","output_type_shape" : [{"float":[3,1,5]}],"activation_size" : "248","output_size" : "60","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-318-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"13096": {"num_run": 0, "core": -1},"10420": {"num_run": 0, "core": -1},"10692": {"num_run": 0, "core": -1},"1884": {"num_run": 0, "core": -1},"4436": {"num_run": 0, "core": -1},"12892": {"num_run": 0, "core": -1},"8104": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :125,"ts" :33071,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :145,"ts" :33055,"ph" : "X","name" :"model_run","args" : {}}
-]

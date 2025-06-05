@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :126,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :312,"ts" :231,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :41,"ts" :3379,"ph" : "X","name" :"Gather_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Gather","input_type_shape" : [{"float":[4,5]},{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[2,5]}],"activation_size" : "96","output_size" : "40","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-49-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"24500": {"num_run": 0, "core": -1},"20504": {"num_run": 0, "core": -1},"22436": {"num_run": 0, "core": -1},"19920": {"num_run": 0, "core": -1},"20036": {"num_run": 0, "core": -1},"3012": {"num_run": 0, "core": -1},"14804": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :57,"ts" :3372,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :71,"ts" :3362,"ph" : "X","name" :"model_run","args" : {}}
-]

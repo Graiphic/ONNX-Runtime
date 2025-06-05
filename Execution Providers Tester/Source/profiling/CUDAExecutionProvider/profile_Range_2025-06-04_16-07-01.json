@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :87,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :830,"ts" :207,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :92,"ts" :10088,"ph" : "X","name" :"Range_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CUDAExecutionProvider","op_name" : "Range","input_type_shape" : [{"float":[]},{"float":[]},{"float":[]}],"node_index" : "0","output_type_shape" : [{"float":[5]}],"activation_size" : "12","output_size" : "20","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-280-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"5584": {"num_run": 0, "core": -1},"18804": {"num_run": 0, "core": -1},"2072": {"num_run": 0, "core": -1},"24508": {"num_run": 0, "core": -1},"9468": {"num_run": 0, "core": -1},"22380": {"num_run": 0, "core": -1},"17496": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :138,"ts" :10052,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :2120,"ts" :9813,"ph" : "X","name" :"model_run","args" : {}}
-]

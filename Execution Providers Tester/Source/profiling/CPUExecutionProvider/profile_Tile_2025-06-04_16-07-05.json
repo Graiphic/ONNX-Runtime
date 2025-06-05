@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :108,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :435,"ts" :131,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :45,"ts" :2164,"ph" : "X","name" :"Tile_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Tile","input_type_shape" : [{"float":[2,2]},{"int64":[2]}],"node_index" : "0","output_type_shape" : [{"float":[4,6]}],"activation_size" : "32","output_size" : "96","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-352-intra-op", "thread_id": "4588", "block_size": [], "core": 3, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"20128": {"num_run": 0, "core": -1},"12008": {"num_run": 0, "core": -1},"19660": {"num_run": 0, "core": -1},"23216": {"num_run": 0, "core": -1},"11228": {"num_run": 0, "core": -1},"12280": {"num_run": 0, "core": -1},"21140": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :62,"ts" :2157,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :79,"ts" :2144,"ph" : "X","name" :"model_run","args" : {}}
-]

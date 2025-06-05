@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :113,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :616,"ts" :40446,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :30,"ts" :42189,"ph" : "X","name" :"Multinomial_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Multinomial","input_type_shape" : [{"float":[3,5]}],"node_index" : "0","output_type_shape" : [{"int32":[3,2]}],"activation_size" : "60","output_size" : "24","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-111-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"23372": {"num_run": 0, "core": -1},"8384": {"num_run": 0, "core": -1},"23228": {"num_run": 0, "core": -1},"15816": {"num_run": 0, "core": -1},"24688": {"num_run": 0, "core": -1},"22516": {"num_run": 0, "core": -1},"21400": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :47,"ts" :42179,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :64,"ts" :42166,"ph" : "X","name" :"model_run","args" : {}}
-]

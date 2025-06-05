@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :1150,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :665,"ts" :61350,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :2217,"ts" :64076,"ph" : "X","name" :"ReduceSumSquare_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "ReduceSumSquare","input_type_shape" : [{"float":[3,4,5]},{"int64":[1]}],"node_index" : "0","output_type_shape" : [{"float":[3,1,5]}],"activation_size" : "248","output_size" : "60","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-22-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"24204": {"num_run": 0, "core": -1},"13852": {"num_run": 0, "core": -1},"12584": {"num_run": 0, "core": -1},"956": {"num_run": 0, "core": -1},"21872": {"num_run": 0, "core": -1},"2544": {"num_run": 0, "core": -1},"2128": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2239,"ts" :64063,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :3508,"ts" :63517,"ph" : "X","name" :"model_run","args" : {}}
-]

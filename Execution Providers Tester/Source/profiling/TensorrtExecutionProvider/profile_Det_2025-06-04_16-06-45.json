@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :83,"ts" :37772,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :12438,"ts" :38423,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :55,"ts" :52967,"ph" : "X","name" :"Det_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Det","input_type_shape" : [{"float":[3,3]}],"node_index" : "0","output_type_shape" : [{"float":[]}],"activation_size" : "36","output_size" : "4","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-88-intra-op", "thread_id": "4588", "block_size": [], "core": 4, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"20004": {"num_run": 0, "core": -1},"10808": {"num_run": 0, "core": -1},"1084": {"num_run": 0, "core": -1},"10528": {"num_run": 0, "core": -1},"7880": {"num_run": 0, "core": -1},"24448": {"num_run": 0, "core": -1},"25440": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :77,"ts" :52954,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :109,"ts" :52936,"ph" : "X","name" :"model_run","args" : {}}
-]

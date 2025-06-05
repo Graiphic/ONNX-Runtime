@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :87,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :84356,"ts" :165,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :23804,"tid" :13004,"dur" :311,"ts" :86073,"ph" : "X","name" :"OpenVINOExecutionProvider_OpenVINO-EP-subgraph_65_0_kernel_time","args" : {"parameter_size" : "0","provider" : "OpenVINOExecutionProvider","op_name" : "OpenVINO-EP-subgraph_65","input_type_shape" : [{"float":[4,3]},{"int64":[3]}],"node_index" : "1","output_type_shape" : [{"float":[4,3]}],"activation_size" : "72","output_size" : "48","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-130-intra-op", "thread_id": "13004", "block_size": [], "core": 6, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"25580": {"num_run": 0, "core": -1},"23864": {"num_run": 0, "core": -1},"13116": {"num_run": 0, "core": -1},"6620": {"num_run": 0, "core": -1},"25444": {"num_run": 0, "core": -1},"22268": {"num_run": 0, "core": -1},"22408": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :326,"ts" :86070,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :350,"ts" :86051,"ph" : "X","name" :"model_run","args" : {}}
-]

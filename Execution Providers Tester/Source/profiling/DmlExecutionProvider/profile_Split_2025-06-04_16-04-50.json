@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :111,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :691,"ts" :35363,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :2021,"ts" :38221,"ph" : "X","name" :"Split_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "Split","input_type_shape" : [{"float":[6,4]},{"int64":[3]}],"node_index" : "0","output_type_shape" : [{"float":[2,4]},{"float":[2,4]},{"float":[2,4]}],"activation_size" : "120","output_size" : "96","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-45-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"22452": {"num_run": 0, "core": -1},"6888": {"num_run": 0, "core": -1},"4708": {"num_run": 0, "core": -1},"3024": {"num_run": 0, "core": -1},"24920": {"num_run": 0, "core": -1},"18928": {"num_run": 0, "core": -1},"23564": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2041,"ts" :38209,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :3493,"ts" :37723,"ph" : "X","name" :"model_run","args" : {}}
-]

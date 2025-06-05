@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :120,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :454,"ts" :143,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :112,"ts" :4425,"ph" : "X","name" :"ConvTranspose_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "ConvTranspose","input_type_shape" : [{"float":[1,6,16,16]},{"float":[6,3,5,5]},{"float":[3]}],"node_index" : "0","output_type_shape" : [{"float":[1,3,31,31]}],"activation_size" : "7956","output_size" : "11532","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-386-intra-op", "thread_id": "4588", "block_size": [1], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 24, "Wait": 18, "WaitRevoke": 0}, "sub_threads": {"20092": {"num_run": 1, "core": 5},"23520": {"num_run": 0, "core": -1},"1232": {"num_run": 0, "core": -1},"16648": {"num_run": 0, "core": -1},"25460": {"num_run": 0, "core": -1},"13884": {"num_run": 0, "core": -1},"540": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :131,"ts" :4417,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :148,"ts" :4403,"ph" : "X","name" :"model_run","args" : {}}
-]

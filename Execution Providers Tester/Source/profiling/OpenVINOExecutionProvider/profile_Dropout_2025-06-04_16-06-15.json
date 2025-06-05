@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :92,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :339,"ts" :193,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :23804,"tid" :13004,"dur" :53,"ts" :7062,"ph" : "X","name" :"Dropout_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Dropout","input_type_shape" : [{"float":[3,4]},{"float":[]},{"bool":[]}],"node_index" : "0","output_type_shape" : [{"float":[3,4]}],"activation_size" : "53","output_size" : "48","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-60-intra-op", "thread_id": "13004", "block_size": [], "core": 6, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"25516": {"num_run": 0, "core": -1},"18256": {"num_run": 0, "core": -1},"5072": {"num_run": 0, "core": -1},"12640": {"num_run": 0, "core": -1},"1968": {"num_run": 0, "core": -1},"4504": {"num_run": 0, "core": -1},"9408": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :73,"ts" :7050,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :23804,"tid" :13004,"dur" :90,"ts" :7038,"ph" : "X","name" :"model_run","args" : {}}
-]

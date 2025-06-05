@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :95,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :260,"ts" :200,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :52,"ts" :34322,"ph" : "X","name" :"Xor_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "Xor","input_type_shape" : [{"bool":[2,2]},{"bool":[2,2]}],"node_index" : "0","output_type_shape" : [{"bool":[2,2]}],"activation_size" : "8","output_size" : "4","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-12-intra-op", "thread_id": "19496", "block_size": [], "core": -1, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"4932": {"num_run": 0, "core": -1},"19916": {"num_run": 0, "core": -1},"23616": {"num_run": 0, "core": -1},"21264": {"num_run": 0, "core": -1},"9532": {"num_run": 0, "core": -1},"6476": {"num_run": 0, "core": -1},"23088": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :71,"ts" :34311,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :86,"ts" :34300,"ph" : "X","name" :"model_run","args" : {}}
-]

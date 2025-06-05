@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :98,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :767,"ts" :221,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :77,"ts" :9170,"ph" : "X","name" :"MaxPool_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "MaxPool","input_type_shape" : [{"float":[1,3,32,32]}],"node_index" : "0","output_type_shape" : [{"float":[1,3,16,16]}],"activation_size" : "12288","output_size" : "3072","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-209-intra-op", "thread_id": "4588", "block_size": [1], "core": 0, "Distribution": 1, "DistributionEnqueue": 0, "Run": 2, "Wait": 7, "WaitRevoke": 0}, "sub_threads": {"13744": {"num_run": 1, "core": 5},"23560": {"num_run": 1, "core": 6},"0": {"num_run": 0, "core": -1},"13716": {"num_run": 0, "core": -1},"21808": {"num_run": 0, "core": -1},"5604": {"num_run": 0, "core": -1},"22812": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :96,"ts" :9160,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :126,"ts" :9142,"ph" : "X","name" :"model_run","args" : {}}
-]

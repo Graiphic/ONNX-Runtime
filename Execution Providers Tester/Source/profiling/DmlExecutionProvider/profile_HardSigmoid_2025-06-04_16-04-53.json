@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :80,"ts" :3,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :593,"ts" :70770,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :38,"ts" :78500,"ph" : "X","name" :"HardSigmoid_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "HardSigmoid","input_type_shape" : [{"float":[1,1]}],"node_index" : "0","output_type_shape" : [{"float":[1,1]}],"activation_size" : "4","output_size" : "4","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-96-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"21768": {"num_run": 0, "core": -1},"6808": {"num_run": 0, "core": -1},"19292": {"num_run": 0, "core": -1},"20368": {"num_run": 0, "core": -1},"1424": {"num_run": 0, "core": -1},"25400": {"num_run": 0, "core": -1},"12624": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :59,"ts" :78487,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :81,"ts" :78470,"ph" : "X","name" :"model_run","args" : {}}
-]

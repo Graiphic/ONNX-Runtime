@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :115,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :644,"ts" :45467,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :37,"ts" :47801,"ph" : "X","name" :"NonMaxSuppression_0_kernel_time","args" : {"parameter_size" : "16","provider" : "CPUExecutionProvider","op_name" : "NonMaxSuppression","input_type_shape" : [{"float":[1,6,4]},{"float":[1,1,6]},{"int64":[1]},{"float":[1]},{"float":[1]}],"node_index" : "0","output_type_shape" : [{"int64":[2,3]}],"activation_size" : "120","output_size" : "48","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-113-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"19840": {"num_run": 0, "core": -1},"9956": {"num_run": 0, "core": -1},"23236": {"num_run": 0, "core": -1},"22960": {"num_run": 0, "core": -1},"18132": {"num_run": 0, "core": -1},"20432": {"num_run": 0, "core": -1},"1644": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :55,"ts" :47791,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :72,"ts" :47778,"ph" : "X","name" :"model_run","args" : {}}
-]

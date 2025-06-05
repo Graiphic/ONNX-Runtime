@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :116,"ts" :5,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :475,"ts" :137,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :57,"ts" :8525,"ph" : "X","name" :"BatchNormalization_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "BatchNormalization","input_type_shape" : [{"float":[1,3,4,4]},{"float":[3]},{"float":[3]},{"float":[3]},{"float":[3]}],"node_index" : "0","output_type_shape" : [{"float":[1,3,4,4]}],"activation_size" : "240","output_size" : "192","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-365-intra-op", "thread_id": "4588", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"0": {"num_run": 0, "core": -1},"13244": {"num_run": 0, "core": -1},"20636": {"num_run": 0, "core": -1},"9548": {"num_run": 0, "core": -1},"22028": {"num_run": 0, "core": -1},"20320": {"num_run": 0, "core": -1},"3536": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :77,"ts" :8514,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :95,"ts" :8499,"ph" : "X","name" :"model_run","args" : {}}
-]

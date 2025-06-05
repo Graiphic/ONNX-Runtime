@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :119,"ts" :6,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :549,"ts" :152,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :20468,"tid" :4588,"dur" :50,"ts" :33507,"ph" : "X","name" :"RegexFullMatch_0_kernel_time","args" : {"parameter_size" : "0","provider" : "CPUExecutionProvider","op_name" : "RegexFullMatch","input_type_shape" : [{"string":[5]}],"node_index" : "0","output_type_shape" : [{"bool":[5]}],"activation_size" : "160","output_size" : "5","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-433-intra-op", "thread_id": "4588", "block_size": [], "core": 0, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"20416": {"num_run": 0, "core": -1},"6132": {"num_run": 0, "core": -1},"25152": {"num_run": 0, "core": -1},"13496": {"num_run": 0, "core": -1},"20584": {"num_run": 0, "core": -1},"15720": {"num_run": 0, "core": -1},"13744": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :68,"ts" :33497,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :20468,"tid" :4588,"dur" :85,"ts" :33484,"ph" : "X","name" :"model_run","args" : {}}
-]

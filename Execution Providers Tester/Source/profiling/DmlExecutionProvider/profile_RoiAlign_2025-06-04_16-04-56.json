@@ -1,7 +1,0 @@
-[
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :490,"ts" :4,"ph" : "X","name" :"model_loading_array","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :4175,"ts" :51377,"ph" : "X","name" :"session_initialization","args" : {}},
-{"cat" : "Node","pid" :22836,"tid" :19496,"dur" :349,"ts" :58276,"ph" : "X","name" :"RoiAlign_0_kernel_time","args" : {"parameter_size" : "0","provider" : "DmlExecutionProvider","op_name" : "RoiAlign","input_type_shape" : [{"float":[1,1,8,8]},{"float":[1,4]},{"int64":[1]}],"node_index" : "0","output_type_shape" : [{"float":[1,1,2,2]}],"activation_size" : "280","output_size" : "16","thread_scheduling_stats" : {"main_thread": {"thread_pool_name": "session-131-intra-op", "thread_id": "19496", "block_size": [], "core": 2, "Distribution": 0, "DistributionEnqueue": 0, "Run": 0, "Wait": 0, "WaitRevoke": 0}, "sub_threads": {"8524": {"num_run": 0, "core": -1},"18016": {"num_run": 0, "core": -1},"12212": {"num_run": 0, "core": -1},"24924": {"num_run": 0, "core": -1},"13224": {"num_run": 0, "core": -1},"3268": {"num_run": 0, "core": -1},"15592": {"num_run": 0, "core": -1}}}}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :370,"ts" :58264,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
-{"cat" : "Session","pid" :22836,"tid" :19496,"dur" :2380,"ts" :57357,"ph" : "X","name" :"model_run","args" : {}}
-]

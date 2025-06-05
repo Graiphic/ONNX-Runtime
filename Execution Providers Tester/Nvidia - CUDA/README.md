@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `CUDAExecutionProvider`
 
-**Test Date:** 2025-06-05 09:40:18
+**Test Date:** 2025-06-05 09:43:56
 
 ## Environment and Installation Details
 

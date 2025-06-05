@@ -1,18 +1,21 @@
 # ONNXRuntime Test Results — Provider: `OpenVINOExecutionProvider`
 
-**Test Date:** 2025-06-04 16:06:19
+**Test Date:** 2025-06-05 09:43:16
 
-## Global Statistics
+## Environment and Installation Details
 
-- **Total nodes tested:** 152
-- **Executable directly (SUCCESS):** 65 (42.8%)
-- **Executable via FALLBACK:** 83 (54.6%)
-- **UNKNOWN (no Node event):** 2 (1.3%)
-- **FAIL:** 2 (1.3%)
+- **ONNX version:** 1.18.0
+- **ONNXRuntime version:** 1.22.0
+- **Target provider:** OpenVINOExecutionProvider
+- **Installation command for this provider:**
+```bash
+pip install onnxruntime-openvino
+pip install openvino==2025.1.0
+```
 
-### Statistics Pie Chart
+### Hardware and Software Versions
 
-![Node Status Distribution](./stats_OpenVINOExecutionProvider.png)
+- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
 
 ## Node Details
 
@@ -171,27 +174,17 @@
 | [`Unique`](https://onnx.ai/onnx/operators/onnx__Unique.html) | ![SUCCESS WITH FALLBACK](https://img.shields.io/badge/SUCCESS%20WITH%20FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![SUCCESS (via decomposition)](https://img.shields.io/badge/SUCCESS%20(via%20decomposition)-007700?style=flat&logoColor=white) |
 
-## Environment and Installation Details
+## Global Statistics
 
-- **ONNX version:** 1.18.0
-- **ONNXRuntime version:** 1.22.0
-- **Target provider:** OpenVINOExecutionProvider
-- **Installation command for this provider:**
-```bash
-pip install onnxruntime-openvino
-pip install openvino==2025.1.0
-```
+- **Total nodes tested:** 152
+- **Executable directly (SUCCESS):** 65 (42.8%)
+- **Executable via FALLBACK:** 83 (54.6%)
+- **UNKNOWN (no Node event):** 2 (1.3%)
+- **FAIL:** 2 (1.3%)
 
-### Hardware and Software Versions
+### Statistics Pie Chart
 
-- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
-- **GPU(s):** NVIDIA GeForce RTX 2070
-- **CUDA version:** 12.5
-- **cuDNN version:** 9.2.1
-
-### System Information
-
-- **Operating System (OS):** Windows 10
+![Node Status Distribution](./stats_OpenVINOExecutionProvider.png)
 
 ## README Generation
 

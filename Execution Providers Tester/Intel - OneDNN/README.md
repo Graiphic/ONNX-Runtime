@@ -1,18 +1,20 @@
 # ONNXRuntime Test Results — Provider: `DnnlExecutionProvider`
 
-**Test Date:** 2025-06-04 16:05:59
+**Test Date:** 2025-06-05 09:42:58
 
-## Global Statistics
+## Environment and Installation Details
 
-- **Total nodes tested:** 152
-- **Executable directly (SUCCESS):** 39 (25.7%)
-- **Executable via FALLBACK:** 111 (73.0%)
-- **UNKNOWN (no Node event):** 2 (1.3%)
-- **FAIL:** 0 (0.0%)
+- **ONNX version:** 1.18.0
+- **ONNXRuntime version:** 1.23.0
+- **Target provider:** DnnlExecutionProvider
+- **Installation command for this provider:**
+```bash
+manual build from source (oneDNN included, no pre-install needed)
+```
 
-### Statistics Pie Chart
+### Hardware and Software Versions
 
-![Node Status Distribution](./stats_DnnlExecutionProvider.png)
+- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
 
 ## Node Details
 
@@ -171,26 +173,17 @@
 | [`Unique`](https://onnx.ai/onnx/operators/onnx__Unique.html) | ![SUCCESS WITH FALLBACK](https://img.shields.io/badge/SUCCESS%20WITH%20FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![SUCCESS WITH FALLBACK](https://img.shields.io/badge/SUCCESS%20WITH%20FALLBACK-FFAA00?style=flat&logoColor=white) |
 
-## Environment and Installation Details
+## Global Statistics
 
-- **ONNX version:** 1.18.0
-- **ONNXRuntime version:** 1.23.0
-- **Target provider:** DnnlExecutionProvider
-- **Installation command for this provider:**
-```bash
-manual build from source (oneDNN included, no pre-install needed)
-```
+- **Total nodes tested:** 152
+- **Executable directly (SUCCESS):** 39 (25.7%)
+- **Executable via FALLBACK:** 111 (73.0%)
+- **UNKNOWN (no Node event):** 2 (1.3%)
+- **FAIL:** 0 (0.0%)
 
-### Hardware and Software Versions
+### Statistics Pie Chart
 
-- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
-- **GPU(s):** NVIDIA GeForce RTX 2070
-- **CUDA version:** 12.5
-- **cuDNN version:** 9.2.1
-
-### System Information
-
-- **Operating System (OS):** Windows 10
+![Node Status Distribution](./stats_DnnlExecutionProvider.png)
 
 ## README Generation
 

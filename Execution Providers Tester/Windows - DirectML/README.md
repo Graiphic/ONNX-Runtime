@@ -1,18 +1,20 @@
 # ONNXRuntime Test Results — Provider: `DmlExecutionProvider`
 
-**Test Date:** 2025-06-04 16:04:57
+**Test Date:** 2025-06-05 09:42:03
 
-## Global Statistics
+## Environment and Installation Details
 
-- **Total nodes tested:** 152
-- **Executable directly (SUCCESS):** 100 (65.8%)
-- **Executable via FALLBACK:** 49 (32.2%)
-- **UNKNOWN (no Node event):** 2 (1.3%)
-- **FAIL:** 1 (0.7%)
+- **ONNX version:** 1.18.0
+- **ONNXRuntime version:** 1.22.0
+- **Target provider:** DmlExecutionProvider
+- **Installation command for this provider:**
+```bash
+pip install onnxruntime-directml
+```
 
-### Statistics Pie Chart
+### Hardware and Software Versions
 
-![Node Status Distribution](./stats_DmlExecutionProvider.png)
+- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
 
 ## Node Details
 
@@ -171,26 +173,17 @@
 | [`Unique`](https://onnx.ai/onnx/operators/onnx__Unique.html) | ![SUCCESS WITH FALLBACK](https://img.shields.io/badge/SUCCESS%20WITH%20FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 
-## Environment and Installation Details
+## Global Statistics
 
-- **ONNX version:** 1.18.0
-- **ONNXRuntime version:** 1.22.0
-- **Target provider:** DmlExecutionProvider
-- **Installation command for this provider:**
-```bash
-pip install onnxruntime-directml
-```
+- **Total nodes tested:** 152
+- **Executable directly (SUCCESS):** 100 (65.8%)
+- **Executable via FALLBACK:** 49 (32.2%)
+- **UNKNOWN (no Node event):** 2 (1.3%)
+- **FAIL:** 1 (0.7%)
 
-### Hardware and Software Versions
+### Statistics Pie Chart
 
-- **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
-- **GPU(s):** NVIDIA GeForce RTX 2070
-- **CUDA version:** 12.5
-- **cuDNN version:** 9.2.1
-
-### System Information
-
-- **Operating System (OS):** Windows 10
+![Node Status Distribution](./stats_DmlExecutionProvider.png)
 
 ## README Generation
 

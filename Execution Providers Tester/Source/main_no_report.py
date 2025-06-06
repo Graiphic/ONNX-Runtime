@@ -18,7 +18,7 @@ def load_ops(path):
 
 if __name__ == '__main__':
     ops    = load_ops('test.txt')
-    providers   = ['CUDAExecutionProvider']
+    providers   = ['CPUExecutionProvider']
 
     for op in ops:
         tester = OpTest(op)
@@ -33,8 +33,8 @@ if __name__ == '__main__':
             # Création session
             try:
                 opts = onnxruntime.SessionOptions()
-                opts.log_severity_level = 0
-                #opts.optimized_model_filepath =  f"{op}_optimized.onnx"
+                opts.log_severity_level = 2
+                opts.optimized_model_filepath =  f"{op}_optimized.onnx"
                 sess = onnxruntime.InferenceSession(
                     model.SerializeToString(),
                     sess_options=opts,
@@ -51,8 +51,9 @@ if __name__ == '__main__':
                 continue
             # Exécution
             try:
+                #print("feed : ", feed.shape)
                 output = sess.run(None, feed)
-                #print("output ", output)
+                print("output ", output)
                 print(f"{op} on {provider}: SUCCESS")
             except Exception as e:
                 print(f"{op} on {provider}: RUN FAIL -> {e}")

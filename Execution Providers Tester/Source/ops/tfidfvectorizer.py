@@ -6,13 +6,32 @@ from onnx import TensorProto
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION, ONNX_OPSET_VERSION
 
 def tfidfvectorizer_model_builder(op_type, cfg=None):
+    # Entrée : un tableau 1D de chaînes
     input_tensor = onnx.helper.make_tensor_value_info("X", TensorProto.STRING, [None])
-    output_tensor = onnx.helper.make_tensor_value_info("Y", TensorProto.FLOAT, [7])  # 7 ngrams
+    # Sortie : vecteur de taille 7 (4 unigrams + 3 bigrams)
+    output_tensor = onnx.helper.make_tensor_value_info("Y", TensorProto.FLOAT, [7])
 
-    pool_strings = ["this", "is", "a", "test", "this is", "is a", "a test"]
-    ngram_indexes = list(range(7))
-    ngram_counts = [0, 4, 7]  # unigrams start at 0, bigrams start at 4
-    weights = [1.0] * 7
+    # 4 unigrams + (3 bigrams × 2 tokens chacun) = 10 entrées pool
+    pool_strings = [
+        "this", "is", "a", "test",      # 4 unigrams
+        "this", "is",                   # bigram "this is"
+        "is", "a",                      # bigram "is a"
+        "a", "test"                     # bigram "a test"
+    ]
+
+    # CSR-style : [début unigrams, début bigrams, fin totale]
+    ngram_counts = [0, 4, 10]  # 0→4 pour unigrams, 4→10 pour bigrams
+
+    # Chaque entrée de pool_strings a une coordonnée dans la sortie Y (7 positions)
+    ngram_indexes = [
+        0, 1, 2, 3,  # unigrams "this","is","a","test" → idx 0..3
+        4, 4,       # bigram "this is"   → coordonnée 4 (répétée)
+        5, 5,       # bigram "is a"      → coordonnée 5
+        6, 6        # bigram "a test"    → coordonnée 6
+    ]
+
+    # Poids associés à chaque entrée pool_strings (10 au total)
+    weights = [1.0] * 10
 
     node = onnx.helper.make_node(
         "TfIdfVectorizer",
@@ -43,7 +62,7 @@ def tfidfvectorizer_model_builder(op_type, cfg=None):
     return model
 
 def tfidfvectorizer_input_generator(session):
-    # <- crucial : array 1D de tokens, dtype=object
+    # On passe un tableau 1D de tokens (dtype=object)
     return {"X": np.array(["this", "is", "a", "test"], dtype=object)}
 
 SpecialModelBuilders["TfIdfVectorizer"] = tfidfvectorizer_model_builder

@@ -36,7 +36,7 @@ def deformconv_model_builder(op_type, cfg=None):
     # Création du modèle
     model = onnx.helper.make_model(
         graph,
-        opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION)]
+        opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION-1)]
     )
     model.ir_version = ONNX_RUNTIME_IR_VERSION
     return model

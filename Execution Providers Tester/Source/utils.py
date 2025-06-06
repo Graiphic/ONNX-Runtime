@@ -19,6 +19,21 @@ ONNX_OPSET_VERSION = 22
 SpecialModelBuilders = {}
 SpecialInputGenerators = {}
 
+
+def load_skip_table(path="skip_nodes.json"):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+    
+def load_not_tested_table(path="untested_nodes.json"):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
 def map_execution_provider(provider_name):
     mapping = {
         "CPUExecutionProvider": "CPU",
@@ -102,34 +117,37 @@ class OpTest:
         return path
 
 
-def load_ops(path):
+def load_ops(path: str):
     """
-    Reads `path` line by line and returns a list of op names,
-    ignoring empty lines and lines starting with '#'.
+    Retourne deux listes triées :
+      - basic_ops       : nœuds onnx « classiques »
+      - microsoft_ops   : nœuds onnx prefixés par com.microsoft.
+    Les lignes vides ou commençant par '#' sont ignorées.
     """
-    with open(path, 'r') as f:
-        return [l.strip() for l in f if l.strip() and not l.startswith('#')]
+    basic_ops, microsoft_ops = [], []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            name = line.strip()
+            if not name or name.startswith("#"):
+                continue
+            (microsoft_ops if name.startswith("com.microsoft.") else basic_ops).append(name)
+
+    return sorted(basic_ops), sorted(microsoft_ops)
 
 
 def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
                                    test_file="test.txt",
                                    profiling_dir="profiling",
                                    models_dir="models"):
-    """
-    Executes all ops listed in `test_file` under the specified ONNX execution provider.
-    Collects results, then calls the report generation functions.
+    import os
+    import pkgutil
+    import importlib
+    import json
+    import ops
+    import onnxruntime as ort
+    from utils import load_ops, OpTest, map_execution_provider
+    from report import generate_report, generate_report_aggregated, generate_readme
 
-    - provider: the ONNX Execution Provider to test (string).
-    - test_file: path to a text file listing ops, one per line.
-    - profiling_dir: directory where profiling JSONs will be saved.
-    - models_dir: directory where generated ONNX models will be stored.
-
-    If provider is "TensorrtExecutionProvider", it will attempt to use TensorRT first,
-    then CUDAExecutionProvider as fallback, then CPUExecutionProvider if neither is available.
-    Automatically configures optimized model saving for providers that support it,
-    skips optimized saving for OpenVINO, TensorRT, and Dnnl providers,
-    and applies OpenVINO-specific setup if provider contains "OpenVINO".
-    """
     is_openvino = "OpenVINO" in provider
     if is_openvino:
         try:
@@ -138,7 +156,6 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
         except ImportError:
             print(f"Warning: Could not import OpenVINO helpers for provider '{provider}'.")
 
-    # --- Clean/Create directories ---
     if os.path.exists(profiling_dir):
         for f in os.listdir(profiling_dir):
             full_path = os.path.join(profiling_dir, f)
@@ -146,21 +163,35 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
                 os.remove(full_path)
     os.makedirs(profiling_dir, exist_ok=True)
     os.makedirs(models_dir, exist_ok=True)
+    
+    # --- Skip list --- #
+    skip_table = load_skip_table()          # charge skip_nodes.json une seule fois
+    skip_list = set(skip_table.get("ALL", [])) | set(skip_table.get(provider, []))
+    
+    # --- Not-tested list --- #
+    untested_table = load_not_tested_table()
+    untested_list = set(untested_table.get("ALL", [])) | set(untested_table.get(provider, []))
 
-    # --- Dynamically import all modules under ops.* ---
     for _, name, _ in pkgutil.iter_modules(ops.__path__):
         importlib.import_module(f"ops.{name}")
 
-    # --- Load the list of ops to test ---
-    ops_to_test = load_ops(test_file)
-
-    # Each element: (op_name, provider, used_provider, status)
+    basic_ops, microsoft_ops = load_ops(test_file)
+    ops_to_test = basic_ops + microsoft_ops 
     results = []
 
     for op in ops_to_test:
+        # Known Crash -> FAIL (skipped)
+        if op in skip_list:
+            results.append((op, provider, None, "FAIL (skipped: known crash)"))
+            continue
+        # Unfinished Node -> NOT TESTED
+        if op in untested_list:
+            results.append((op, provider, None,
+                            "NOT TESTED (model unavailable)"))
+            continue
+            
         tester = OpTest(op)
 
-        # 1) Generate and save the ONNX model for this op
         try:
             model = tester.generate_model()
             tester.save_model(model, directory=models_dir)
@@ -168,15 +199,12 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
             results.append((op, provider, None, f"FAIL generate_model: {e}"))
             continue
 
-        # 2) Configure SessionOptions for profiling
         opts = ort.SessionOptions()
         opts.enable_profiling = True
         opts.profile_file_prefix = os.path.join(profiling_dir, f"profile_{op}")
         opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
         opts.log_severity_level = 3
 
-        # 2a) If provider supports optimized output, set optimized_model_filepath
-        # Skip for OpenVINO, TensorRT, Dnnl
         skip_optimized = provider in [
             "OpenVINOExecutionProvider",
             "TensorrtExecutionProvider",
@@ -185,7 +213,6 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
         if not skip_optimized:
             opts.optimized_model_filepath = os.path.join(models_dir, f"{op}_optimized.onnx")
 
-        # 3) Create the inference session
         try:
             if is_openvino:
                 sess = ort.InferenceSession(
@@ -195,16 +222,14 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
                     provider_options=[{"device_type": "CPU"}]
                 )
             elif provider == "TensorrtExecutionProvider":
-                # Use TensorRT first, then CUDA, then CPU
-                preferred_providers = [
-                    "TensorrtExecutionProvider",
-                    "CUDAExecutionProvider",
-                    "CPUExecutionProvider"
-                ]
                 sess = ort.InferenceSession(
                     model.SerializeToString(),
                     sess_options=opts,
-                    providers=preferred_providers
+                    providers=[
+                        "TensorrtExecutionProvider",
+                        "CUDAExecutionProvider",
+                        "CPUExecutionProvider"
+                    ]
                 )
             else:
                 sess = ort.InferenceSession(
@@ -216,52 +241,39 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
             results.append((op, provider, None, f"FAIL session creation: {e}"))
             continue
 
-        # 4) Generate the input tensor(s)
         try:
             feed = tester.generate_input(sess)
         except Exception as e:
             results.append((op, provider, None, f"FAIL generate_input: {e}"))
             continue
 
-        # 5) Run inference and retrieve the profiling JSON path
         try:
-            sess.run(None, feed)
+            iobinding_cb = feed.pop("__iobinding__", None)
+            if iobinding_cb:
+                iobinding_cb(sess)
+            else:
+                sess.run(None, feed)
             profile_path = sess.end_profiling()
         except Exception as e:
             results.append((op, provider, None, f"FAIL run: {e}"))
             continue
 
-        # 6) Parse the profiling JSON to determine which provider was used
         try:
             with open(profile_path, 'r') as f:
                 root = json.load(f)
 
-            # Normalize events list
-            if isinstance(root, dict) and "traceEvents" in root:
-                events = root["traceEvents"]
-            elif isinstance(root, list):
-                events = root
-            else:
-                raise RuntimeError(f"Unexpected profiling format: {type(root)}")
-
-            # 6a) Direct Node events for the op
-            op_events = [
-                e for e in events
-                if e.get("cat") == "Node"
-                   and e.get("args", {}).get("op_name") == op
-            ]
+            events = root["traceEvents"] if isinstance(root, dict) and "traceEvents" in root else root
+            op_events = [e for e in events if e.get("cat") == "Node" and e.get("args", {}).get("op_name") == op]
 
             if op_events:
                 used = op_events[0]["args"]["provider"]
                 status = "SUCCESS" if used == provider else "SUCCESS WITH FALLBACK"
             else:
-                # 6b) Decomposition case: collect all sub-ops (excluding Memcpy)
                 subops = [
                     e for e in events
-                    if e.get("cat") == "Node"
-                       and e.get("args", {}).get("op_name") not in (
-                           "MemcpyFromHost", "MemcpyToHost"
-                       )
+                    if e.get("cat") == "Node" and e.get("args", {}).get("op_name") not in (
+                        "MemcpyFromHost", "MemcpyToHost"
+                    )
                 ]
                 if subops:
                     sub_providers = [e["args"]["provider"] for e in subops]
@@ -276,22 +288,19 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
                     status = "UNKNOWN (no Node event)"
 
             results.append((op, provider, used, status))
-
         except Exception as e:
             results.append((op, provider, None, f"FAIL parsing JSON: {e}"))
             continue
 
-    # --- Generate the README in Markdown (with pie chart) ---
-    map_name     = map_execution_provider(provider)  # e.g. "NVIDIA - CUDA", "AMD - ROCm", etc.
-    # Always navigate to the project root by looking at the folder of this file
-    project_root  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    map_name = map_execution_provider(provider)
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     base_output_dir = os.path.join(project_root, map_name)
     os.makedirs(base_output_dir, exist_ok=True)
 
-    # --- Generate the detailed and aggregated Excel reports ---
     generate_report(results, provider, base_output_dir, models_dir)
     generate_report_aggregated(results, provider, base_output_dir, models_dir)
     generate_readme(results, provider, base_output_dir)
+
 
 
 def run_all_providers_and_generate_reports(test_file="test.txt",

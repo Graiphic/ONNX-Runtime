@@ -11,7 +11,7 @@ from report import generate_root_summary
 
 
 # Simply call the function with default provider "CUDAExecutionProvider"
-#run_tests_and_generate_reports("CPUExecutionProvider")
+#run_tests_and_generate_reports("DmlExecutionProvider")
 #print("Done: tests completed and both reports generated.")
 
 #def run_all_providers_and_generate_reports(test_file="test.txt",

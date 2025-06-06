@@ -17,10 +17,17 @@ def global_pool_model_builder(op_type, cfg=None):
     node = onnx.helper.make_node(op_type, inputs=["X"], outputs=["Y"], **attrs)
 
     graph = onnx.helper.make_graph([node], f"{op_type}_graph", [X], [Y])
-    model = onnx.helper.make_model(
-        graph,
-        opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION)]
-    )
+    if op_type == "GlobalLpPool":
+        model = onnx.helper.make_model(
+            graph,
+            opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION-1)]
+        )
+    else:
+        model = onnx.helper.make_model(
+            graph,
+            opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION)]
+        )
+    
     model.ir_version = ONNX_RUNTIME_IR_VERSION
     return model
 

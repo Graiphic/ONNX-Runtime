@@ -2,18 +2,34 @@
 import numpy as np
 import onnx
 import onnx.helper
+from onnx import TensorProto
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION
 
 def bifurcationdetector_model_builder(op_type, cfg=None):
-    seq_len = 16
+    # On définit les tenseurs comme 1-D plutôt que 2-D, 
+    # car l'implémentation interne de BifurcationDetector 
+    # interprète len(src_tokens) sur la première dimension.
+    src_tokens = onnx.helper.make_tensor_value_info(
+        "src_tokens", TensorProto.INT64, [None]
+    )
+    cur_tokens = onnx.helper.make_tensor_value_info(
+        "cur_tokens", TensorProto.INT64, [None]
+    )
+    # prev_suffix_match_idx est un scalaire (shape [])
+    prev_idx = onnx.helper.make_tensor_value_info(
+        "prev_suffix_match_idx", TensorProto.INT64, []
+    )
+    pred_tokens = onnx.helper.make_tensor_value_info(
+        "pred_tokens", TensorProto.INT64, [None]
+    )
 
-    src_tokens = onnx.helper.make_tensor_value_info("src_tokens", onnx.TensorProto.INT64, [1, None])
-    cur_tokens = onnx.helper.make_tensor_value_info("cur_tokens", onnx.TensorProto.INT64, [1, None])
-    prev_idx = onnx.helper.make_tensor_value_info("prev_suffix_match_idx", onnx.TensorProto.INT64, [1])
-    pred_tokens = onnx.helper.make_tensor_value_info("pred_tokens", onnx.TensorProto.INT64, [1, None])
-
-    tokens_out = onnx.helper.make_tensor_value_info("tokens", onnx.TensorProto.INT64, [1, None])
-    suffix_match_idx = onnx.helper.make_tensor_value_info("suffix_match_idx", onnx.TensorProto.INT64, [1])
+    tokens_out = onnx.helper.make_tensor_value_info(
+        "tokens", TensorProto.INT64, [None]
+    )
+    # suffix_match_idx est également un scalaire
+    suffix_match_idx = onnx.helper.make_tensor_value_info(
+        "suffix_match_idx", TensorProto.INT64, []
+    )
 
     node = onnx.helper.make_node(
         "BifurcationDetector",
@@ -40,14 +56,17 @@ def bifurcationdetector_model_builder(op_type, cfg=None):
 
 def bifurcationdetector_input_generator(session):
     src_len = 16
-    match_idx = np.random.randint(0, src_len - 1)  # stricte : < src_len
+    # On choisit un indice de correspondance entre 0 et src_len - 1
+    match_idx = np.random.randint(0, src_len)  # entre 0 et 15
 
-    src = np.random.randint(0, 10000, size=(1, src_len), dtype=np.int64)
-    cur = np.random.randint(0, 10000, size=(1, src_len), dtype=np.int64)
-    idx = np.array([match_idx], dtype=np.int64)
+    # On génère src et cur comme 1-D, longueur src_len
+    src = np.random.randint(0, 10000, size=(src_len,), dtype=np.int64)
+    cur = np.random.randint(0, 10000, size=(src_len,), dtype=np.int64)
+    # prev_suffix_match_idx est un scalaire
+    idx = np.array(match_idx, dtype=np.int64)
 
     pred_len = src_len + 1 - match_idx
-    pred = np.random.randint(0, 10000, size=(1, pred_len), dtype=np.int64)
+    pred = np.random.randint(0, 10000, size=(pred_len,), dtype=np.int64)
 
     return {
         "src_tokens": src,
@@ -55,9 +74,6 @@ def bifurcationdetector_input_generator(session):
         "prev_suffix_match_idx": idx,
         "pred_tokens": pred
     }
-
-
-
 
 SpecialModelBuilders["com.microsoft.BifurcationDetector"] = bifurcationdetector_model_builder
 SpecialInputGenerators["com.microsoft.BifurcationDetector"] = bifurcationdetector_input_generator

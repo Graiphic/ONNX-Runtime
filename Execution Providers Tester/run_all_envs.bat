@@ -10,7 +10,6 @@ cd /d "%~dp0\Source"
 REM List of conda environments to test
 SET ENV_LIST=^
     onnxruntime-dml-1-22-0 ^
-    onnxruntime-gpu-1-22-0 ^
     onnxruntime-onednn-1-22-0 ^
     onnxruntime-openvino-1-22-0 ^
     onnxruntime-trt-1-22-0

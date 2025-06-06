@@ -1,9 +1,7 @@
 # Summary of ONNX Execution Provider Results
 
-This document gathers all test results by Execution Provider (EP).  
-Each EP has generated its own README with detailed statistics.  
-Below, you will first find the hardware and software information used,  
-followed by a summary table of the number of nodes that succeeded directly (SUCCESS), fell back (FALLBACK), or failed (FAIL) for each EP.
+This document gathers all test results by Execution Provider (EP).
+Each EP has its own `README.md` with detailed results.
 
 ## Hardware and Software
 
@@ -18,12 +16,12 @@ followed by a summary table of the number of nodes that succeeded directly (SUCC
 
 ## Summary Table
 
-| Execution Provider | SUCCESS | FALLBACK | FAIL |
-|:------------------:|:-------:|:--------:|:----:|
-| CPU | 150 (100%) | 0 (0%) | 0 (0%) |
-| Intel - OneDNN | 39 (26%) | 111 (74%) | 0 (0%) |
-| Intel - OpenVINO™ | 65 (43%) | 83 (55%) | 2 (1%) |
-| Nvidia - CUDA | 74 (49%) | 76 (51%) | 0 (0%) |
-| Nvidia - TensorRT | 87 (58%) | 59 (39%) | 4 (3%) |
-| Windows - DirectML | 100 (67%) | 49 (33%) | 1 (1%) |
+| Execution Provider | SUCCESS | FALLBACK | FAIL | NOT TESTED | SKIPPED |
+|:------------------:|:-------:|:--------:|:----:|:-----------:|:--------:|
+| CPU | 211 (80%) | 0 (0%) | 45 (17%) | 7 (3%) | 0 (0%) |
+| Intel - oneDNN | 45 (17%) | 165 (63%) | 46 (17%) | 7 (3%) | 0 (0%) |
+| Intel - OpenVINO™ | 74 (28%) | 132 (50%) | 50 (19%) | 7 (3%) | 0 (0%) |
+| NVIDIA - CUDA | 127 (48%) | 112 (43%) | 17 (6%) | 7 (3%) | 0 (0%) |
+| NVIDIA - TensorRT | 94 (36%) | 139 (53%) | 23 (9%) | 7 (3%) | 0 (0%) |
+| Windows - DirectML | 127 (48%) | 84 (32%) | 45 (17%) | 7 (3%) | 0 (0%) |
 

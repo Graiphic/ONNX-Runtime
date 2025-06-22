@@ -1,8 +1,15 @@
+<p align="center">
+  <img src="https://github.com/microsoft/onnxruntime/raw/main/docs/images/ONNX_Runtime_logo_dark.png" alt="ONNX Runtime Logo" width="320"/>
+</p>
+
 # Graiphic – ONNX / ONNX Runtime Contributions
 
-Welcome to the official ONNX Runtime contribution repository maintained by **Graiphic**.
+Welcome to the official ONNX Runtime contribution repository maintained by **[Graiphic](https://graiphic.io/)**.
 
-We are a French deep-tech company building tools to make AI and graph computing truly accessible and transparent across industries. Our core vision is to deliver a **universal AI orchestration framework based on ONNX and ONNX Runtime**, fully integrated with **LabVIEW** to bring AI workflows into test, measurement, research, and embedded environments.
+We are a French deep-tech company building tools to make AI and graph computing truly accessible and transparent across industries.  
+Our core vision is to deliver a **universal AI orchestration framework based on ONNX and ONNX Runtime**, fully integrated with **LabVIEW**, to bring AI workflows into test, measurement, research, and embedded environments.
+
+> 🔗 Visit the official ONNX Runtime repository here: [github.com/microsoft/onnxruntime](https://github.com/microsoft/onnxruntime)
 
 ---
 
@@ -16,18 +23,19 @@ Our goals:
 - 🧱 **Modularity** – Allow full graph orchestration, modification, and control without leaving the ONNX domain.
 - ⚡ **Efficiency** – Optimize deployment for real-world, latency-sensitive, or resource-constrained environments.
 
-These principles are embodied in our flagship platform, [**SOTA**](https://graiphic.io/download/): the first visual and fully ONNX-native AI development suite.
+These principles are embodied in our flagship platform, [**SOTA**](https://graiphic.io/download/):  
+> the first visual and fully ONNX-native AI development suite.
 
 ---
 
 ## 🔎 Project 1 – Execution Providers Coverage Tester
 
-📍 Repository: [Execution Providers Tester](https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester)
+📍 Repository: [`Execution Providers Tester`](https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester)
 
 This project provides a **systematic and open evaluation of ONNX Runtime operator coverage** for each Execution Provider (EP).  
 It aims to answer two recurring questions from industrial partners:
 
-1. ✅ What is the exact set of ONNX operators supported natively by each EP?
+1. ✅ What is the exact set of ONNX operators supported natively by each EP?  
 2. 📉 How complete is the implementation versus what falls back or fails?
 
 ### Key Features:
@@ -48,32 +56,41 @@ Coming soon: support for AMD ROCm and Vitis AI.
 
 We're currently working on other ONNX Runtime-related initiatives, including:
 
-- 📊 **Benchmark Toolkit** – to compare ONNX Runtime execution vs native implementations (e.g., OpenCV, PyTorch) on various targets and hardware setups
-- 🧠 **Training graph extension** – extending ONNX Runtime toward supervised and reinforcement training orchestration (not just inference)
-- 🕸️ **Visual AI composer** – for designing, editing, and deploying ONNX graphs directly from a LabVIEW-native interface
-- 📡 **Real-time synchronization tools** – to embed ONNX graphs into hardware-driven acquisition, timestamping, and test benches
+- 📊 **Benchmark Toolkit** – Compare ONNX Runtime performance vs native implementations (OpenCV, PyTorch, etc.)  
+- 🧠 **Training Graph Support** – Full orchestration of supervised and reinforcement training using dynamic ONNX graphs  
+- 🕸️ **Visual AI Composer** – Design and manipulate ONNX graphs natively in LabVIEW (no wrappers or conversions)  
+- ⏱️ **Real-time Execution Integration** – Synchronization and timestamping for test benches and acquisition systems  
 
 ---
 
-## 💡 Why It Matters
+## 💡 Why This Project Matters
 
-The ONNX Runtime documentation is powerful but limited in terms of real-time, granular coverage of EP capabilities.  
-Graiphic provides an essential **complementary layer** that:
+The official ONNX Runtime documentation is essential, but lacks real-time and detailed mapping of operator support per Execution Provider.  
+In practice, EP behavior depends heavily on:
 
-- Improves **transparency** for developers and vendors
-- Accelerates **industrial adoption**
-- Enhances **trust and control** for graph-based AI deployment in regulated or critical environments
+- ONNX Runtime and driver/library versions (e.g., CUDA, DNN, OpenVINO)
+- The specific model graph structure and data types
+- Hardware availability and fallback policies
+
+### 🔍 What Graiphic Adds
+
+This repository provides a **complementary and necessary layer** by:
+- 📌 Systematically testing all ONNX operators per EP
+- 🗺️ Delivering detailed support maps for developers and maintainers
+- 📡 Offering industrial users a real-time view of ONNX Runtime deployment readiness
+
+Our goal is to **accelerate ONNX Runtime adoption** across industry and academia by increasing visibility, trust, and efficiency in real-world usage.
 
 ---
 
 ## 👥 About Graiphic
 
 We are building the future of industrial AI orchestration — bridging deep learning, system engineering, and embedded hardware.  
-Our flagship product [SOTA](https://graiphic.io/download/) is the first ONNX-native framework to make training, inference, and graph manipulation fully visual and modular.
+Our flagship product [**SOTA**](https://graiphic.io/download/) is the first ONNX-native framework to make training, inference, and graph manipulation fully visual and modular.
 
 🔗 Website: [https://graiphic.io](https://graiphic.io)  
-📬 Contact: contact@graiphic.io
+📬 Contact: [contact@graiphic.io](mailto:contact@graiphic.io)
 
 ---
 
-Join us in shaping the future of ONNX-powered AI workflows 🚀
+> Join us in shaping the future of ONNX-powered AI workflows 🚀

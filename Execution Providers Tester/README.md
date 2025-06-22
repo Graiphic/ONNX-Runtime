@@ -38,8 +38,7 @@
     <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Nvidia%20-%20CUDA" target="_blank">NVIDIA – CUDA</a></li>
     <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Nvidia%20-%20TensorRT" target="_blank">NVIDIA – TensorRT</a></li>
     <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Intel%20-%20OpenVINO%E2%84%A2" target="_blank">Intel – OpenVINO™</a></li>
-    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Intel%20-%20oneDNN" target="_blank">Intel – oneDNN</a></li>
-    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Windows%20-%20DirectML" target="_blank">Windows – DirectML</a></li>
+    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Intel%20-%20OneDNN" target="_blank">Intel – OneDNN</a></li>
     <li><em>Coming soon:</em> AMD – Vitis AI and ROCm</li>
   </ul>
 
@@ -65,11 +64,6 @@
     <li>A <strong>real-time view of deployment readiness</strong> to help users choose the right hardware and provider</li>
     <li>A <strong>trust layer</strong> that accelerates ONNX Runtime adoption in production and research environments</li>
   </ul>
-
-  <p>
-    Ultimately, this initiative supports the global ONNX community by bringing clarity and visibility to the Runtime layer — 
-    essential for both reliability and performance in real-world use.
-  </p>
 
   <h2>🚀 How to Use</h2>
   <ul>
@@ -107,7 +101,7 @@
         <td>211 (80%)</td><td>0 (0%)</td><td>45 (17%)</td><td>7 (3%)</td><td>0 (0%)</td>
       </tr>
       <tr>
-        <td><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Intel%20-%20oneDNN" target="_blank">Intel – oneDNN</a></td>
+        <td><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Intel%20-%20OneDNN" target="_blank">Intel – OneDNN</a></td>
         <td>45 (17%)</td><td>165 (63%)</td><td>46 (17%)</td><td>7 (3%)</td><td>0 (0%)</td>
       </tr>
       <tr>
@@ -121,10 +115,6 @@
       <tr>
         <td><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Nvidia%20-%20TensorRT" target="_blank">NVIDIA – TensorRT</a></td>
         <td>94 (36%)</td><td>139 (53%)</td><td>23 (9%)</td><td>7 (3%)</td><td>0 (0%)</td>
-      </tr>
-      <tr>
-        <td><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Windows%20-%20DirectML" target="_blank">Windows – DirectML</a></td>
-        <td>127 (48%)</td><td>84 (32%)</td><td>45 (17%)</td><td>7 (3%)</td><td>0 (0%)</td>
       </tr>
     </tbody>
   </table>

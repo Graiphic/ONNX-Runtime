@@ -34,12 +34,12 @@
 
   <h2>📦 Currently Supported Execution Providers</h2>
   <ul>
-    <li>CPU</li>
-    <li>NVIDIA – CUDA</li>
-    <li>NVIDIA – TensorRT</li>
-    <li>Intel – OpenVINO</li>
-    <li>Intel – oneDNN</li>
-    <li>Windows – DirectML</li>
+    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/CPU" target="_blank">CPU</a></li>
+    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Nvidia%20-%20CUDA" target="_blank">NVIDIA – CUDA</a></li>
+    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Nvidia%20-%20TensorRT" target="_blank">NVIDIA – TensorRT</a></li>
+    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Intel%20-%20OpenVINO%E2%84%A2" target="_blank">Intel – OpenVINO™</a></li>
+    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Intel%20-%20oneDNN" target="_blank">Intel – oneDNN</a></li>
+    <li><a href="https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester/Windows%20-%20DirectML" target="_blank">Windows – DirectML</a></li>
     <li><em>Coming soon:</em> AMD – Vitis AI and ROCm</li>
   </ul>
 

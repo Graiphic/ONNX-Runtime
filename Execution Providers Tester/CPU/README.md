@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `CPUExecutionProvider`
 
-**Test Date:** 2025-07-11 10:42:58
+**Test Date:** 2025-07-11 11:58:22
 
 ## Test Methodology  
 Each ONNX operator is tested individually using a minimal ONNX model containing only that specific node. This ensures a focused and isolated evaluation of operator support for the selected Execution Provider.
@@ -10,6 +10,8 @@ Each ONNX operator is tested individually using a minimal ONNX model containing 
 - **ONNX Opset version:** 22
 - **ONNX IR version:** 10
 - **Data types:** Only one type is tested per node. This is usually `float32`, unless the node does not support it — in which case a compatible type is selected.
+
+> **Note:** Some ONNX nodes may not be available on the selected Execution Provider (EP) for opset version 22. This can lead to fallback behavior even though these nodes were supported in earlier opset versions. This occurs because ONNX Runtime teams may not have implemented or updated certain operators for the latest opset. As a result, test outcomes can vary depending on both the ONNX opset version and the ONNX Runtime version used.
 
 ## Environment and Installation Details
 

@@ -1,14 +1,22 @@
 # ONNXRuntime Test Results — Provider: `TensorrtExecutionProvider`
 
-**Test Date:** 2025-07-11 09:26:13
+**Test Date:** 2025-07-11 11:58:07
 
 ## Test Methodology  
 Each ONNX operator is tested individually using a minimal ONNX model containing only that specific node. This ensures a focused and isolated evaluation of operator support for the selected Execution Provider.
 
+### Test Configuration
+
+- **ONNX Opset version:** 22
+- **ONNX IR version:** 10
+- **Data types:** Only one type is tested per node. This is usually `float32`, unless the node does not support it — in which case a compatible type is selected.
+
+> **Note:** Some ONNX nodes may not be available on the selected Execution Provider (EP) for opset version 22. This can lead to fallback behavior even though these nodes were supported in earlier opset versions. This occurs because ONNX Runtime teams may not have implemented or updated certain operators for the latest opset. As a result, test outcomes can vary depending on both the ONNX opset version and the ONNX Runtime version used.
+
 ## Environment and Installation Details
 
 - **ONNX version:** 1.18.0
-- **ONNXRuntime version:** 1.22.0
+- **ONNXRuntime version:** 1.23.0
 - **Target provider:** TensorrtExecutionProvider
 - **Installation command:**
 ```bash
@@ -102,7 +110,7 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 | [`MatMulInteger`](https://onnx.ai/onnx/operators/onnx__MatMulInteger.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Max`](https://onnx.ai/onnx/operators/onnx__Max.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`MaxPool`](https://onnx.ai/onnx/operators/onnx__MaxPool.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
-| [`MaxRoiPool`](https://onnx.ai/onnx/operators/onnx__MaxRoiPool.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`MaxRoiPool`](https://onnx.ai/onnx/operators/onnx__MaxRoiPool.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`MaxUnpool`](https://onnx.ai/onnx/operators/onnx__MaxUnpool.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Mean`](https://onnx.ai/onnx/operators/onnx__Mean.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`MeanVarianceNormalization`](https://onnx.ai/onnx/operators/onnx__MeanVarianceNormalization.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
@@ -110,7 +118,7 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 | [`Min`](https://onnx.ai/onnx/operators/onnx__Min.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`Mod`](https://onnx.ai/onnx/operators/onnx__Mod.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`Mul`](https://onnx.ai/onnx/operators/onnx__Mul.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
-| [`Multinomial`](https://onnx.ai/onnx/operators/onnx__Multinomial.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`Multinomial`](https://onnx.ai/onnx/operators/onnx__Multinomial.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`NegativeLogLikelihoodLoss`](https://onnx.ai/onnx/operators/onnx__NegativeLogLikelihoodLoss.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`NonMaxSuppression`](https://onnx.ai/onnx/operators/onnx__NonMaxSuppression.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`NonZero`](https://onnx.ai/onnx/operators/onnx__NonZero.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -147,7 +155,7 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 | [`Reshape`](https://onnx.ai/onnx/operators/onnx__Reshape.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`Resize`](https://onnx.ai/onnx/operators/onnx__Resize.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`ReverseSequence`](https://onnx.ai/onnx/operators/onnx__ReverseSequence.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
-| [`RoiAlign`](https://onnx.ai/onnx/operators/onnx__RoiAlign.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`RoiAlign`](https://onnx.ai/onnx/operators/onnx__RoiAlign.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`STFT`](https://onnx.ai/onnx/operators/onnx__STFT.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Scan`](https://onnx.ai/onnx/operators/onnx__Scan.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`ScatterElements`](https://onnx.ai/onnx/operators/onnx__ScatterElements.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
@@ -186,11 +194,11 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 - **Total nodes tested:** 155
 - **Executable directly (SUCCESS):** 88 (56.8%)
 - **Executable directly (SUCCESS with complexification):** 0 (0.0%)
-- **Executable via FALLBACK:** 60 (38.7%)
+- **Executable via FALLBACK:** 57 (36.8%)
 - **UNKNOWN (no Node event):** 2 (1.3%)
 - **NOT TESTED:** 0 (0.0%)
 - **SKIPPED:** 0 (0.0%)
-- **FAIL:** 5 (3.2%)
+- **FAIL:** 8 (5.2%)
 
 ![Pie Chart](./stats_TensorrtExecutionProvider_basic.png)
 

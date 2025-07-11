@@ -554,18 +554,23 @@ def generate_readme_split(results, provider, output_dir):
     lines.append(f"**Test Date:** {now}\n")
     if provider == "OpenVINOExecutionProvider":
         lines.append("## Test Methodology  \n"
-                 "Each ONNX operator is tested using a minimal ONNX model containing only that specific node.  \n"
-                 "In cases where OpenVINO falls back to CPU for simple models, we re-test the node with a slightly complexified "
-                 "model. This model adds a chain of `Mul` or `And` operations (based on input type) that preserve the behavior "
-                 "but help OpenVINO recognize and execute the subgraph. This allows better detection of real OpenVINO support.\n")
+                     "Each ONNX operator is tested using a minimal ONNX model containing only that specific node.  \n"
+                     "In cases where OpenVINO falls back to CPU for simple models, we re-test the node with a slightly complexified "
+                     "model. This model adds a chain of `Mul` or `And` operations (based on input type) that preserve the behavior "
+                     "but help OpenVINO recognize and execute the subgraph. This allows better detection of real OpenVINO support.\n")
     else:
         lines.append("## Test Methodology  \n"
-                 "Each ONNX operator is tested individually using a minimal ONNX model containing only that specific node. "
-                 "This ensures a focused and isolated evaluation of operator support for the selected Execution Provider.\n")
+                     "Each ONNX operator is tested individually using a minimal ONNX model containing only that specific node. "
+                     "This ensures a focused and isolated evaluation of operator support for the selected Execution Provider.\n")
+
     lines.append("### Test Configuration\n")
     lines.append("- **ONNX Opset version:** 22")
     lines.append("- **ONNX IR version:** 10")
     lines.append("- **Data types:** Only one type is tested per node. This is usually `float32`, unless the node does not support it — in which case a compatible type is selected.\n")
+    lines.append("> **Note:** Some ONNX nodes may not be available on the selected Execution Provider (EP) for opset version 22. "
+                 "This can lead to fallback behavior even though these nodes were supported in earlier opset versions. "
+                 "This occurs because ONNX Runtime teams may not have implemented or updated certain operators for the latest opset. "
+                 "As a result, test outcomes can vary depending on both the ONNX opset version and the ONNX Runtime version used.\n")
 
     lines.append("## Environment and Installation Details\n")
     lines.append(f"- **ONNX version:** {onnx_ver}")
@@ -771,13 +776,6 @@ def generate_full_readme():
   If the node then executes on the EP, its status is upgraded to <code>SUCCESS (with complexification)</code>.
 </p>
 
-<h3>⚙️ Test Configuration</h3>
-<ul>
-  <li><strong>ONNX Opset version:</strong> 22</li>
-  <li><strong>ONNX IR version:</strong> 10</li>
-  <li><strong>Data types:</strong> Only a single data type is tested per node. In general this is <code>float32</code>,
-      unless the node does not support it—in which case an available type is selected.</li>
-</ul>
 
 <h2>📦 Currently Supported Execution Providers</h2>
 <ul>
@@ -799,7 +797,20 @@ def generate_full_readme():
   <li><strong>ONNX:</strong> {onnx.__version__} | <strong>ONNXRuntime:</strong> {ort.__version__}</li>
   <li><strong>OS:</strong> {platform.system()} {platform.release()}</li>
 </ul>
+
+<h3>⚙️ Test Configuration</h3>
+<ul>
+  <li><strong>ONNX Opset version:</strong> 22</li>
+  <li><strong>ONNX IR version:</strong> 10</li>
+  <li><strong>Data types:</strong> Only a single data type is tested per node. In general this is <code>float32</code>,
+      unless the node does not support it—in which case an available type is selected.</li>
+</ul>
+<p><strong>Note:</strong> Some ONNX nodes may not be available on the selected Execution Provider (EP) for opset version 22. 
+This can lead to fallback behavior even though these nodes were supported in earlier opset versions. 
+This occurs because ONNX Runtime teams may not have implemented or updated certain operators for the latest opset. 
+As a result, test outcomes can vary depending on both the ONNX opset version and the ONNX Runtime version used.</p>
 """)
+
 
         def write_table(title, rows):
             out.write(f"<h3>{title}</h3>\n")

@@ -48,13 +48,6 @@
   If the node then executes on the EP, its status is upgraded to <code>SUCCESS (with complexification)</code>.
 </p>
 
-<h3>⚙️ Test Configuration</h3>
-<ul>
-  <li><strong>ONNX Opset version:</strong> 22</li>
-  <li><strong>ONNX IR version:</strong> 10</li>
-  <li><strong>Data types:</strong> Only a single data type is tested per node. In general this is <code>float32</code>,
-      unless the node does not support it—in which case an available type is selected.</li>
-</ul>
 
 <h2>📦 Currently Supported Execution Providers</h2>
 <ul>
@@ -76,6 +69,18 @@
   <li><strong>ONNX:</strong> 1.18.0 | <strong>ONNXRuntime:</strong> 1.23.0</li>
   <li><strong>OS:</strong> Windows 10</li>
 </ul>
+
+<h3>⚙️ Test Configuration</h3>
+<ul>
+  <li><strong>ONNX Opset version:</strong> 22</li>
+  <li><strong>ONNX IR version:</strong> 10</li>
+  <li><strong>Data types:</strong> Only a single data type is tested per node. In general this is <code>float32</code>,
+      unless the node does not support it—in which case an available type is selected.</li>
+</ul>
+<p><strong>Note:</strong> Some ONNX nodes may not be available on the selected Execution Provider (EP) for opset version 22. 
+This can lead to fallback behavior even though these nodes were supported in earlier opset versions. 
+This occurs because ONNX Runtime teams may not have implemented or updated certain operators for the latest opset. 
+As a result, test outcomes can vary depending on both the ONNX opset version and the ONNX Runtime version used.</p>
 <h3>ONNX Core Operators</h3>
 <table border="1" cellpadding="6" cellspacing="0">
   <thead>
@@ -92,9 +97,9 @@
   <tbody>
 <tr><td><a href="./CPU/" target="_blank">CPU</a></td><td>142 (93%)</td><td>0 (0%)</td><td>142 (93%)</td><td>11 (7%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
 <tr><td><a href="./Intel%20-%20OneDNN/" target="_blank">Intel - OneDNN</a></td><td>39 (25%)</td><td>103 (67%)</td><td>142 (93%)</td><td>11 (7%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
-<tr><td><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></td><td>95 (62%)</td><td>54 (35%)</td><td>149 (97%)</td><td>4 (3%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
-<tr><td><a href="./Nvidia%20-%20CUDA/" target="_blank">Nvidia - CUDA</a></td><td>74 (48%)</td><td>77 (50%)</td><td>151 (99%)</td><td>2 (1%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
-<tr><td><a href="./Nvidia%20-%20TensorRT/" target="_blank">Nvidia - TensorRT</a></td><td>88 (58%)</td><td>60 (39%)</td><td>148 (97%)</td><td>5 (3%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
+<tr><td><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></td><td>93 (61%)</td><td>48 (31%)</td><td>141 (92%)</td><td>12 (8%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
+<tr><td><a href="./Nvidia%20-%20CUDA/" target="_blank">Nvidia - CUDA</a></td><td>70 (46%)</td><td>72 (47%)</td><td>142 (93%)</td><td>11 (7%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
+<tr><td><a href="./Nvidia%20-%20TensorRT/" target="_blank">Nvidia - TensorRT</a></td><td>88 (58%)</td><td>57 (37%)</td><td>145 (95%)</td><td>8 (5%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
 <tr><td><a href="./Windows%20-%20DirectML/" target="_blank">Windows - DirectML</a></td><td>97 (63%)</td><td>44 (29%)</td><td>141 (92%)</td><td>12 (8%)</td><td>0 (0%)</td><td>0 (0%)</td></tr>
 </tbody></table>
 

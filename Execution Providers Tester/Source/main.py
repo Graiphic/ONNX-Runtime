@@ -1,7 +1,7 @@
 # main.py
 
 from utils import run_tests_and_generate_reports, run_all_providers_and_generate_reports
-from report import generate_root_summary
+from report import generate_full_readme
 
 
 #def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
@@ -20,8 +20,9 @@ from report import generate_root_summary
 
 # Simply call the function to execute with all available Execution Providers thanks to get_available_providers()
 run_all_providers_and_generate_reports("test.txt", "profiling", "models")
-print("Done: tests completed and both reports generated.")
+#print("Done: tests completed and both reports generated.")
 
 
 # Generate a ReadMe summarising the results of each EP already carried out.
-generate_root_summary()
+#generate_root_summary()
+generate_full_readme()

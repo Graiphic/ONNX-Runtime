@@ -28,7 +28,7 @@ def randomuniformlike_model_builder(op_type, cfg=None):
 
     model = onnx.helper.make_model(
         graph,
-        opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION-1)]
+        opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION)]
     )
     model.ir_version = ONNX_RUNTIME_IR_VERSION
     return model

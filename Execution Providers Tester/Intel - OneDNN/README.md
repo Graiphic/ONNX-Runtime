@@ -1,6 +1,15 @@
 # ONNXRuntime Test Results — Provider: `DnnlExecutionProvider`
 
-**Test Date:** 2025-06-06 17:57:06
+**Test Date:** 2025-07-11 10:42:51
+
+## Test Methodology  
+Each ONNX operator is tested individually using a minimal ONNX model containing only that specific node. This ensures a focused and isolated evaluation of operator support for the selected Execution Provider.
+
+### Test Configuration
+
+- **ONNX Opset version:** 22
+- **ONNX IR version:** 10
+- **Data types:** Only one type is tested per node. This is usually `float32`, unless the node does not support it — in which case a compatible type is selected.
 
 ## Environment and Installation Details
 
@@ -15,7 +24,7 @@ manual build from source (oneDNN included, no pre-install needed)
 
 - **CPU:** Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz
 
-## Node Details
+## Basic ONNX Nodes
 
 | ONNX Node | Status |
 |:---------:|:------:|
@@ -26,7 +35,7 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`ArgMin`](https://onnx.ai/onnx/operators/onnx__ArgMin.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`AveragePool`](https://onnx.ai/onnx/operators/onnx__AveragePool.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`BatchNormalization`](https://onnx.ai/onnx/operators/onnx__BatchNormalization.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
-| [`Bernoulli`](https://onnx.ai/onnx/operators/onnx__Bernoulli.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`Bernoulli`](https://onnx.ai/onnx/operators/onnx__Bernoulli.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`BitShift`](https://onnx.ai/onnx/operators/onnx__BitShift.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`BitwiseAnd`](https://onnx.ai/onnx/operators/onnx__BitwiseAnd.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`BitwiseNot`](https://onnx.ai/onnx/operators/onnx__BitwiseNot.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -89,13 +98,13 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`Less`](https://onnx.ai/onnx/operators/onnx__Less.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`LessOrEqual`](https://onnx.ai/onnx/operators/onnx__LessOrEqual.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`Loop`](https://onnx.ai/onnx/operators/onnx__Loop.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`LpNormalization`](https://onnx.ai/onnx/operators/onnx__LpNormalization.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`LpNormalization`](https://onnx.ai/onnx/operators/onnx__LpNormalization.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`LpPool`](https://onnx.ai/onnx/operators/onnx__LpPool.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`MatMul`](https://onnx.ai/onnx/operators/onnx__MatMul.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`MatMulInteger`](https://onnx.ai/onnx/operators/onnx__MatMulInteger.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Max`](https://onnx.ai/onnx/operators/onnx__Max.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`MaxPool`](https://onnx.ai/onnx/operators/onnx__MaxPool.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
-| [`MaxRoiPool`](https://onnx.ai/onnx/operators/onnx__MaxRoiPool.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`MaxRoiPool`](https://onnx.ai/onnx/operators/onnx__MaxRoiPool.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`MaxUnpool`](https://onnx.ai/onnx/operators/onnx__MaxUnpool.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Mean`](https://onnx.ai/onnx/operators/onnx__Mean.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`MeanVarianceNormalization`](https://onnx.ai/onnx/operators/onnx__MeanVarianceNormalization.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -103,7 +112,7 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`Min`](https://onnx.ai/onnx/operators/onnx__Min.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Mod`](https://onnx.ai/onnx/operators/onnx__Mod.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Mul`](https://onnx.ai/onnx/operators/onnx__Mul.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
-| [`Multinomial`](https://onnx.ai/onnx/operators/onnx__Multinomial.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`Multinomial`](https://onnx.ai/onnx/operators/onnx__Multinomial.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`NegativeLogLikelihoodLoss`](https://onnx.ai/onnx/operators/onnx__NegativeLogLikelihoodLoss.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`NonMaxSuppression`](https://onnx.ai/onnx/operators/onnx__NonMaxSuppression.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`NonZero`](https://onnx.ai/onnx/operators/onnx__NonZero.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -121,10 +130,10 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`QLinearMatMul`](https://onnx.ai/onnx/operators/onnx__QLinearMatMul.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`QuantizeLinear`](https://onnx.ai/onnx/operators/onnx__QuantizeLinear.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`RNN`](https://onnx.ai/onnx/operators/onnx__RNN.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`RandomNormal`](https://onnx.ai/onnx/operators/onnx__RandomNormal.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`RandomNormalLike`](https://onnx.ai/onnx/operators/onnx__RandomNormalLike.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`RandomUniform`](https://onnx.ai/onnx/operators/onnx__RandomUniform.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`RandomUniformLike`](https://onnx.ai/onnx/operators/onnx__RandomUniformLike.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`RandomNormal`](https://onnx.ai/onnx/operators/onnx__RandomNormal.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
+| [`RandomNormalLike`](https://onnx.ai/onnx/operators/onnx__RandomNormalLike.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
+| [`RandomUniform`](https://onnx.ai/onnx/operators/onnx__RandomUniform.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
+| [`RandomUniformLike`](https://onnx.ai/onnx/operators/onnx__RandomUniformLike.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`Range`](https://onnx.ai/onnx/operators/onnx__Range.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`ReduceL1`](https://onnx.ai/onnx/operators/onnx__ReduceL1.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`ReduceL2`](https://onnx.ai/onnx/operators/onnx__ReduceL2.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
@@ -140,7 +149,7 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`Reshape`](https://onnx.ai/onnx/operators/onnx__Reshape.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`Resize`](https://onnx.ai/onnx/operators/onnx__Resize.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`ReverseSequence`](https://onnx.ai/onnx/operators/onnx__ReverseSequence.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`RoiAlign`](https://onnx.ai/onnx/operators/onnx__RoiAlign.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+| [`RoiAlign`](https://onnx.ai/onnx/operators/onnx__RoiAlign.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`STFT`](https://onnx.ai/onnx/operators/onnx__STFT.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Scan`](https://onnx.ai/onnx/operators/onnx__Scan.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`ScatterElements`](https://onnx.ai/onnx/operators/onnx__ScatterElements.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -174,8 +183,24 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`Unsqueeze`](https://onnx.ai/onnx/operators/onnx__Unsqueeze.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Xor`](https://onnx.ai/onnx/operators/onnx__Xor.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
+
+### Statistics
+- **Total nodes tested:** 155
+- **Executable directly (SUCCESS):** 39 (25.2%)
+- **Executable directly (SUCCESS with complexification):** 0 (0.0%)
+- **Executable via FALLBACK:** 103 (66.5%)
+- **UNKNOWN (no Node event):** 2 (1.3%)
+- **NOT TESTED:** 0 (0.0%)
+- **SKIPPED:** 0 (0.0%)
+- **FAIL:** 11 (7.1%)
+
+![Pie Chart](./stats_DnnlExecutionProvider_basic.png)
+
+## Microsoft Custom Nodes
+
+| ONNX Node | Status |
+|:---------:|:------:|
 | [`com.microsoft.Attention`](https://onnx.ai/onnx/operators/onnx__com.microsoft.Attention.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`com.microsoft.AttnLSTM`](https://onnx.ai/onnx/operators/onnx__com.microsoft.AttnLSTM.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.BeamSearch`](https://onnx.ai/onnx/operators/onnx__com.microsoft.BeamSearch.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.BiasAdd`](https://onnx.ai/onnx/operators/onnx__com.microsoft.BiasAdd.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.BiasDropout`](https://onnx.ai/onnx/operators/onnx__com.microsoft.BiasDropout.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
@@ -189,7 +214,6 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`com.microsoft.ComplexMul`](https://onnx.ai/onnx/operators/onnx__com.microsoft.ComplexMul.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.ComplexMulConj`](https://onnx.ai/onnx/operators/onnx__com.microsoft.ComplexMulConj.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.ConvTransposeWithDynamicPads`](https://onnx.ai/onnx/operators/onnx__com.microsoft.ConvTransposeWithDynamicPads.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`com.microsoft.CropAndResize`](https://onnx.ai/onnx/operators/onnx__com.microsoft.CropAndResize.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.CropAndResize`](https://onnx.ai/onnx/operators/onnx__com.microsoft.CropAndResize.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.DecoderAttention`](https://onnx.ai/onnx/operators/onnx__com.microsoft.DecoderAttention.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.DecoderMaskedMultiHeadAttention`](https://onnx.ai/onnx/operators/onnx__com.microsoft.DecoderMaskedMultiHeadAttention.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -283,21 +307,18 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`com.microsoft.UnfoldTensor`](https://onnx.ai/onnx/operators/onnx__com.microsoft.UnfoldTensor.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.Unique`](https://onnx.ai/onnx/operators/onnx__com.microsoft.Unique.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.WhisperBeamSearch`](https://onnx.ai/onnx/operators/onnx__com.microsoft.WhisperBeamSearch.html) | ![NOT TESTED](https://img.shields.io/badge/NOT%20TESTED-7777CC?style=flat&logoColor=white) |
-| [`com.microsoft.WordConvEmbedding`](https://onnx.ai/onnx/operators/onnx__com.microsoft.WordConvEmbedding.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 
-## Global Statistics
-
-- **Total nodes tested:** 265
-- **Executable directly (SUCCESS):** 45 (17.0%)
-- **Executable via FALLBACK:** 165 (62.3%)
-- **UNKNOWN (no Node event):** 2 (0.8%)
-- **NOT TESTED:** 7 (2.6%)
+### Statistics
+- **Total nodes tested:** 107
+- **Executable directly (SUCCESS):** 6 (5.6%)
+- **Executable directly (SUCCESS with complexification):** 0 (0.0%)
+- **Executable via FALLBACK:** 52 (48.6%)
+- **UNKNOWN (no Node event):** 0 (0.0%)
+- **NOT TESTED:** 7 (6.5%)
 - **SKIPPED:** 0 (0.0%)
-- **FAIL:** 46 (17.4%)
+- **FAIL:** 42 (39.3%)
 
-### Statistics Pie Chart
-
-![Node Status Distribution](./stats_DnnlExecutionProvider.png)
+![Pie Chart](./stats_DnnlExecutionProvider_ms.png)
 
 ## Nodes not tested
 

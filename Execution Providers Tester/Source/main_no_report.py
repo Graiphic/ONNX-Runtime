@@ -5,7 +5,7 @@ import pkgutil
 import importlib
 import ops
 import onnxruntime
-from utils import OpTest
+from utils import OpTest, wrap_model_with_flatten_gemm_reshape
 
 # Chargement dynamique des modules ops/
 for _, name, _ in pkgutil.iter_modules(ops.__path__):
@@ -26,6 +26,7 @@ if __name__ == '__main__':
             # Génération modèle
             try:
                 model = tester.generate_model()
+                wrap_model_with_flatten_gemm_reshape(model)
                 tester.save_model(model)
             except Exception as e:
                 print(f"{op} generate_model: FAIL -> {e}")
@@ -34,7 +35,7 @@ if __name__ == '__main__':
             try:
                 opts = onnxruntime.SessionOptions()
                 opts.log_severity_level = 2
-                opts.optimized_model_filepath =  f"{op}_optimized.onnx"
+                #opts.optimized_model_filepath =  f"{op}_optimized.onnx"
                 sess = onnxruntime.InferenceSession(
                     model.SerializeToString(),
                     sess_options=opts,

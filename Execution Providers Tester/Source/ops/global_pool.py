@@ -20,7 +20,7 @@ def global_pool_model_builder(op_type, cfg=None):
     if op_type == "GlobalLpPool":
         model = onnx.helper.make_model(
             graph,
-            opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION-1)]
+            opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION)]
         )
     else:
         model = onnx.helper.make_model(

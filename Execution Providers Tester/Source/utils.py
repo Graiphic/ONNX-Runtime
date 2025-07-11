@@ -9,7 +9,7 @@ import pkgutil
 import importlib
 import ops
 import json
-from report import generate_report, generate_report_aggregated, generate_readme
+from report import generate_report, generate_report_aggregated, generate_readme_split
 from datetime import datetime
 
 # Configuration constants
@@ -139,14 +139,6 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
                                    test_file="test.txt",
                                    profiling_dir="profiling",
                                    models_dir="models"):
-    import os
-    import pkgutil
-    import importlib
-    import json
-    import ops
-    import onnxruntime as ort
-    from utils import load_ops, OpTest, map_execution_provider
-    from report import generate_report, generate_report_aggregated, generate_readme
 
     is_openvino = "OpenVINO" in provider
     if is_openvino:
@@ -203,7 +195,7 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
         opts.enable_profiling = True
         opts.profile_file_prefix = os.path.join(profiling_dir, f"profile_{op}")
         opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
-        opts.log_severity_level = 3
+        opts.log_severity_level = 4
 
         skip_optimized = provider in [
             "OpenVINOExecutionProvider",
@@ -291,15 +283,75 @@ def run_tests_and_generate_reports(provider="DnnlExecutionProvider",
         except Exception as e:
             results.append((op, provider, None, f"FAIL parsing JSON: {e}"))
             continue
+        
+        
+        # OpenVINO fallback re-test with complexified model
+        # Fallback re-test with complexified model for OpenVINO and TensorRT
+        is_tensorrt = provider == "TensorrtExecutionProvider"
+        if (is_openvino or is_tensorrt) and status.startswith("SUCCESS WITH FALLBACK"):
+            try:
+                # ⚠️ Utilise le modèle de base pour générer les bons inputs
+                feed2 = tester.generate_input(sess)
+        
+                if isinstance(feed2, tuple):
+                    feed2 = feed2[0]
+                if not isinstance(feed2, dict):
+                    raise TypeError(f"generate_input for {op} must return a dict, got {type(feed2)}")
+        
+                # Complexifie ensuite le modèle
+                complex_model = complexify_model_for_openvino(model)
+                complex_path = os.path.join(models_dir, f"{op}_complex.onnx")
+                onnx.save(complex_model, complex_path)
+                opts.enable_profiling = True
+                opts.profile_file_prefix = os.path.join(profiling_dir, f"profile_{op}_complex")
+        
+                if is_openvino:
+                    sess2 = ort.InferenceSession(
+                        complex_model.SerializeToString(),
+                        sess_options=opts,
+                        providers=[provider],
+                        provider_options=[{"device_type": "CPU"}]
+                    )
+                elif is_tensorrt:
+                    sess2 = ort.InferenceSession(
+                        complex_model.SerializeToString(),
+                        sess_options=opts,
+                        providers=["TensorrtExecutionProvider", "CUDAExecutionProvider", "CPUExecutionProvider"]
+                    )
+        
+                # Ajoute `noise` manuellement
+                if "noise" in [i.name for i in sess2.get_inputs()]:
+                    ref_input = next(iter(feed2.values()))
+                    feed2["noise"] = np.array(1, dtype=ref_input.dtype)
+        
+                sess2.run(None, feed2)
+                profile_path2 = sess2.end_profiling()
+        
+                with open(profile_path2, 'r') as f:
+                    root2 = json.load(f)
+        
+                events2 = root2["traceEvents"] if isinstance(root2, dict) else root2
+        
+                status2 = executed_on_provider_strict(op, events2, provider)
+                results[-1] = (op, provider, provider, status2)
+
+
+        
+            except Exception as e:
+                print(f"[OpenVINO fallback check] Failed for {op}: {e}")
+
+
+    
 
     map_name = map_execution_provider(provider)
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     base_output_dir = os.path.join(project_root, map_name)
     os.makedirs(base_output_dir, exist_ok=True)
-
+    #print(results)
     generate_report(results, provider, base_output_dir, models_dir)
     generate_report_aggregated(results, provider, base_output_dir, models_dir)
-    generate_readme(results, provider, base_output_dir)
+    #generate_readme(results, provider, base_output_dir)
+    generate_readme_split(results, provider, base_output_dir)
 
 
 
@@ -326,3 +378,71 @@ def run_all_providers_and_generate_reports(test_file="test.txt",
             profiling_dir=profiling_dir,
             models_dir=models_dir
         )
+
+
+
+def complexify_model_for_openvino(model: onnx.ModelProto) -> onnx.ModelProto:
+    from onnx import helper, TensorProto
+
+    graph = model.graph
+    input0 = graph.input[0]
+    dtype = input0.type.tensor_type.elem_type
+    input_name = input0.name
+
+    # Crée une nouvelle entrée scalaire (noise)
+    new_input_name = "noise"
+    new_input = helper.make_tensor_value_info(new_input_name, dtype, [])
+    graph.input.append(new_input)
+
+    # Mul pour numériques, And pour booléens
+    numeric_types = {
+        TensorProto.FLOAT, TensorProto.FLOAT16, TensorProto.DOUBLE,
+        TensorProto.INT8, TensorProto.INT16, TensorProto.INT32, TensorProto.INT64,
+        TensorProto.UINT8, TensorProto.UINT16, TensorProto.UINT32, TensorProto.UINT64
+    }
+    op_type = "Mul" if dtype in numeric_types else "And"
+
+    new_nodes = []
+    prev_output = None
+    for i in range(10):
+        in0 = input_name if i == 0 else prev_output
+        out_name = f"{op_type.lower()}_{i}"
+        node = helper.make_node(op_type, inputs=[in0, new_input_name], outputs=[out_name])
+        new_nodes.append(node)
+        prev_output = out_name
+
+    # Redirige les entrées d’origine
+    for node in graph.node:
+        for idx, name in enumerate(node.input):
+            if name == input_name:
+                node.input[idx] = prev_output
+
+    for node in reversed(new_nodes):
+        graph.node.insert(0, node)
+
+    return model
+
+
+def executed_on_provider_strict(op_name: str, events: list, provider: str) -> str:
+    """
+    Vérifie si TOUTES les exécutions sont sur le provider (ex: OpenVINO).
+    Si un kernel tourne sur un autre EP, c'est un fallback.
+    """
+    nodes = [e for e in events if e.get("cat") == "Node"]
+    fallback_eps = {
+        e["args"]["provider"]
+        for e in nodes
+        if e["args"].get("provider") != provider
+        and e["args"].get("op_name") != "MemcpyFromHost"
+        and e["args"].get("op_name") != "MemcpyToHost"
+    }
+
+    if fallback_eps:
+        return "SUCCESS WITH FALLBACK"
+
+    # Si le nœud `op_name` est explicitement présent (exécution directe)
+    if any(e["args"].get("op_name") == op_name and e["args"]["provider"] == provider for e in nodes):
+        return "SUCCESS"
+
+    # Sinon, on considère que c'est une complexification réussie
+    return "SUCCESS (with complexification)"

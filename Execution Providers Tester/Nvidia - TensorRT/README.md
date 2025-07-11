@@ -1,11 +1,14 @@
 # ONNXRuntime Test Results — Provider: `TensorrtExecutionProvider`
 
-**Test Date:** 2025-06-06 17:58:13
+**Test Date:** 2025-07-11 09:26:13
+
+## Test Methodology  
+Each ONNX operator is tested individually using a minimal ONNX model containing only that specific node. This ensures a focused and isolated evaluation of operator support for the selected Execution Provider.
 
 ## Environment and Installation Details
 
 - **ONNX version:** 1.18.0
-- **ONNXRuntime version:** 1.23.0
+- **ONNXRuntime version:** 1.22.0
 - **Target provider:** TensorrtExecutionProvider
 - **Installation command:**
 ```bash
@@ -19,7 +22,7 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 - **cuDNN version:** 9.2.1
 - **TensorRT version:** 10.9.0
 
-## Node Details
+## Basic ONNX Nodes
 
 | ONNX Node | Status |
 |:---------:|:------:|
@@ -178,8 +181,24 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 | [`Unsqueeze`](https://onnx.ai/onnx/operators/onnx__Unsqueeze.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
 | [`Xor`](https://onnx.ai/onnx/operators/onnx__Xor.html) | ![SUCCESS](https://img.shields.io/badge/SUCCESS-00AA44?style=flat&logoColor=white) |
+
+### Statistics
+- **Total nodes tested:** 155
+- **Executable directly (SUCCESS):** 88 (56.8%)
+- **Executable directly (SUCCESS with complexification):** 0 (0.0%)
+- **Executable via FALLBACK:** 60 (38.7%)
+- **UNKNOWN (no Node event):** 2 (1.3%)
+- **NOT TESTED:** 0 (0.0%)
+- **SKIPPED:** 0 (0.0%)
+- **FAIL:** 5 (3.2%)
+
+![Pie Chart](./stats_TensorrtExecutionProvider_basic.png)
+
+## Microsoft Custom Nodes
+
+| ONNX Node | Status |
+|:---------:|:------:|
 | [`com.microsoft.Attention`](https://onnx.ai/onnx/operators/onnx__com.microsoft.Attention.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`com.microsoft.AttnLSTM`](https://onnx.ai/onnx/operators/onnx__com.microsoft.AttnLSTM.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.BeamSearch`](https://onnx.ai/onnx/operators/onnx__com.microsoft.BeamSearch.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.BiasAdd`](https://onnx.ai/onnx/operators/onnx__com.microsoft.BiasAdd.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.BiasDropout`](https://onnx.ai/onnx/operators/onnx__com.microsoft.BiasDropout.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -193,7 +212,6 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 | [`com.microsoft.ComplexMul`](https://onnx.ai/onnx/operators/onnx__com.microsoft.ComplexMul.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.ComplexMulConj`](https://onnx.ai/onnx/operators/onnx__com.microsoft.ComplexMulConj.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.ConvTransposeWithDynamicPads`](https://onnx.ai/onnx/operators/onnx__com.microsoft.ConvTransposeWithDynamicPads.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
-| [`com.microsoft.CropAndResize`](https://onnx.ai/onnx/operators/onnx__com.microsoft.CropAndResize.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.CropAndResize`](https://onnx.ai/onnx/operators/onnx__com.microsoft.CropAndResize.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.DecoderAttention`](https://onnx.ai/onnx/operators/onnx__com.microsoft.DecoderAttention.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.DecoderMaskedMultiHeadAttention`](https://onnx.ai/onnx/operators/onnx__com.microsoft.DecoderMaskedMultiHeadAttention.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
@@ -287,21 +305,18 @@ manual build with CUDA 12.5, cuDNN 9.2.1, TensorRT 10.9.0.34
 | [`com.microsoft.UnfoldTensor`](https://onnx.ai/onnx/operators/onnx__com.microsoft.UnfoldTensor.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`com.microsoft.Unique`](https://onnx.ai/onnx/operators/onnx__com.microsoft.Unique.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.WhisperBeamSearch`](https://onnx.ai/onnx/operators/onnx__com.microsoft.WhisperBeamSearch.html) | ![NOT TESTED](https://img.shields.io/badge/NOT%20TESTED-7777CC?style=flat&logoColor=white) |
-| [`com.microsoft.WordConvEmbedding`](https://onnx.ai/onnx/operators/onnx__com.microsoft.WordConvEmbedding.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 
-## Global Statistics
-
-- **Total nodes tested:** 265
-- **Executable directly (SUCCESS):** 94 (35.5%)
-- **Executable via FALLBACK:** 139 (52.5%)
-- **UNKNOWN (no Node event):** 2 (0.8%)
-- **NOT TESTED:** 7 (2.6%)
+### Statistics
+- **Total nodes tested:** 107
+- **Executable directly (SUCCESS):** 6 (5.6%)
+- **Executable directly (SUCCESS with complexification):** 0 (0.0%)
+- **Executable via FALLBACK:** 79 (73.8%)
+- **UNKNOWN (no Node event):** 0 (0.0%)
+- **NOT TESTED:** 7 (6.5%)
 - **SKIPPED:** 0 (0.0%)
-- **FAIL:** 23 (8.7%)
+- **FAIL:** 15 (14.0%)
 
-### Statistics Pie Chart
-
-![Node Status Distribution](./stats_TensorrtExecutionProvider.png)
+![Pie Chart](./stats_TensorrtExecutionProvider_ms.png)
 
 ## Nodes not tested
 

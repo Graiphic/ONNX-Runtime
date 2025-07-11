@@ -30,7 +30,7 @@ These principles are embodied in our flagship platform, [**SOTA**](https://graip
 
 ## 🔎 Project 1 – Execution Providers Coverage Tester
 
-📍 Repository: [`Execution Providers Tester`](https://github.com/Graiphic/ONNX-Runtime/tree/main/Execution%20Providers%20Tester)
+📍 Repository: [`Execution Providers Tester`](./Execution%20Providers%20Tester/)
 
 This project provides a **systematic and open evaluation of ONNX Runtime operator coverage** for each Execution Provider (EP).  
 It aims to answer two recurring questions from industrial partners:

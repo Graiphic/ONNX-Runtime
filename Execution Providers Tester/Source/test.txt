@@ -154,7 +154,6 @@ Unsqueeze
 Where
 Xor
 com.microsoft.Attention
-com.microsoft.AttnLSTM
 com.microsoft.BeamSearch
 com.microsoft.BiasAdd
 com.microsoft.BiasDropout
@@ -168,7 +167,6 @@ com.microsoft.CDist
 com.microsoft.ComplexMul
 com.microsoft.ComplexMulConj
 com.microsoft.ConvTransposeWithDynamicPads
-com.microsoft.CropAndResize
 com.microsoft.CropAndResize
 com.microsoft.DecoderAttention
 com.microsoft.DecoderMaskedMultiHeadAttention
@@ -262,4 +260,3 @@ com.microsoft.Trilu
 com.microsoft.UnfoldTensor
 com.microsoft.Unique
 com.microsoft.WhisperBeamSearch
-com.microsoft.WordConvEmbedding

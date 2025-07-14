@@ -143,7 +143,17 @@ As a result, test outcomes can vary depending on both the ONNX opset version and
   <li><strong>NOT TESTED</strong>: Node was not tested for this provider (unsupported type or config).</li>
   <li><strong>SKIPPED</strong>: Node was deliberately skipped due to known incompatibility or user choice.</li>
 </ul>
-
+<h2>🧭 Related Tools</h2>
+<p>
+  For a complementary and more aggregated perspective on backend compliance,
+  we encourage you to also visit the official 
+  <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.
+</p>
+<p>
+  While the Scoreboard provides a high-level view of backend support based on ONNX's internal test suite,
+  our initiative focuses on operator-level validation and runtime behavior analysis — especially fallback detection — across Execution Providers.
+  Together, both efforts help build a clearer, more actionable picture of ONNX Runtime capabilities.
+</p>
 <h2>🤝 Maintainer</h2>
 <p>
   This project is maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> 

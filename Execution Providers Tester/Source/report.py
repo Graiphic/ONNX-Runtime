@@ -1009,10 +1009,17 @@ def generate_full_readme_for_opset(opset: int):
 
         out.write("""
 <h2>🧭 Related Tools</h2>
-<p>Also see the official <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.</p>
+<p>
+  For a complementary and more aggregated perspective on backend compliance, see the official 
+  <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.
+</p>
 
 <h2>🤝 Maintainer</h2>
-<p>Maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> (SOTA initiative).</p>
+<p>
+  Maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> 
+  as part of the <a href="https://graiphic.io/download/" target="_blank"><strong>SOTA</strong></a> initiative.
+  We welcome collaboration and community feedback.
+</p>
 
 </div>""")
 

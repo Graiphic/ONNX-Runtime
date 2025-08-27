@@ -725,7 +725,7 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
                 f"- **FAIL:** {s_fail}",
                 f"- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** {s_skip}",
                 f"- **NOT TESTED (GRU/LSTM because it crash python kernel):** {s_nt}",
-                f"![]({rel_pie})" if rel_pie else "",
+                f"![Pie Chart]({rel_pie})" if rel_pie else "",
                 ""
             ]
 
@@ -750,7 +750,7 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
                 f"- **FAIL:** {s_fail}",
                 f"- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** {s_skip}",
                 f"- **NOT TESTED (GRU/LSTM because it crash python kernel):** {s_nt}",
-                f"![]({rel_pie})" if rel_pie else "",
+                f"![Pie Chart]({rel_pie})" if rel_pie else "",
                 ""
             ]
 

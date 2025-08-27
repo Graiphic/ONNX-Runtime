@@ -89,15 +89,29 @@
 
 <h2>🧭 Related Tools</h2>
 <p>
-  For a complementary and more aggregated perspective on backend compliance, see the official 
+  For a complementary and more aggregated perspective on backend compliance, we encourage you to also visit the official 
   <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.
+</p>
+<p>
+  While the Scoreboard provides a high-level view of backend support based on ONNX's internal test suite, our initiative focuses 
+  on operator-level validation and runtime behavior analysis — especially fallback detection — across Execution Providers. 
+  Together, both efforts help build a clearer, more actionable picture of ONNX Runtime capabilities.
 </p>
 
 <h2>🤝 Maintainer</h2>
 <p>
-  Maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> 
+  This project is maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> 
   as part of the <a href="https://graiphic.io/download/" target="_blank"><strong>SOTA</strong></a> initiative.
-  We welcome collaboration and community feedback.
 </p>
+<p>
+  We welcome collaboration, community feedback, and open contribution to make ONNX Runtime stronger and more widely adopted.
+</p>
+
+<p style="margin-top:20px;">
+  📬 <strong>Contact:</strong> <a href="mailto:contact@graiphic.io">contact@graiphic.io</a><br>
+  🌐 <strong>Website:</strong> <a href="https://graiphic.io/" target="_blank">graiphic.io</a><br>
+  🧠 <strong>Learn more about SOTA:</strong> <a href="https://graiphic.io/download/" target="_blank">graiphic.io/download</a>
+</p>
+
 
 </div>

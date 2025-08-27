@@ -49,6 +49,7 @@ Thumbs.db
 # Folders containing generated ONNX models and profiling files
 **/profiling/
 **/models/
+**/training_artifacts/
 
 # ========================
 # Note:

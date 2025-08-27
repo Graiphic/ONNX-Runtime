@@ -9,17 +9,19 @@ def layernorm_model_builder(op_type, cfg=None):
     scale = onnx.helper.make_tensor_value_info("scale", onnx.TensorProto.FLOAT, [8])
     B     = onnx.helper.make_tensor_value_info("B",     onnx.TensorProto.FLOAT, [8])
     Y     = onnx.helper.make_tensor_value_info("Y",     onnx.TensorProto.FLOAT, None)
+    Mean     = onnx.helper.make_tensor_value_info("Mean",     onnx.TensorProto.FLOAT, None)
+    InvStdDev     = onnx.helper.make_tensor_value_info("InvStdDev",     onnx.TensorProto.FLOAT, None)
 
     node = onnx.helper.make_node(
         "LayerNormalization",
         inputs=["X", "scale", "B"],
-        outputs=["Y"],
+        outputs=["Y", "Mean", "InvStdDev"],
         axis=-1,
         epsilon=1e-5,
         stash_type=1
     )
 
-    graph = onnx.helper.make_graph([node], "layernorm_graph", [X, scale, B], [Y])
+    graph = onnx.helper.make_graph([node], "layernorm_graph", [X, scale, B], [Y, Mean, InvStdDev])
     model = onnx.helper.make_model(
         graph,
         opset_imports=[onnx.helper.make_operatorsetid("", ONNX_OPSET_VERSION)]

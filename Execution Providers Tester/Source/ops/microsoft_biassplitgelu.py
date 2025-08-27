@@ -5,7 +5,7 @@ import onnx.helper
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION
 
 def biassplitgelu_model_builder(op_type, cfg=None):
-    shape = [2, 64, 2560]  # (N, S, D)
+    shape = [2, 64, 12]  # (N, S, D)
     N, S, D = shape
 
     X = onnx.helper.make_tensor_value_info("X", onnx.TensorProto.FLOAT, shape)
@@ -34,7 +34,7 @@ def biassplitgelu_model_builder(op_type, cfg=None):
     return model
 
 def biassplitgelu_input_generator(session):
-    N, S, D = 2, 64, 2560
+    N, S, D = 2, 64, 12
     X = np.random.randn(N, S, D).astype(np.float32)
     bias = np.random.randn(D).astype(np.float32)
     return {

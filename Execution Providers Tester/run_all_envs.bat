@@ -1,47 +1,55 @@
 @echo off
+setlocal EnableExtensions
 REM ------------------------------------------------------------
-REM This script assumes that 'conda activate' works after
-REM running 'conda init cmd.exe' once.
+REM Requires 'conda init cmd.exe' executed once.
 REM ------------------------------------------------------------
 
-REM Change directory to the "Source" folder (where main.py is located)
 cd /d "%~dp0\Source"
 
-REM List of conda environments to test
-SET ENV_LIST=^
-    onnxruntime-dml-1-22-0 ^
-    onnxruntime-onednn-1-22-0 ^
-    onnxruntime-openvino-1-22-0 ^
-    onnxruntime-trt-1-22-0
+REM --- Choisis les opsets à jouer (ex: 20 22) ---
+set OPSETS=20 22
 
-FOR %%E IN (%ENV_LIST%) DO (
-    echo.
-    echo --------------------------------------------
-    echo Activating conda env: %%E
-    echo --------------------------------------------
-    CALL conda activate %%E
-
-    IF ERRORLEVEL 1 (
-        echo [ERROR] Could not activate conda env %%E.
-        GOTO End
-    )
-
-    echo Running "python main.py" in env %%E...
-    python main.py
-
-    IF ERRORLEVEL 1 (
-        echo [WARNING] "python main.py" returned an error in env %%E.
-    ) ELSE (
-        echo [OK] "python main.py" completed successfully in env %%E.
-    )
-
-    CALL conda deactivate
-    echo --------------------------------------------
-    echo Finished with env: %%E
-    echo --------------------------------------------
+REM === LANCE LES RUNS (1 appel = 1 env ; 2e argument = 1..N EPs, séparés par des espaces) ===
+for %%O in (%OPSETS%) do (
+  call :RUN_ENV "onnxruntime-dml-1-22-0"       "DmlExecutionProvider"                       %%O
+  call :RUN_ENV "onnxruntime-onednn-1-22-0"    "DnnlExecutionProvider"                      %%O
+  call :RUN_ENV "onnxruntime-openvino-1-22-0"  "OpenVINOExecutionProvider"                  %%O
+  call :RUN_ENV "onnxruntime-trt-1-22-0"       "TensorrtExecutionProvider"                  %%O
+  call :RUN_ENV "onnxruntime-train-gpu-1-22-0" "CPUExecutionProvider CUDAExecutionProvider" %%O
 )
 
-:End
 echo.
 echo All done. Press any key to exit...
 pause >nul
+exit /b 0
+
+
+:RUN_ENV
+REM %~1 = ENV_NAME  |  %~2 = EP_NAMES (peut contenir des espaces)  |  %~3 = OPSET
+set "ENV_NAME=%~1"
+set "EP_NAMES=%~2"
+set "OPSET=%~3"
+
+echo.
+echo --------------------------------------------
+echo Activating conda env: %ENV_NAME%
+echo Target EP(s): %EP_NAMES%
+echo Opset: %OPSET%
+echo --------------------------------------------
+
+call conda activate "%ENV_NAME%"
+if errorlevel 1 (
+  echo [ERROR] Could not activate conda env %ENV_NAME%.
+  goto :eof
+)
+
+echo Running: python main.py --eps %EP_NAMES% --opsets %OPSET%
+python main.py --eps %EP_NAMES% --opsets %OPSET%
+if errorlevel 1 (
+  echo [WARNING] python returned an error in env %ENV_NAME%.
+) else (
+  echo [OK] Completed successfully in env %ENV_NAME%.
+)
+
+call conda deactivate
+goto :eof

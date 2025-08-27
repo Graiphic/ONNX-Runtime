@@ -5,7 +5,7 @@ import onnx.helper
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION
 
 def bitmaskdropout_model_builder(op_type, cfg=None):
-    shape = [2, 64, 128]  # data shape
+    shape = [2, 16, 32]  # data shape
 
     data = onnx.helper.make_tensor_value_info("data", onnx.TensorProto.FLOAT, shape)
     ratio = onnx.helper.make_tensor_value_info("ratio", onnx.TensorProto.FLOAT, [])
@@ -36,7 +36,7 @@ def bitmaskdropout_model_builder(op_type, cfg=None):
     return model
 
 def bitmaskdropout_input_generator(session):
-    shape = [2, 64, 128]
+    shape = [2, 16, 32]
     data = np.random.randn(*shape).astype(np.float32)
     ratio = np.array(0.5, dtype=np.float32)
     training_mode = np.array(True, dtype=bool)

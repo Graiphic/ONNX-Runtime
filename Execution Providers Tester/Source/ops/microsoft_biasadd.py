@@ -5,7 +5,7 @@ import onnx.helper
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION
 
 def biasadd_model_builder(op_type, cfg=None):
-    shape = [2, 64, 128]  # (N, S, C)
+    shape = [2, 16, 16]  # (N, S, C)
     N, S, C = shape
 
     # Définition des entrées
@@ -39,7 +39,7 @@ def biasadd_model_builder(op_type, cfg=None):
     return model
 
 def biasadd_input_generator(session):
-    N, S, C = 2, 64, 128
+    N, S, C = 2, 16, 16
     X = np.random.randn(N, S, C).astype(np.float32)
     bias = np.random.randn(C).astype(np.float32)
     skip = np.random.randn(N, S, C).astype(np.float32)

@@ -5,7 +5,7 @@ import onnx.helper
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION
 
 def nhwcmaxpool_model_builder(op_type, cfg=None):
-    X = onnx.helper.make_tensor_value_info("x", onnx.TensorProto.UINT8, [1, 224, 224, 3])
+    X = onnx.helper.make_tensor_value_info("x", onnx.TensorProto.UINT8, [1, 16, 16, 3])
     Y = onnx.helper.make_tensor_value_info("y", onnx.TensorProto.UINT8, None)
 
     node = onnx.helper.make_node(
@@ -33,7 +33,7 @@ def nhwcmaxpool_model_builder(op_type, cfg=None):
     return model
 
 def nhwcmaxpool_input_generator(session):
-    input_shape = [1, 224, 224, 3]
+    input_shape = [1, 16, 16, 3]
     X = np.random.randint(0, 256, size=input_shape, dtype=np.uint8)
     return {"x": X}
 

@@ -5,7 +5,7 @@ import onnx.helper
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION, ONNX_OPSET_VERSION
 
 def maxpool_model_builder(op_type, cfg=None):
-    X = onnx.helper.make_tensor_value_info("X", onnx.TensorProto.FLOAT, [1, 3, 32, 32])
+    X = onnx.helper.make_tensor_value_info("X", onnx.TensorProto.FLOAT, [1, 3, 16, 16])
     Y = onnx.helper.make_tensor_value_info("Y", onnx.TensorProto.FLOAT, None)
 
     node = onnx.helper.make_node(
@@ -27,7 +27,7 @@ def maxpool_model_builder(op_type, cfg=None):
     return model
 
 def maxpool_input_generator(session):
-    X = np.random.rand(1, 3, 32, 32).astype(np.float32)
+    X = np.random.rand(1, 3, 16, 16).astype(np.float32)
     return {"X": X}
 
 SpecialModelBuilders["MaxPool"] = maxpool_model_builder

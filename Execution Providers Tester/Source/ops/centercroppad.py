@@ -6,7 +6,7 @@ from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_
 
 def centercroppad_model_builder(op_type, cfg=None):
     # Définir les entrées
-    input_data = onnx.helper.make_tensor_value_info("input_data", onnx.TensorProto.FLOAT, [1, 3, 224, 224])
+    input_data = onnx.helper.make_tensor_value_info("input_data", onnx.TensorProto.FLOAT, [1, 3, 28, 28])
     shape = onnx.helper.make_tensor_value_info("shape", onnx.TensorProto.INT64, [2])
     output_data = onnx.helper.make_tensor_value_info("output_data", onnx.TensorProto.FLOAT, None)
 
@@ -40,7 +40,7 @@ def centercroppad_input_generator(session):
     input_info, shape_info = session.get_inputs()
     input_shape = [d or 1 for d in input_info.shape]
     input_data = np.random.rand(*input_shape).astype(np.float32)
-    target_shape = np.array([200, 200], dtype=np.int64)  # Dimensions cibles pour H et W
+    target_shape = np.array([20, 20], dtype=np.int64)  # Dimensions cibles pour H et W
     return {
         input_info.name: input_data,
         shape_info.name: target_shape

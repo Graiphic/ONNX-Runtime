@@ -7,10 +7,10 @@ from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_
 def range_model_builder(op_type, cfg=None):
     dtype = onnx.TensorProto.INT32
 
-    # Déclarations (scalaires ou [1])
-    start = onnx.helper.make_tensor("start", dtype, [], [2])
-    limit = onnx.helper.make_tensor("limit", dtype, [], [10])
-    delta = onnx.helper.make_tensor("delta", dtype, [], [2])
+    # Inputs explicites
+    start = onnx.helper.make_tensor_value_info("start", dtype, [])
+    limit = onnx.helper.make_tensor_value_info("limit", dtype, [])
+    delta = onnx.helper.make_tensor_value_info("delta", dtype, [])
 
     y = onnx.helper.make_tensor_value_info("Y", dtype, None)
 
@@ -24,9 +24,9 @@ def range_model_builder(op_type, cfg=None):
     graph = onnx.helper.make_graph(
         [node],
         "RangeGraph",
-        [],
+        [start, limit, delta],
         [y],
-        initializer=[start, limit, delta]
+        initializer=[]
     )
 
     model = onnx.helper.make_model(
@@ -38,7 +38,12 @@ def range_model_builder(op_type, cfg=None):
     return model
 
 def range_input_generator(session):
-    return {}
+    # Valeurs identiques à celles initialement dans le modèle
+    return {
+        "start": np.array(2, dtype=np.int32),
+        "limit": np.array(10, dtype=np.int32),
+        "delta": np.array(2, dtype=np.int32)
+    }
 
 SpecialModelBuilders["com.microsoft.Range"] = range_model_builder
 SpecialInputGenerators["com.microsoft.Range"] = range_input_generator

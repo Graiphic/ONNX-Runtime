@@ -7,7 +7,7 @@ from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_
 
 def maxroipool_model_builder(op_type, cfg=None):
     # Définition des entrées
-    X = onnx.helper.make_tensor_value_info("X", TensorProto.FLOAT, [1, 3, 64, 64])
+    X = onnx.helper.make_tensor_value_info("X", TensorProto.FLOAT, [1, 3, 16, 16])
     rois = onnx.helper.make_tensor_value_info("rois", TensorProto.FLOAT, [None, 5])
     Y = onnx.helper.make_tensor_value_info("Y", TensorProto.FLOAT, None)
 

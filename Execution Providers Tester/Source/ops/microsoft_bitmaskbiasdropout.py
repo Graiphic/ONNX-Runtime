@@ -5,7 +5,7 @@ import onnx.helper
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION
 
 def bitmaskbiasdropout_model_builder(op_type, cfg=None):
-    shape = [2, 64, 128]  # (batch, seq, dim)
+    shape = [2, 16, 16]  # (batch, seq, dim)
     N, S, C = shape
 
     data = onnx.helper.make_tensor_value_info("data", onnx.TensorProto.FLOAT, shape)
@@ -37,7 +37,7 @@ def bitmaskbiasdropout_model_builder(op_type, cfg=None):
     return model
 
 def bitmaskbiasdropout_input_generator(session):
-    N, S, C = 2, 64, 128
+    N, S, C = 2, 16, 16
     data = np.random.randn(N, S, C).astype(np.float32)
     bias = np.random.randn(C).astype(np.float32)
     residual = np.random.randn(N, S, C).astype(np.float32)

@@ -5,7 +5,7 @@ import onnx.helper
 from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_VERSION
 
 def biasdropout_model_builder(op_type, cfg=None):
-    shape = [2, 64, 128]  # data, bias, residual shape
+    shape = [2, 16, 16]  # data, bias, residual shape
     N, S, C = shape
 
     # Inputs
@@ -40,7 +40,7 @@ def biasdropout_model_builder(op_type, cfg=None):
     return model
 
 def biasdropout_input_generator(session):
-    N, S, C = 2, 64, 128
+    N, S, C = 2, 16, 16
     data = np.random.randn(N, S, C).astype(np.float32)
     bias = np.random.randn(C).astype(np.float32)
     residual = np.random.randn(N, S, C).astype(np.float32)

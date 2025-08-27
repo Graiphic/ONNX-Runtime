@@ -6,13 +6,13 @@ from utils import SpecialModelBuilders, SpecialInputGenerators, ONNX_RUNTIME_IR_
 
 def cast_model_builder(op_type, cfg=None):
     inp = onnx.helper.make_tensor_value_info("X", onnx.TensorProto.FLOAT, [2, 2])
-    out = onnx.helper.make_tensor_value_info("Y", onnx.TensorProto.INT32, None)
+    out = onnx.helper.make_tensor_value_info("Y", onnx.TensorProto.DOUBLE, None)
 
     node = onnx.helper.make_node(
         "Cast",
         inputs=["X"],
         outputs=["Y"],
-        to=onnx.TensorProto.INT32  # on peut paramétrer ce type via `cfg` si besoin
+        to=onnx.TensorProto.DOUBLE  # on peut paramétrer ce type via `cfg` si besoin
     )
 
     graph = onnx.helper.make_graph(

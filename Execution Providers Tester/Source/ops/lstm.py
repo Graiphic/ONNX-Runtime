@@ -50,10 +50,12 @@ def lstm_model_builder(op_type, cfg=None):
     # Création du nœud LSTM
     node = onnx.helper.make_node(
         "LSTM",
-        inputs=["X", "W", "R", "B", "", "initial_h", "initial_c"],
+        inputs=["X", "W", "R", "B", "", "initial_h", "initial_c", ""],
         outputs=["Y", "Y_h", "Y_c"],
+        #outputs=["Y", "Y_h"],
         hidden_size=hidden_size,
         direction="forward",
+        input_forget = 0,
     )
 
     # Construction du graphe
@@ -62,6 +64,7 @@ def lstm_model_builder(op_type, cfg=None):
         name="lstm_graph",
         inputs=[X, W, R, B, initial_h, initial_c],
         outputs=[Y, Y_h, Y_c],
+        #outputs=[Y, Y_h],
     )
 
     # Création du modèle

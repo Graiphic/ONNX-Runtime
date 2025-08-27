@@ -29,6 +29,7 @@ def gru_model_builder(op_type, cfg=None):
         "GRU",
         inputs=["X", "W", "R", "B", "", "initial_h"],  # L'entrée sequence_lens est omise
         outputs=["Y", "Y_h"],
+        #outputs=["Y"],
         hidden_size=hidden_size,
         direction="forward"
     )
@@ -39,6 +40,7 @@ def gru_model_builder(op_type, cfg=None):
         "gru_graph",
         [X, W, R, B, initial_h],
         [Y, Y_h]
+        #[Y]
     )
 
     # Modèle

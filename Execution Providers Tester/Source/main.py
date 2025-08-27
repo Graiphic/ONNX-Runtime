@@ -50,4 +50,5 @@ def main():
 
 if __name__ == "__main__":
     #main()
-    generate_full_readme()
+    #generate_full_readme()
+    generate_root_readme()

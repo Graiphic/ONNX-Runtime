@@ -53,7 +53,7 @@
       <th>FAIL</th>
       <th>NOT TESTED</th>
       <th>SKIPPED</th>
-      <th>Training</th>
+      <th>TRAINING</th>
     </tr>
   </thead>
   <tbody>
@@ -75,7 +75,7 @@
       <th>FAIL</th>
       <th>NOT TESTED</th>
       <th>SKIPPED</th>
-      <th>Training</th>
+      <th>TRAINING</th>
     </tr>
   </thead>
   <tbody>

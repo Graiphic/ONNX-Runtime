@@ -364,21 +364,25 @@ def write_training_results_to_excel(results, filename="training_results.xlsx"):
 
     green = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
     red   = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
-    gray  = PatternFill(start_color="EEEEEE", end_color="EEEEEE", fill_type="solid")
+    gray  = PatternFill(start_color="EEEEEE", end_color="EEEEEE", fill_type="solid")   # SKIPPED
+    blue  = PatternFill(start_color="D9E1F2", end_color="D9E1F2", fill_type="solid")   # NOT_TESTED
 
-    def bucket(s: str) -> str:
+    def bucket(s):
         if s.startswith("OK") or s == "SUCCESS":
             return "SUCCESS"
+        if s.startswith("NOT_TESTED") or s.startswith("NOT TESTED"):
+            return "NOT_TESTED"
         if s.startswith("SKIPPED"):
             return "SKIPPED"
-        return "FAIL"  # includes NOT IMPLEMENTED & other failures
+        return "FAIL"
+
 
     counts = Counter()
     for op, status, msg in results:
         ws.append([op, status, msg])
         b = bucket(status)
         counts[b] += 1
-        fill = green if b == "SUCCESS" else gray if b == "SKIPPED" else red
+        fill = green if b == "SUCCESS" else red if b == "FAIL" else blue if b == "NOT_TESTED" else gray
         for c in ws[ws.max_row]:
             c.fill = fill
 
@@ -390,14 +394,14 @@ def write_training_results_to_excel(results, filename="training_results.xlsx"):
     # Pie sheet
     ws_data = wb.create_sheet("Data_PieChart")
     ws_data.append(["Category", "Count", "Percentage"])
-    ordered = ["SUCCESS", "FAIL", "SKIPPED"]
+    ordered = ["SUCCESS", "FAIL", "SKIPPED", "NOT_TESTED"]  # <<< 4 catégories
     total = sum(counts.values()) or 1
     for k in ordered:
         c = counts.get(k, 0)
         p = round(100 * c / total, 1)
         ws_data.append([k, c, p])
 
-    color_map = {"SUCCESS": "00AA44", "FAIL": "FF0000", "SKIPPED": "CCCCCC"}
+    color_map = {"SUCCESS": "00AA44", "FAIL": "FF0000", "SKIPPED": "CCCCCC", "NOT_TESTED": "4D7CFE"}
     chart = PieChart()
     chart.title = "Training Status Distribution"
     chart.width = 20
@@ -410,8 +414,12 @@ def write_training_results_to_excel(results, filename="training_results.xlsx"):
     chart.set_categories(cats)
 
     series = chart.series[0]
-    for idx, key in enumerate(ordered):
-        dp = DataPoint(idx=idx, spPr=GraphicalProperties(solidFill=ColorChoice(srgbClr=color_map[key])))
+    for i, k in enumerate(ordered, start=2):
+        c = counts.get(k, 0)
+        if c == 0:
+            continue
+        dp = DataPoint(idx=i-2)
+        dp.graphicalProperties = GraphicalProperties(solidFill=color_map[k])
         series.dPt.append(dp)
 
     chart.dataLabels = DataLabelList()
@@ -432,6 +440,7 @@ def _run_training_for_provider(
     models_dir: str,
     base_output_dir: str,
     artifacts_root: str,
+    inference_outcome_map: dict | None = None,  # <<< renommé / tri-état
 ):
     """
     Minimal 1-step training per op by injecting 'Scale' (Mul with __train_C).
@@ -497,7 +506,18 @@ def _run_training_for_provider(
 
     for op in ops_to_test:
         if op in skip_ops:
-            results.append((op, "SKIPPED", "Skipping recurrent ops (GRU/LSTM)"))
+            results.append((op, "NOT_TESTED", "Not tested because it crash python kernel"))
+            status_map[op] = "NOT_TESTED"
+            continue
+        # 2.2) Si l’inférence a échoué pour cet op, on n’essaie PAS le training
+        if inference_outcome_map is not None:
+            outcome = inference_outcome_map.get(op, "FAIL")
+        if outcome == "FAIL":
+            results.append((op, "SKIPPED", "Training not attempted: inference FAIL"))
+            status_map[op] = "SKIPPED"
+            continue
+        if outcome == "SUCCESS_WITH_FALLBACK":
+            results.append((op, "SKIPPED", "Training not attempted: inference FALLBACK"))
             status_map[op] = "SKIPPED"
             continue
 
@@ -514,8 +534,8 @@ def _run_training_for_provider(
             _force_output_shapes(model, outs)
             onnx.save(model, os.path.join(models_dir, f"{op}_train.onnx"))
         except NotImplementedError as e:
-            results.append((op, "SKIPPED", f"{e}"))
-            status_map[op] = "SKIPPED"
+            results.append((op, "FAIL not implemented", f"{e}"))
+            status_map[op] = "FAIL"
             continue
         except Exception as e:
             results.append((op, "FAIL model gen", f"{e}"))
@@ -806,7 +826,28 @@ def run_tests_and_generate_reports(
     generate_report(results, provider, base_output_dir, models_dir)
     generate_report_aggregated(results, provider, base_output_dir, models_dir)
 
-    # training (optional, CPU/CUDA only, if ORT-training present)
+
+    # Construire la carte d’inférence : op -> bool(success)
+    def _infer_outcome(status: str) -> str:
+        s = status.upper()
+        if s.startswith("SUCCESS WITH FALLBACK") or "FALLBACK" in s:
+            return "SUCCESS_WITH_FALLBACK"
+        if s.startswith("SUCCESS"):
+            return "SUCCESS"
+        return "FAIL"
+
+    inference_outcome_map = {}
+    for (op_name, _prov, _used, status) in results:
+        outcome = _infer_outcome(status)
+        prev = inference_outcome_map.get(op_name)
+        if prev is None:
+            inference_outcome_map[op_name] = outcome
+        else:
+            # priorité: SUCCESS > SUCCESS_WITH_FALLBACK > FAIL
+            rank = {"SUCCESS": 2, "SUCCESS_WITH_FALLBACK": 1, "FAIL": 0}
+            if rank[outcome] > rank[prev]:
+                inference_outcome_map[op_name] = outcome
+    
     training_status_map = None
     if has_ort_training() and provider in ("CPUExecutionProvider", "CUDAExecutionProvider"):
         training_artifacts_dir = os.path.join(base_output_dir, "training_artifacts")
@@ -818,7 +859,9 @@ def run_tests_and_generate_reports(
             models_dir=models_dir,
             base_output_dir=base_output_dir,
             artifacts_root=training_artifacts_dir,
+            inference_outcome_map=inference_outcome_map,  # <<< nouveau param
         )
+
 
     # README with extra training badges if available
     generate_readme_split(results, provider, base_output_dir, training_status_map=training_status_map, opset_version=ONNX_OPSET_VERSION)

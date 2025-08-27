@@ -510,12 +510,14 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
 
         def bucket(s):
             if s is None:
-                return "SKIPPED"   # par prudence
+                return "SKIPPED"  # prudence si absence
             if s.startswith("OK") or s == "SUCCESS":
                 return "SUCCESS"
+            if s.startswith("NOT TESTED") or s.startswith("NOT_TESTED"):
+                return "NOT_TESTED"
             if s.startswith("SKIPPED"):
                 return "SKIPPED"
-            # NOT IMPLEMENTED et tous les autres => FAIL
+            # NOT IMPLEMENTED + autres => FAIL
             return "FAIL"
 
         # filtre sur le sous-ensemble
@@ -526,10 +528,15 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
         counter = Counter(bucket(v) for v in filtered.values())
         total = sum(counter.values()) or 1
 
-        ordered = ["SUCCESS", "FAIL", "SKIPPED"]
+        ordered = ["SUCCESS", "FAIL", "SKIPPED", "NOT_TESTED"]
         labels = [f"{k}: {counter.get(k, 0)}" for k in ordered if counter.get(k, 0) > 0]
         values = [counter.get(k, 0) for k in ordered if counter.get(k, 0) > 0]
-        colors_map = {"SUCCESS": "#00AA44", "FAIL": "#FF0000", "SKIPPED": "#CCCCCC"}
+        colors_map = {
+            "SUCCESS": "#00AA44",
+            "FAIL": "#FF0000",
+            "SKIPPED": "#CCCCCC",
+            "NOT_TESTED": "#4D7CFE",
+        }
         colors = [colors_map[k] for k in ordered if counter.get(k, 0) > 0]
 
         pie_path = os.path.join(output_dir, f"training_stats_{provider}_{tag}.png")
@@ -590,19 +597,21 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
             if has_training:
                 t_raw = training_status_map.get(op_name)
                 if t_raw is None:
-                    t_label = "SKIPPED"  # par défaut si pas dans le dict (ex: pas de training pour cet EP)
+                    t_label = "SKIPPED"  # ex: pas de training pour cet EP → SKIPPED par défaut
                 else:
-                    # Normalise vers badges courts
                     if t_raw.startswith("OK") or t_raw == "SUCCESS":
                         t_label = "SUCCESS"
-                    elif t_raw.startswith("NOT IMPLEMENTED"):
-                        t_label = "FAIL"
+                    elif t_raw.startswith("NOT TESTED") or t_raw.startswith("NOT_TESTED"):
+                        t_label = "NOT TESTED"
                     elif t_raw.startswith("SKIPPED"):
                         t_label = "SKIPPED"
+                    elif t_raw.startswith("NOT IMPLEMENTED"):
+                        t_label = "FAIL"
                     elif t_raw.startswith("FAIL"):
                         t_label = "FAIL"
                     else:
                         t_label = "UNKNOWN"
+
                 t_badge = badge(t_label)
                 lines.append(f"| [`{op_name}`]({link}) | {exec_badge} | {t_badge} |")
             else:
@@ -611,7 +620,7 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
         counts, total, pie_path = summarize(subset, tag)
         lines += [
             "",
-            f"### Statistics",
+            f"### Inference Summary",
             f"- **Total nodes tested:** {total}",
             f"- **Executable directly (SUCCESS):** {counts['SUCCESS']} ({round((counts['SUCCESS']/total)*100, 1)}%)",
             f"- **Executable directly (SUCCESS with complexification):** {counts['Executable directly (SUCCESS with complexification)']} ({round((counts['Executable directly (SUCCESS with complexification)']/total)*100, 1)}%)",
@@ -665,7 +674,7 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
         "works on the others as well.\n\n"
         "We then generate ONNX Runtime **training artifacts** (AdamW), run an inference once to **patch output shapes** if "
         "needed, feed a **target equal to the model’s own output** (MSE loss on the first output), and perform **one "
-        "optimization step**. A node is marked **SUCCESS** when this step completes; **SKIPPED** for explicitly skipped ops "
+        "optimization step**. A node is marked **SUCCESS** when this step completes; **NOT_TESTED** for explicitly skipped ops "
         "(e.g., some recurrent ops like GRU/LSTM) or unsupported input types for this method; otherwise it is **FAIL**."
     )
     lines.append("")
@@ -702,21 +711,22 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
         basic_ops_names = [op_name for (op_name, _, _, _) in basic_results]
         tr_counts, tr_total, tr_pie = summarize_training_subset(training_status_map, basic_ops_names, "basic")
         if tr_counts:
-            s_ok   = tr_counts.get("SUCCESS", 0)
-            s_fail = tr_counts.get("FAIL", 0)
-            s_skip = tr_counts.get("SKIPPED", 0)
+            s_ok    = tr_counts.get("SUCCESS", 0)
+            s_fail  = tr_counts.get("FAIL", 0)
+            s_skip  = tr_counts.get("SKIPPED", 0)
+            s_nt    = tr_counts.get("NOT_TESTED", 0)
+            
             lines += [
-                "### Training Summary (Basic ONNX Nodes)",
-                f"- **Total nodes tested (training):** {tr_total}",
+                "### Training Summary",
+                f"- **Total nodes tested :** {tr_total}",
                 f"- **SUCCESS:** {s_ok}",
                 f"- **FAIL:** {s_fail}",
-                f"- **SKIPPED:** {s_skip}",
-                "",
-                f"![Training Pie Chart — Basic](./{os.path.basename(tr_pie)})",
+                f"- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** {s_skip}",
+                f"- **NOT TESTED (GRU/LSTM because it crash python kernel):** {s_nt}",
+                f"![]({tr_pie})" if tr_pie else "",
                 ""
             ]
 
-    
     lines += render_section("Microsoft Custom Nodes", ms_results, "ms")
     
     # --- Training summary pour Microsoft Custom Nodes ---
@@ -724,21 +734,21 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
         ms_ops_names = [op_name for (op_name, _, _, _) in ms_results]
         tr_counts, tr_total, tr_pie = summarize_training_subset(training_status_map, ms_ops_names, "ms")
         if tr_counts:
-            s_ok   = tr_counts.get("SUCCESS", 0)
-            s_fail = tr_counts.get("FAIL", 0)
-            s_skip = tr_counts.get("SKIPPED", 0)
+            s_ok    = tr_counts.get("SUCCESS", 0)
+            s_fail  = tr_counts.get("FAIL", 0)
+            s_skip  = tr_counts.get("SKIPPED", 0)
+            s_nt    = tr_counts.get("NOT_TESTED", 0)
+            
             lines += [
-                "### Training Summary (Microsoft Custom Nodes)",
-                f"- **Total nodes tested (training):** {tr_total}",
+                "### Training Summary",
+                f"- **Total nodes tested :** {tr_total}",
                 f"- **SUCCESS:** {s_ok}",
                 f"- **FAIL:** {s_fail}",
-                f"- **SKIPPED:** {s_skip}",
-                "",
-                f"![Training Pie Chart — Microsoft](./{os.path.basename(tr_pie)})",
+                f"- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** {s_skip}",
+                f"- **NOT TESTED (GRU/LSTM because it crash python kernel):** {s_nt}",
+                f"![]({tr_pie})" if tr_pie else "",
                 ""
             ]
-
-
 
     skipped = [op for op, _, _, st in results if "SKIPPED" in st]
     not_tested = [op for op, _, _, st in results if st.startswith("NOT TESTED")]
@@ -943,7 +953,7 @@ def generate_full_readme_for_opset(opset: int):
       <th>FAIL</th>
       <th>NOT TESTED</th>
       <th>SKIPPED</th>
-      <th>Training</th>
+      <th>TRAINING</th>
     </tr>
   </thead>
   <tbody>

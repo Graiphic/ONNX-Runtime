@@ -22,7 +22,7 @@ def main():
     args = parse_args()
 
     # défaut: une seule valeur -> 22
-    opsets = args.opsets if args.opsets else [22]
+    opsets = args.opsets if args.opsets else [20]
 
     if args.eps:
         # Ne lance que les EP demandés (si dispos dans l'env)

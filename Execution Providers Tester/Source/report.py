@@ -553,6 +553,12 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
 
         return counter, total, pie_path
 
+    def _doc_link(op_name: str) -> str:
+        # Microsoft Contrib: ancre GitHub = nom exact, ex: #com.microsoft.Attention
+        if op_name.startswith("com.microsoft."):
+            return f"https://github.com/microsoft/onnxruntime/blob/main/docs/ContribOperators.md#{op_name}"
+        # ONNX core
+        return f"https://onnx.ai/onnx/operators/onnx__{op_name}.html"
 
     def render_section(title, subset, tag):
         has_training = training_status_map is not None
@@ -592,7 +598,7 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
                 label = "UNKNOWN"
     
             exec_badge = badge(label)
-            link = f"https://onnx.ai/onnx/operators/onnx__{op_name}.html"
+            link = _doc_link(op_name)
     
             if has_training:
                 t_raw = training_status_map.get(op_name)

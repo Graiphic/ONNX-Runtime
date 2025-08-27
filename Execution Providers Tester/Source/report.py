@@ -716,6 +716,8 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
             s_skip  = tr_counts.get("SKIPPED", 0)
             s_nt    = tr_counts.get("NOT_TESTED", 0)
             
+            rel_pie = f"./{os.path.basename(tr_pie)}" if tr_pie else None
+            
             lines += [
                 "### Training Summary",
                 f"- **Total nodes tested :** {tr_total}",
@@ -723,7 +725,7 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
                 f"- **FAIL:** {s_fail}",
                 f"- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** {s_skip}",
                 f"- **NOT TESTED (GRU/LSTM because it crash python kernel):** {s_nt}",
-                f"![]({tr_pie})" if tr_pie else "",
+                f"![]({rel_pie})" if rel_pie else "",
                 ""
             ]
 
@@ -739,6 +741,8 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
             s_skip  = tr_counts.get("SKIPPED", 0)
             s_nt    = tr_counts.get("NOT_TESTED", 0)
             
+            rel_pie = f"./{os.path.basename(tr_pie)}" if tr_pie else None
+            
             lines += [
                 "### Training Summary",
                 f"- **Total nodes tested :** {tr_total}",
@@ -746,7 +750,7 @@ def generate_readme_split(results, provider, output_dir, training_status_map=Non
                 f"- **FAIL:** {s_fail}",
                 f"- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** {s_skip}",
                 f"- **NOT TESTED (GRU/LSTM because it crash python kernel):** {s_nt}",
-                f"![]({tr_pie})" if tr_pie else "",
+                f"![]({rel_pie})" if rel_pie else "",
                 ""
             ]
 

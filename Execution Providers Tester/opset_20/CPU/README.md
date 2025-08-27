@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `CPUExecutionProvider`
 
-**Test Date:** 2025-08-27 17:05:12
+**Test Date:** 2025-08-27 17:13:35
 
 ## Test Methodology
 
@@ -211,7 +211,7 @@ Installation method not specified
 - **FAIL:** 105
 - **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 6
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 2
-![](./training_stats_CPUExecutionProvider_basic.png)
+![Pie Chart](./training_stats_CPUExecutionProvider_basic.png)
 
 ## Microsoft Custom Nodes
 
@@ -343,7 +343,7 @@ Installation method not specified
 - **FAIL:** 52
 - **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 48
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 0
-![](./training_stats_CPUExecutionProvider_ms.png)
+![Pie Chart](./training_stats_CPUExecutionProvider_ms.png)
 
 ## Nodes not tested
 

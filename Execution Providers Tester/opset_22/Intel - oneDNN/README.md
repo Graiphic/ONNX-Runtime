@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `DnnlExecutionProvider`
 
-**Test Date:** 2025-08-27 12:33:15
+**Test Date:** 2025-08-27 16:51:38
 
 ## Test Methodology
 
@@ -10,7 +10,7 @@ Each ONNX operator is tested individually using a minimal ONNX model containing 
 ### Training
 To validate training (backward) support with ONNX Runtime Training, we **inject a `Mul` node** just before the tested operator: the **first input** of the tested node is multiplied by a **trainable scalar** `__train_C` (initialized to **1.0** so the forward values remain unchanged). We focus on the first input because it generally carries the data flow; for symmetric binary ops (e.g., `Add`), if training works on the first path it usually works on the others as well.
 
-We then generate ONNX Runtime **training artifacts** (AdamW), run an inference once to **patch output shapes** if needed, feed a **target equal to the model’s own output** (MSE loss on the first output), and perform **one optimization step**. A node is marked **SUCCESS** when this step completes; **SKIPPED** for explicitly skipped ops (e.g., some recurrent ops like GRU/LSTM) or unsupported input types for this method; otherwise it is **FAIL**.
+We then generate ONNX Runtime **training artifacts** (AdamW), run an inference once to **patch output shapes** if needed, feed a **target equal to the model’s own output** (MSE loss on the first output), and perform **one optimization step**. A node is marked **SUCCESS** when this step completes; **NOT_TESTED** for explicitly skipped ops (e.g., some recurrent ops like GRU/LSTM) or unsupported input types for this method; otherwise it is **FAIL**.
 
 ### Test Configuration
 
@@ -193,7 +193,7 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`Where`](https://onnx.ai/onnx/operators/onnx__Where.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 | [`Xor`](https://onnx.ai/onnx/operators/onnx__Xor.html) | ![FALLBACK](https://img.shields.io/badge/FALLBACK-FFAA00?style=flat&logoColor=white) |
 
-### Statistics
+### Inference Summary
 - **Total nodes tested:** 155
 - **Executable directly (SUCCESS):** 37 (23.9%)
 - **Executable directly (SUCCESS with complexification):** 0 (0.0%)
@@ -317,7 +317,7 @@ manual build from source (oneDNN included, no pre-install needed)
 | [`com.microsoft.Unique`](https://onnx.ai/onnx/operators/onnx__com.microsoft.Unique.html) | ![FAIL](https://img.shields.io/badge/FAIL-FF0000?style=flat&logoColor=white) |
 | [`com.microsoft.WhisperBeamSearch`](https://onnx.ai/onnx/operators/onnx__com.microsoft.WhisperBeamSearch.html) | ![NOT TESTED](https://img.shields.io/badge/NOT%20TESTED-7777CC?style=flat&logoColor=white) |
 
-### Statistics
+### Inference Summary
 - **Total nodes tested:** 107
 - **Executable directly (SUCCESS):** 6 (5.6%)
 - **Executable directly (SUCCESS with complexification):** 0 (0.0%)

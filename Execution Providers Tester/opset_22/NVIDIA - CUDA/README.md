@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `CUDAExecutionProvider`
 
-**Test Date:** 2025-08-27 16:07:25
+**Test Date:** 2025-08-27 16:54:08
 
 ## Test Methodology
 
@@ -209,10 +209,10 @@ pip install onnxruntime-gpu
 ![Pie Chart](./stats_CUDAExecutionProvider_basic.png)
 
 ### Training Summary
-- **Total nodes tested (training subset):** 154
+- **Total nodes tested :** 154
 - **SUCCESS:** 28
 - **FAIL:** 42
-- **SKIPPED (inférence FAIL / no attempt):** 82
+- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 82
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 2
 ![](C:\Users\COCO\TDF Dropbox\1_Graiphic\3 - Services et Etudes\2 - Dev\code\Github\ONNX Runtime\Execution Providers Tester\opset_22\NVIDIA - CUDA\training_stats_CUDAExecutionProvider_basic.png)
 
@@ -341,10 +341,10 @@ pip install onnxruntime-gpu
 ![Pie Chart](./stats_CUDAExecutionProvider_ms.png)
 
 ### Training Summary
-- **Total nodes tested (training subset):** 107
+- **Total nodes tested :** 107
 - **SUCCESS:** 6
 - **FAIL:** 46
-- **SKIPPED (inférence FAIL / no attempt):** 55
+- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 55
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 0
 ![](C:\Users\COCO\TDF Dropbox\1_Graiphic\3 - Services et Etudes\2 - Dev\code\Github\ONNX Runtime\Execution Providers Tester\opset_22\NVIDIA - CUDA\training_stats_CUDAExecutionProvider_ms.png)
 

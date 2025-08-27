@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `CPUExecutionProvider`
 
-**Test Date:** 2025-08-27 16:07:49
+**Test Date:** 2025-08-27 16:53:43
 
 ## Test Methodology
 
@@ -206,10 +206,10 @@ Installation method not specified
 ![Pie Chart](./stats_CPUExecutionProvider_basic.png)
 
 ### Training Summary
-- **Total nodes tested (training subset):** 154
+- **Total nodes tested :** 154
 - **SUCCESS:** 40
 - **FAIL:** 99
-- **SKIPPED (inférence FAIL / no attempt):** 13
+- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 13
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 2
 ![](C:\Users\COCO\TDF Dropbox\1_Graiphic\3 - Services et Etudes\2 - Dev\code\Github\ONNX Runtime\Execution Providers Tester\opset_22\CPU\training_stats_CPUExecutionProvider_basic.png)
 
@@ -338,10 +338,10 @@ Installation method not specified
 ![Pie Chart](./stats_CPUExecutionProvider_ms.png)
 
 ### Training Summary
-- **Total nodes tested (training subset):** 107
+- **Total nodes tested :** 107
 - **SUCCESS:** 7
 - **FAIL:** 52
-- **SKIPPED (inférence FAIL / no attempt):** 48
+- **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 48
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 0
 ![](C:\Users\COCO\TDF Dropbox\1_Graiphic\3 - Services et Etudes\2 - Dev\code\Github\ONNX Runtime\Execution Providers Tester\opset_22\CPU\training_stats_CPUExecutionProvider_ms.png)
 

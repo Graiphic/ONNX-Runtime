@@ -824,7 +824,7 @@ def generate_full_readme_for_opset(opset: int):
         section = readme[sec_start:sec_end]
     
         # 2) à l'intérieur, isole le sous-bloc '### Statistics'
-        h3_stats = re.compile(r"^###\s+Statistics\s*$", re.IGNORECASE | re.MULTILINE)
+        h3_stats = re.compile(r"^###\s+(Inference Summary|Statistics)\s*$", re.IGNORECASE | re.MULTILINE)
         ms = h3_stats.search(section)
         if not ms:
             return None
@@ -844,19 +844,39 @@ def generate_full_readme_for_opset(opset: int):
 
 
     # --- Training : on ne l’affiche que pour CPU / CUDA, et séparément Basic/MS ---
-    tr_re_total   = re.compile(r"\*\*Total nodes tested \(training\):\*\*\s*(\d+)", re.IGNORECASE)
+    tr_re_total   = re.compile(r"\*\*Total nodes tested.*?:\*\*\s*(\d+)", re.IGNORECASE)
     tr_re_success = re.compile(r"\*\*SUCCESS:\*\*\s*(\d+)", re.IGNORECASE)
 
     def slice_training_block(readme: str, header_text: str) -> str:
+        # 1) Essai strict: "### Training Summary (Basic|Microsoft)"
         pat = re.compile(rf"^###\s+Training Summary\s*\({re.escape(header_text)}\)\s*$",
                          re.IGNORECASE | re.MULTILINE)
         m = pat.search(readme)
-        if not m:
+        if m:
+            start = m.end()
+            nxt = re.search(r"^###\s+", readme[start:], re.MULTILINE)
+            end = start + (nxt.start() if nxt else 0) if nxt else len(readme)
+            return readme[m.start():end]
+    
+        # 2) Fallback: chercher dans la section H2 correspondante un "### Training Summary" générique
+        h2_pat = re.compile(rf"^##\s+{re.escape(header_text)}\s*$", re.IGNORECASE | re.MULTILINE)
+        mh2 = h2_pat.search(readme or "")
+        if not mh2:
             return ""
-        start = m.end()
-        nxt = re.search(r"^###\s+", readme[start:], re.MULTILINE)
-        end = start + (nxt.start() if nxt else 0) if nxt else len(readme)
-        return readme[m.start():end]
+        sec_start = mh2.end()
+        nxt_h2 = re.compile(r"^##\s+", re.MULTILINE).search(readme, sec_start)
+        sec_end = nxt_h2.start() if nxt_h2 else len(readme)
+        section = readme[sec_start:sec_end]
+    
+        h3_pat = re.compile(r"^###\s+Training Summary\s*$", re.IGNORECASE | re.MULTILINE)
+        mh3 = h3_pat.search(section)
+        if not mh3:
+            return ""
+        st = mh3.end()
+        nxt = re.compile(r"^(###|##)\s+", re.MULTILINE).search(section, st)
+        ed = nxt.start() if nxt else len(section)
+        return section[mh3.start():ed]
+
 
     def parse_training_counts(readme: str, kind: str) -> tuple[int, int]:
         header = "Basic ONNX Nodes" if kind == "basic" else "Microsoft Custom Nodes"
@@ -910,7 +930,7 @@ def generate_full_readme_for_opset(opset: int):
 
         # Training uniquement pour CPU/CUDA
         ep_l = ep.strip().lower()
-        training_enabled = (ep_l == "cpu") or ("cuda" in ep_l)
+        training_enabled = ("cpu" in ep_l) or ("cuda" in ep_l)
         tr_b_succ = tr_b_tot = tr_m_succ = tr_m_tot = 0
         if training_enabled:
             tr_b_succ, tr_b_tot = parse_training_counts(content, "basic")

@@ -60,7 +60,7 @@
 <tr><td><a href="./CPU/" target="_blank">CPU</a></td><td>149 (96%)</td><td>0 (0%)</td><td>149 (96%)</td><td>4 (3%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>41 (27%)</strong></td></tr>
 <tr><td><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></td><td>91 (59%)</td><td>56 (36%)</td><td>147 (95%)</td><td>6 (4%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 <tr><td><a href="./Intel%20-%20oneDNN/" target="_blank">Intel - oneDNN</a></td><td>36 (23%)</td><td>113 (73%)</td><td>149 (96%)</td><td>4 (3%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
-<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>100 (65%)</td><td>49 (32%)</td><td>149 (96%)</td><td>4 (3%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>43 (28%)</strong></td></tr>
+<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>100 (65%)</td><td>49 (32%)</td><td>149 (96%)</td><td>4 (3%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>39 (25%)</strong></td></tr>
 <tr><td><a href="./NVIDIA%20-%20TensorRT/" target="_blank">NVIDIA - TensorRT</a></td><td>87 (56%)</td><td>60 (39%)</td><td>147 (95%)</td><td>6 (4%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 <tr><td><a href="./Windows%20-%20DirectML/" target="_blank">Windows - DirectML</a></td><td>113 (73%)</td><td>35 (23%)</td><td>148 (95%)</td><td>5 (3%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 </tbody></table>
@@ -82,7 +82,7 @@
 <tr><td><a href="./CPU/" target="_blank">CPU</a></td><td>59 (55%)</td><td>0 (0%)</td><td>59 (55%)</td><td>41 (38%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>7 (7%)</strong></td></tr>
 <tr><td><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></td><td>15 (14%)</td><td>41 (38%)</td><td>56 (52%)</td><td>44 (41%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 <tr><td><a href="./Intel%20-%20oneDNN/" target="_blank">Intel - oneDNN</a></td><td>6 (6%)</td><td>52 (49%)</td><td>58 (54%)</td><td>42 (39%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
-<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>52 (49%)</td><td>34 (32%)</td><td>86 (80%)</td><td>14 (13%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>7 (7%)</strong></td></tr>
+<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>52 (49%)</td><td>34 (32%)</td><td>86 (80%)</td><td>14 (13%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>6 (6%)</strong></td></tr>
 <tr><td><a href="./NVIDIA%20-%20TensorRT/" target="_blank">NVIDIA - TensorRT</a></td><td>6 (6%)</td><td>78 (73%)</td><td>84 (79%)</td><td>16 (15%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 <tr><td><a href="./Windows%20-%20DirectML/" target="_blank">Windows - DirectML</a></td><td>27 (25%)</td><td>33 (31%)</td><td>60 (56%)</td><td>40 (37%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 </tbody></table>

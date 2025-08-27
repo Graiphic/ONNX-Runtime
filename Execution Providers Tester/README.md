@@ -12,6 +12,12 @@
   <strong><a href="https://github.com/microsoft/onnxruntime" target="_blank">ONNX Runtime</a></strong>.
 </p>
 
+<p>
+  It is part of our broader effort to democratize AI deployment through 
+  <a href="https://graiphic.io/download/" target="_blank"><strong>SOTA</strong></a> — 
+  an ONNX-native orchestration framework designed for engineers, researchers, and industrial use cases.
+</p>
+
 <h2>🎯 Project Objectives</h2>
 <ul>
   <li>Systematically test and report ONNX operator coverage per Execution Provider.</li>

@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `OpenVINOExecutionProvider`
 
-**Test Date:** 2025-08-27 11:58:53
+**Test Date:** 2025-08-27 12:33:41
 
 ## Test Methodology
 

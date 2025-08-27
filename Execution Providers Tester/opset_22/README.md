@@ -6,33 +6,26 @@
 
 <h1>ONNX Runtime — EP Coverage (Opset 22)</h1>
 
-<p>
-  This open source initiative, led by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong>, provides 
-  a detailed, real-world coverage map of ONNX operator support for each <strong>Execution Provider (EP)</strong> in 
-  <strong><a href="https://github.com/microsoft/onnxruntime" target="_blank">ONNX Runtime</a></strong>.
-</p>
-
 <h2>🧪 What’s Tested</h2>
 <ul>
-  <li>Each ONNX operator is tested in isolation using a minimal single-node model.</li>
+  <li>Each ONNX operator is tested in isolation across all available EPs.</li>
   <li>Status per operator: <code>SUCCESS</code>, <code>FALLBACK</code>, <code>FAIL</code>, <code>NOT TESTED</code>, <code>SKIPPED</code>, <code>UNKNOWN</code>.</li>
-  <li>Per-EP datasets include logs, optimized models (when applicable), and a README.</li>
+  <li>Per-EP datasets include logs, optional optimized models, and a README with details.</li>
 </ul>
 
 <h2>📐 How’s Tested</h2>
 <h3>Inference</h3>
 <p>
-  Each operator is tested with a minimal ONNX graph. For EPs like OpenVINO/TensorRT, a <em>complexification</em> pass can add a small chain
-  of <code>Mul</code>/<code>And</code> nodes (type-dependent) to make the backend compile more of the graph and reveal actual EP coverage.
+  Minimal one-node ONNX model per op. A small “complexification” (e.g., extra <code>Mul</code>/<code>And</code>)
+  can be added to trigger some compilers (OpenVINO/TensorRT) and reveal actual EP coverage.
 </p>
 <h3>Training</h3>
 <p>
-  When ONNX Runtime Training is available, a trainable scalar <code>__train_C</code> is injected via a <code>Mul</code> on the first input of the tested node (initialized to 1.0).
-  We generate artifacts (AdamW) and run a single optimization step with an MSE loss on the first output. Operators that complete this step are marked <strong>SUCCESS</strong>;
-  explicitly skipped or unsupported patterns are <strong>SKIPPED</strong>; others are <strong>FAIL</strong>.
+  When available (CPU/CUDA), a trainable scalar is injected before the tested node and a 1-step optimization (AdamW, MSE)
+  validates basic backward. The training result appears only in the last column; it does not affect inference percentages.
 </p>
 
-<h2>📦 Currently Supported Execution Providers (this opset)</h2>
+<h2>📦 EPs with results in this opset</h2>
 <ul>
 <li><a href="./CPU/" target="_blank">CPU</a></li>
 <li><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></li>
@@ -42,20 +35,12 @@
 <li><a href="./Windows%20-%20DirectML/" target="_blank">Windows - DirectML</a></li>
 </ul>
 
-<h2>📊 Summary for Opset 22</h2>
+<h2>System / Versions</h2>
 <ul>
   <li><strong>CPU:</strong> Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz</li>
   <li><strong>GPU:</strong> NVIDIA GeForce RTX 2070</li>
-  <li><strong>CUDA:</strong> 12.9 | <strong>cuDNN:</strong> 9.12.0 | <strong>TensorRT:</strong> 10.9.0</li>
-  <li><strong>ONNX:</strong> 1.18.0 | <strong>ONNXRuntime:</strong> 1.23.0+cu125</li>
-  <li><strong>OS:</strong> Windows 10</li>
-</ul>
-
-<h3>⚙️ Test Configuration</h3>
-<ul>
-  <li><strong>ONNX Opset version:</strong> 22</li>
-  <li><strong>ONNX IR version:</strong> 10</li>
-  <li><strong>Data types:</strong> Single dtype per node (usually <code>float32</code>).</li>
+  <li><strong>ONNX:</strong> 1.18.0 | <strong>ONNX Runtime:</strong> 1.23.0+cu125</li>
+  <li><strong>ONNX Opset:</strong> 22 | <strong>ONNX IR:</strong> 10</li>
 </ul>
 <h3>ONNX Core Operators</h3>
 <table border="1" cellpadding="6" cellspacing="0">
@@ -72,12 +57,12 @@
     </tr>
   </thead>
   <tbody>
-<tr><td><a href="./CPU/" target="_blank">CPU</a></td><td>142 (53%)</td><td>0 (0%)</td><td>142 (53%)</td><td>91 (34%)</td><td>0 (0%)</td><td>34 (13%)</td><td><strong>40 (26%)</strong></td></tr>
-<tr><td><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></td><td>91 (59%)</td><td>50 (33%)</td><td>141 (92%)</td><td>12 (8%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
-<tr><td><a href="./Intel%20-%20oneDNN/" target="_blank">Intel - oneDNN</a></td><td>37 (24%)</td><td>105 (69%)</td><td>142 (93%)</td><td>11 (7%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
-<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>71 (27%)</td><td>71 (27%)</td><td>142 (54%)</td><td>89 (34%)</td><td>0 (0%)</td><td>34 (13%)</td><td><strong>42 (27%)</strong></td></tr>
-<tr><td><a href="./NVIDIA%20-%20TensorRT/" target="_blank">NVIDIA - TensorRT</a></td><td>87 (57%)</td><td>58 (38%)</td><td>145 (95%)</td><td>8 (5%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
-<tr><td><a href="./Windows%20-%20DirectML/" target="_blank">Windows - DirectML</a></td><td>96 (63%)</td><td>45 (29%)</td><td>141 (92%)</td><td>12 (8%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
+<tr><td><a href="./CPU/" target="_blank">CPU</a></td><td>142 (92%)</td><td>0 (0%)</td><td>142 (92%)</td><td>11 (7%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>40 (26%)</strong></td></tr>
+<tr><td><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></td><td>91 (59%)</td><td>50 (32%)</td><td>141 (91%)</td><td>12 (8%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
+<tr><td><a href="./Intel%20-%20oneDNN/" target="_blank">Intel - oneDNN</a></td><td>37 (24%)</td><td>105 (68%)</td><td>142 (92%)</td><td>11 (7%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
+<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>71 (46%)</td><td>71 (46%)</td><td>142 (92%)</td><td>11 (7%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>42 (27%)</strong></td></tr>
+<tr><td><a href="./NVIDIA%20-%20TensorRT/" target="_blank">NVIDIA - TensorRT</a></td><td>87 (56%)</td><td>58 (37%)</td><td>145 (94%)</td><td>8 (5%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
+<tr><td><a href="./Windows%20-%20DirectML/" target="_blank">Windows - DirectML</a></td><td>96 (62%)</td><td>45 (29%)</td><td>141 (91%)</td><td>12 (8%)</td><td>0 (0%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 </tbody></table>
 <h3>Microsoft Custom Operators</h3>
 <table border="1" cellpadding="6" cellspacing="0">
@@ -94,25 +79,18 @@
     </tr>
   </thead>
   <tbody>
-<tr><td><a href="./CPU/" target="_blank">CPU</a></td><td>59 (29%)</td><td>0 (0%)</td><td>59 (29%)</td><td>105 (51%)</td><td>7 (3%)</td><td>36 (17%)</td><td><strong>7 (7%)</strong></td></tr>
+<tr><td><a href="./CPU/" target="_blank">CPU</a></td><td>59 (55%)</td><td>0 (0%)</td><td>59 (55%)</td><td>41 (38%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>7 (7%)</strong></td></tr>
 <tr><td><a href="./Intel%20-%20OpenVINO%E2%84%A2/" target="_blank">Intel - OpenVINO™</a></td><td>15 (14%)</td><td>41 (38%)</td><td>56 (52%)</td><td>44 (41%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 <tr><td><a href="./Intel%20-%20oneDNN/" target="_blank">Intel - oneDNN</a></td><td>6 (6%)</td><td>52 (49%)</td><td>58 (54%)</td><td>42 (39%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
-<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>52 (25%)</td><td>34 (16%)</td><td>86 (42%)</td><td>78 (38%)</td><td>7 (3%)</td><td>36 (17%)</td><td><strong>7 (7%)</strong></td></tr>
+<tr><td><a href="./NVIDIA%20-%20CUDA/" target="_blank">NVIDIA - CUDA</a></td><td>52 (49%)</td><td>34 (32%)</td><td>86 (80%)</td><td>14 (13%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>7 (7%)</strong></td></tr>
 <tr><td><a href="./NVIDIA%20-%20TensorRT/" target="_blank">NVIDIA - TensorRT</a></td><td>6 (6%)</td><td>78 (73%)</td><td>84 (79%)</td><td>16 (15%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 <tr><td><a href="./Windows%20-%20DirectML/" target="_blank">Windows - DirectML</a></td><td>27 (25%)</td><td>33 (31%)</td><td>60 (56%)</td><td>40 (37%)</td><td>7 (7%)</td><td>0 (0%)</td><td><strong>0 (0%)</strong></td></tr>
 </tbody></table>
 
 <h2>🧭 Related Tools</h2>
-<p>
-  For a complementary view on backend compliance, see the official
-  <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.
-</p>
+<p>Also see the official <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.</p>
 
 <h2>🤝 Maintainer</h2>
-<p>
-  Maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> as part of the
-  <a href="https://graiphic.io/download/" target="_blank"><strong>SOTA</strong></a> initiative.
-  Contributions and feedback are welcome.
-</p>
+<p>Maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> (SOTA initiative).</p>
 
 </div>

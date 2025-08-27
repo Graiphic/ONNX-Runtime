@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `TensorrtExecutionProvider`
 
-**Test Date:** 2025-08-27 11:59:53
+**Test Date:** 2025-08-27 12:34:42
 
 ## Test Methodology
 

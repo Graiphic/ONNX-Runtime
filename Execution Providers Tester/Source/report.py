@@ -771,7 +771,7 @@ def generate_full_readme_for_opset(opset: int):
     """
     Génère un README global **par opset** dans:
         <project_root>/opset_{opset}/README.md
-    et agrège les README de chaque EP situé dans:
+    en agrégeant les README de chaque EP dans:
         <project_root>/opset_{opset}/<EP>/README.md
     """
     import urllib.parse
@@ -785,188 +785,155 @@ def generate_full_readme_for_opset(opset: int):
         print(f"[WARN] opset dir not found: {opset_dir}")
         return
 
-    # ---- Regex & helpers repris de ton ancienne implémentation (parsing des README EP) ----
+    # --- Compteurs d'une section (ordonnés) ---
+    # On inclut UNKNOWN dans le total (comme dans les README d’EP)
     regex = {
         "SUCCESS": re.compile(r"\*\*Executable directly \(SUCCESS\):\*\*\s*(\d+)", re.IGNORECASE),
         "SUCCESS (with complexification)": re.compile(r"\*\*Executable directly \(SUCCESS with complexification\):\*\*\s*(\d+)", re.IGNORECASE),
         "FALLBACK": re.compile(r"\*\*Executable via FALLBACK:\*\*\s*(\d+)", re.IGNORECASE),
-        "FAIL": re.compile(r"\*\*FAIL:\*\*\s*(\d+)", re.IGNORECASE),
+        "UNKNOWN (no Node event)": re.compile(r"\*\*UNKNOWN \(no Node event\):\*\*\s*(\d+)", re.IGNORECASE),
         "NOT TESTED": re.compile(r"\*\*NOT TESTED:\*\*\s*(\d+)", re.IGNORECASE),
         "SKIPPED": re.compile(r"\*\*SKIPPED:\*\*\s*(\d+)", re.IGNORECASE),
+        "FAIL": re.compile(r"\*\*FAIL:\*\*\s*(\d+)", re.IGNORECASE),
     }
 
-    def parse_section(readme, title=None):
-        if title:
-            pattern = re.compile(rf"## .*{re.escape(title)}.*\n", re.IGNORECASE)
-            m = list(pattern.finditer(readme))
-            if not m: return None
-            start = m[0].end()
-            nxt = re.search(r"^## .+", readme[start:], re.MULTILINE)
-            end = start + nxt.start() if nxt else len(readme)
-            section = readme[start:end]
-        else:
-            section = readme
+    def parse_section(readme: str, title: str) -> list[int] | None:
+        """
+        Extrait les compteurs d'inférence UNIQUEMENT depuis le bloc '### Statistics'
+        à l'intérieur de la section '## {title}'.
+        On évite ainsi de compter les lignes du bloc '### Training Summary (...)'.
+        """
+        # 1) isole la section H2 exacte
+        h2_pat = re.compile(rf"^##\s+{re.escape(title)}\s*$", re.IGNORECASE | re.MULTILINE)
+        m = h2_pat.search(readme)
+        if not m:
+            return None
+        sec_start = m.end()
+        nxt_h2 = re.search(r"^##\s+", readme[sec_start:], re.MULTILINE)
+        sec_end = sec_start + (nxt_h2.start() if nxt_h2 else 0) if nxt_h2 else len(readme)
+        section = readme[sec_start:sec_end]
+    
+        # 2) à l'intérieur, isole le sous-bloc '### Statistics'
+        h3_stats = re.compile(r"^###\s+Statistics\s*$", re.IGNORECASE | re.MULTILINE)
+        ms = h3_stats.search(section)
+        if not ms:
+            return None
+        st_start = ms.end()
+        nxt_h3_or_h2 = re.search(r"^(###|##)\s+", section[st_start:], re.MULTILINE)
+        st_end = st_start + (nxt_h3_or_h2.start() if nxt_h3_or_h2 else 0) if nxt_h3_or_h2 else len(section)
+        stats_block = section[st_start:st_end]
+    
+        # 3) compte les catégories dans ce bloc uniquement
         results = {k: 0 for k in regex}
         for k, pat in regex.items():
-            for val in pat.findall(section):
+            for val in pat.findall(stats_block):
                 results[k] += int(val)
+    
+        # Retourne 7 valeurs (SUCCESS, SUCCESS with complexification, FALLBACK, UNKNOWN, NOT TESTED, SKIPPED, FAIL)
         return [results[k] for k in regex]
 
+
+    # --- Training : on ne l’affiche que pour CPU / CUDA, et séparément Basic/MS ---
     tr_re_total   = re.compile(r"\*\*Total nodes tested \(training\):\*\*\s*(\d+)", re.IGNORECASE)
     tr_re_success = re.compile(r"\*\*SUCCESS:\*\*\s*(\d+)", re.IGNORECASE)
 
     def slice_training_block(readme: str, header_text: str) -> str:
-        pattern = re.compile(rf"###\s+Training Summary\s*\({re.escape(header_text)}\)", re.IGNORECASE)
-        m = pattern.search(readme)
-        if not m: return ""
+        pat = re.compile(rf"^###\s+Training Summary\s*\({re.escape(header_text)}\)\s*$",
+                         re.IGNORECASE | re.MULTILINE)
+        m = pat.search(readme)
+        if not m:
+            return ""
         start = m.end()
         nxt = re.search(r"^###\s+", readme[start:], re.MULTILINE)
-        end = start + nxt.start() if nxt else len(readme)
+        end = start + (nxt.start() if nxt else 0) if nxt else len(readme)
         return readme[m.start():end]
 
     def parse_training_counts(readme: str, kind: str) -> tuple[int, int]:
         header = "Basic ONNX Nodes" if kind == "basic" else "Microsoft Custom Nodes"
         block = slice_training_block(readme or "", header)
-        if not block: return (0, 0)
-        m_tot  = tr_re_total.search(block)
-        m_succ = tr_re_success.search(block)
-        total  = int(m_tot.group(1)) if m_tot else 0
-        succ   = int(m_succ.group(1)) if m_succ else 0
-        if total < succ: total = succ
-        return (succ, total)
+        if not block:
+            return (0, 0)
+        mt, ms = tr_re_total.search(block), tr_re_success.search(block)
+        tot  = int(mt.group(1)) if mt else 0
+        succ = int(ms.group(1)) if ms else 0
+        if tot < succ:
+            tot = succ
+        return succ, tot
 
-    # ---- EP folders dans opset_{opset} ----
-    ep_folders = sorted([
+    # --- EP folders ---
+    ep_folders = sorted(
         d for d in os.listdir(opset_dir)
-        if os.path.isdir(os.path.join(opset_dir, d)) and os.path.isfile(os.path.join(opset_dir, d, "README.md"))
-    ])
+        if os.path.isdir(os.path.join(opset_dir, d))
+        and os.path.isfile(os.path.join(opset_dir, d, "README.md"))
+    )
 
     rows_basic, rows_ms = [], []
+
+    def fmt_row(arr7: list[int]) -> list[str]:
+        # indices: 0=SUCCESS,1=SUCCESS(w/complex),2=FALLBACK,3=UNKNOWN,4=NOT TESTED,5=SKIPPED,6=FAIL
+        if not arr7 or len(arr7) != 7:
+            arr7 = (arr7 or []) + [0] * (7 - len(arr7 or []))
+            arr7 = arr7[:7]
+        total = sum(arr7) or 1
+        success_total = arr7[0] + arr7[1]
+        fallback = arr7[2]
+        fail = arr7[6]
+        not_tested = arr7[4]
+        skipped = arr7[5]
+        supported = success_total + fallback
+        return [
+            f"{success_total} ({round(100*success_total/total)}%)",
+            f"{fallback} ({round(100*fallback/total)}%)",
+            f"{supported} ({round(100*supported/total)}%)",
+            f"{fail} ({round(100*fail/total)}%)",
+            f"{not_tested} ({round(100*not_tested/total)}%)",
+            f"{skipped} ({round(100*skipped/total)}%)",
+        ]
+
     for ep in ep_folders:
-        readme_path = os.path.join(opset_dir, ep, "README.md")
-        with open(readme_path, encoding="utf-8") as f:
+        path = os.path.join(opset_dir, ep, "README.md")
+        with open(path, encoding="utf-8") as f:
             content = f.read()
 
-        basic = parse_section(content, "Basic ONNX Nodes") or parse_section(content) or [0]*6
-        ms    = parse_section(content, "Microsoft Custom Nodes") or [0]*6
+        basic = parse_section(content, "Basic ONNX Nodes") or [0] * 7
+        ms    = parse_section(content, "Microsoft Custom Nodes") or [0] * 7
 
-        is_training_ep = ep in ("CPU", "NVIDIA - CUDA", "Nvidia - CUDA", "NVIDIA – CUDA")
+        # Training uniquement pour CPU/CUDA
+        ep_l = ep.strip().lower()
+        training_enabled = (ep_l == "cpu") or ("cuda" in ep_l)
         tr_b_succ = tr_b_tot = tr_m_succ = tr_m_tot = 0
-        if is_training_ep:
+        if training_enabled:
             tr_b_succ, tr_b_tot = parse_training_counts(content, "basic")
             tr_m_succ, tr_m_tot = parse_training_counts(content, "ms")
 
-        def fmt_row(data):
-            total = sum(data) or 1
-            succ_total = data[0] + data[1]
-            supported  = succ_total + data[2]
-            return [
-                f"{succ_total} ({round(100*succ_total/total)}%)",
-                f"{data[2]} ({round(100*data[2]/total)}%)",
-                f"{supported} ({round(100*supported/total)}%)",
-                f"{data[3]} ({round(100*data[3]/total)}%)",
-                f"{data[4]} ({round(100*data[4]/total)}%)",
-                f"{data[5]} ({round(100*data[5]/total)}%)",
-            ]
+        rows_basic.append(
+            [ep] + fmt_row(basic)
+            + [f"{tr_b_succ} ({round(100*tr_b_succ/tr_b_tot)}%)" if tr_b_tot else "0 (0%)"]
+        )
+        rows_ms.append(
+            [ep] + fmt_row(ms)
+            + [f"{tr_m_succ} ({round(100*tr_m_succ/tr_m_tot)}%)" if tr_m_tot else "0 (0%)"]
+        )
 
-        rows_basic.append([ep] + fmt_row(basic) + [f"{tr_b_succ} ({round(100*tr_b_succ/tr_b_tot)}%)" if tr_b_tot>0 else "0 (0%)"])
-        rows_ms.append(   [ep] + fmt_row(ms)    + [f"{tr_m_succ} ({round(100*tr_m_succ/tr_m_tot)}%)" if tr_m_tot>0 else "0 (0%)"])
-
-    # ---- Meta env (CPU/GPU/CUDA/ORT/OS) ----
+    # ---------- Rendu ----------
     cpu_name = platform.processor() or "Unknown"
     try:
-        import cpuinfo
-        cpu_name = cpuinfo.get_cpu_info().get("brand_raw", cpu_name)
+        import cpuinfo as _cpuinfo
+        cpu_name = _cpuinfo.get_cpu_info().get("brand_raw", cpu_name)
     except Exception:
         pass
 
     gpu_list = []
     try:
-        res = subprocess.run(["nvidia-smi","--query-gpu=name","--format=csv,noheader"], capture_output=True, text=True)
+        res = subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+                             capture_output=True, text=True)
         gpu_list = [l.strip() for l in res.stdout.strip().splitlines() if l.strip()]
     except Exception:
         pass
 
-    cuda_version = "Unknown"
-    try:
-        res = subprocess.run(["nvcc","--version"], capture_output=True, text=True)
-        for line in res.stdout.splitlines():
-            if "release" in line:
-                cuda_version = line.split("release")[-1].split(",")[0].strip()
-                break
-    except Exception:
-        pass
-
-    cudnn_version = get_cudnn_version()
-    trt_version   = get_tensorrt_version()
-
-    # ---- Écriture du README opset_{opset}/README.md ----
-    with open(output_path, "w", encoding="utf-8") as out:
-        out.write(f"""<div style="font-family:Arial, sans-serif; line-height:1.6; max-width:900px; margin:auto; padding:20px;">
-
-<p align="center">
-  <img src="https://github.com/microsoft/onnxruntime/raw/main/docs/images/ONNX_Runtime_logo_dark.png" alt="ONNX Runtime Logo" width="320"/>
-</p>
-
-<h1>ONNX Runtime — EP Coverage (Opset {opset})</h1>
-
-<p>
-  This open source initiative, led by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong>, provides 
-  a detailed, real-world coverage map of ONNX operator support for each <strong>Execution Provider (EP)</strong> in 
-  <strong><a href="https://github.com/microsoft/onnxruntime" target="_blank">ONNX Runtime</a></strong>.
-</p>
-
-<h2>🧪 What’s Tested</h2>
-<ul>
-  <li>Each ONNX operator is tested in isolation using a minimal single-node model.</li>
-  <li>Status per operator: <code>SUCCESS</code>, <code>FALLBACK</code>, <code>FAIL</code>, <code>NOT TESTED</code>, <code>SKIPPED</code>, <code>UNKNOWN</code>.</li>
-  <li>Per-EP datasets include logs, optimized models (when applicable), and a README.</li>
-</ul>
-
-<h2>📐 How’s Tested</h2>
-<h3>Inference</h3>
-<p>
-  Each operator is tested with a minimal ONNX graph. For EPs like OpenVINO/TensorRT, a <em>complexification</em> pass can add a small chain
-  of <code>Mul</code>/<code>And</code> nodes (type-dependent) to make the backend compile more of the graph and reveal actual EP coverage.
-</p>
-<h3>Training</h3>
-<p>
-  When ONNX Runtime Training is available, a trainable scalar <code>__train_C</code> is injected via a <code>Mul</code> on the first input of the tested node (initialized to 1.0).
-  We generate artifacts (AdamW) and run a single optimization step with an MSE loss on the first output. Operators that complete this step are marked <strong>SUCCESS</strong>;
-  explicitly skipped or unsupported patterns are <strong>SKIPPED</strong>; others are <strong>FAIL</strong>.
-</p>
-
-<h2>📦 Currently Supported Execution Providers (this opset)</h2>
-<ul>
-""")
-        for row in rows_basic:
-            ep = row[0]
-            ep_url  = urllib.parse.quote(ep)
-            ep_link = f'<a href="./{ep_url}/" target="_blank">{ep}</a>'
-            out.write(f"<li>{ep_link}</li>\n")
-        out.write("</ul>\n")
-
-        out.write(f"""
-<h2>📊 Summary for Opset {opset}</h2>
-<ul>
-  <li><strong>CPU:</strong> {cpu_name}</li>
-  <li><strong>GPU:</strong> {', '.join(gpu_list) if gpu_list else 'No NVIDIA GPU detected'}</li>
-  <li><strong>CUDA:</strong> {cuda_version} | <strong>cuDNN:</strong> {cudnn_version} | <strong>TensorRT:</strong> {trt_version}</li>
-  <li><strong>ONNX:</strong> {onnx.__version__} | <strong>ONNXRuntime:</strong> {ort.__version__}</li>
-  <li><strong>OS:</strong> {platform.system()} {platform.release()}</li>
-</ul>
-
-<h3>⚙️ Test Configuration</h3>
-<ul>
-  <li><strong>ONNX Opset version:</strong> {opset}</li>
-  <li><strong>ONNX IR version:</strong> 10</li>
-  <li><strong>Data types:</strong> Single dtype per node (usually <code>float32</code>).</li>
-</ul>
-""")
-
-        def write_table(title, rows):
-            out.write(f"<h3>{title}</h3>\n")
-            out.write("""<table border="1" cellpadding="6" cellspacing="0">
+    def write_table(out, title, rows):
+        out.write(f"<h3>{title}</h3>\n")
+        out.write("""<table border="1" cellpadding="6" cellspacing="0">
   <thead>
     <tr>
       <th>Execution Provider</th>
@@ -981,38 +948,76 @@ def generate_full_readme_for_opset(opset: int):
   </thead>
   <tbody>
 """)
-            for row in rows:
-                ep = row[0]
-                ep_url  = urllib.parse.quote(ep)
-                ep_link = f'<a href="./{ep_url}/" target="_blank">{ep}</a>'
-                out.write(
-                    f"<tr><td>{ep_link}</td>"
-                    f"<td>{row[1]}</td><td>{row[2]}</td><td>{row[3]}</td>"
-                    f"<td>{row[4]}</td><td>{row[5]}</td><td>{row[6]}</td>"
-                    f"<td><strong>{row[7]}</strong></td></tr>\n"
-                )
-            out.write("</tbody></table>\n")
+        for row in rows:
+            ep = row[0]
+            ep_link = f'<a href="./{urllib.parse.quote(ep)}/" target="_blank">{ep}</a>'
+            out.write(f"<tr><td>{ep_link}</td>"
+                      f"<td>{row[1]}</td><td>{row[2]}</td><td>{row[3]}</td>"
+                      f"<td>{row[4]}</td><td>{row[5]}</td><td>{row[6]}</td>"
+                      f"<td><strong>{row[7]}</strong></td></tr>\n")
+        out.write("</tbody></table>\n")
 
-        write_table("ONNX Core Operators", rows_basic)
-        write_table("Microsoft Custom Operators", rows_ms)
+    # Ecriture du README d’opset
+    with open(output_path, "w", encoding="utf-8") as out:
+        out.write(f"""<div style="font-family:Arial, sans-serif; line-height:1.6; max-width:900px; margin:auto; padding:20px;">
+
+<p align="center">
+  <img src="https://github.com/microsoft/onnxruntime/raw/main/docs/images/ONNX_Runtime_logo_dark.png" alt="ONNX Runtime Logo" width="320"/>
+</p>
+
+<h1>ONNX Runtime — EP Coverage (Opset {opset})</h1>
+
+<h2>🧪 What’s Tested</h2>
+<ul>
+  <li>Each ONNX operator is tested in isolation across all available EPs.</li>
+  <li>Status per operator: <code>SUCCESS</code>, <code>FALLBACK</code>, <code>FAIL</code>, <code>NOT TESTED</code>, <code>SKIPPED</code>, <code>UNKNOWN</code>.</li>
+  <li>Per-EP datasets include logs, optional optimized models, and a README with details.</li>
+</ul>
+
+<h2>📐 How’s Tested</h2>
+<h3>Inference</h3>
+<p>
+  Minimal one-node ONNX model per op. A small “complexification” (e.g., extra <code>Mul</code>/<code>And</code>)
+  can be added to trigger some compilers (OpenVINO/TensorRT) and reveal actual EP coverage.
+</p>
+<h3>Training</h3>
+<p>
+  When available (CPU/CUDA), a trainable scalar is injected before the tested node and a 1-step optimization (AdamW, MSE)
+  validates basic backward. The training result appears only in the last column; it does not affect inference percentages.
+</p>
+
+<h2>📦 EPs with results in this opset</h2>
+<ul>
+""")
+        for row in rows_basic:
+            ep = row[0]
+            out.write(f'<li><a href="./{urllib.parse.quote(ep)}/" target="_blank">{ep}</a></li>\n')
+        out.write("</ul>\n")
+
+        out.write(f"""
+<h2>System / Versions</h2>
+<ul>
+  <li><strong>CPU:</strong> {cpu_name}</li>
+  <li><strong>GPU:</strong> {', '.join(gpu_list) if gpu_list else 'No NVIDIA GPU detected'}</li>
+  <li><strong>ONNX:</strong> {onnx.__version__} | <strong>ONNX Runtime:</strong> {ort.__version__}</li>
+  <li><strong>ONNX Opset:</strong> {opset} | <strong>ONNX IR:</strong> 10</li>
+</ul>
+""")
+
+        write_table(out, "ONNX Core Operators", rows_basic)
+        write_table(out, "Microsoft Custom Operators", rows_ms)
 
         out.write("""
 <h2>🧭 Related Tools</h2>
-<p>
-  For a complementary view on backend compliance, see the official
-  <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.
-</p>
+<p>Also see the official <a href="https://onnx.ai/backend-scoreboard/" target="_blank"><strong>ONNX Backend Scoreboard</strong></a>.</p>
 
 <h2>🤝 Maintainer</h2>
-<p>
-  Maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> as part of the
-  <a href="https://graiphic.io/download/" target="_blank"><strong>SOTA</strong></a> initiative.
-  Contributions and feedback are welcome.
-</p>
+<p>Maintained by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong> (SOTA initiative).</p>
 
 </div>""")
 
     print(f"✅ Full README (opset {opset}) written to: {output_path}")
+
 
 
 def generate_full_readme(opsets: list[int] | None = None):
@@ -1060,6 +1065,12 @@ def generate_root_readme():
   This open source initiative, led by <strong><a href="https://graiphic.io/" target="_blank">Graiphic</a></strong>, provides 
   a detailed, real-world coverage map of ONNX operator support for each <strong>Execution Provider (EP)</strong> in 
   <strong><a href="https://github.com/microsoft/onnxruntime" target="_blank">ONNX Runtime</a></strong>.
+</p>
+
+<p>
+  It is part of our broader effort to democratize AI deployment through 
+  <a href="https://graiphic.io/download/" target="_blank"><strong>SOTA</strong></a> — 
+  an ONNX-native orchestration framework designed for engineers, researchers, and industrial use cases.
 </p>
 
 <h2>🎯 Project Objectives</h2>

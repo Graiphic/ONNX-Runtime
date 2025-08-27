@@ -1,6 +1,6 @@
 # ONNXRuntime Test Results — Provider: `CUDAExecutionProvider`
 
-**Test Date:** 2025-08-27 16:50:59
+**Test Date:** 2025-08-27 17:04:49
 
 ## Test Methodology
 
@@ -214,7 +214,7 @@ pip install onnxruntime-gpu
 - **FAIL:** 59
 - **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 54
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 2
-![](C:\Users\COCO\TDF Dropbox\1_Graiphic\3 - Services et Etudes\2 - Dev\code\Github\ONNX Runtime\Execution Providers Tester\opset_20\NVIDIA - CUDA\training_stats_CUDAExecutionProvider_basic.png)
+![](./training_stats_CUDAExecutionProvider_basic.png)
 
 ## Microsoft Custom Nodes
 
@@ -346,7 +346,7 @@ pip install onnxruntime-gpu
 - **FAIL:** 46
 - **SKIPPED (inférence FAIL|FALLBACK / no attempt):** 55
 - **NOT TESTED (GRU/LSTM because it crash python kernel):** 0
-![](C:\Users\COCO\TDF Dropbox\1_Graiphic\3 - Services et Etudes\2 - Dev\code\Github\ONNX Runtime\Execution Providers Tester\opset_20\NVIDIA - CUDA\training_stats_CUDAExecutionProvider_ms.png)
+![](./training_stats_CUDAExecutionProvider_ms.png)
 
 ## Nodes not tested
 

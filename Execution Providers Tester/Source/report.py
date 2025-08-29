@@ -795,7 +795,7 @@ def generate_full_readme_for_opset(opset: int):
         <project_root>/opset_{opset}/<EP>/README.md
     """
     import urllib.parse
-
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     source_dir   = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(source_dir)
     opset_dir    = os.path.join(project_root, f"opset_{opset}")
@@ -1037,6 +1037,7 @@ def generate_full_readme_for_opset(opset: int):
         out.write(f"""
 <h2>System / Versions</h2>
 <ul>
+  <li><strong>Test Date:</strong> {now}</li>
   <li><strong>CPU:</strong> {cpu_name}</li>
   <li><strong>GPU:</strong> {', '.join(gpu_list) if gpu_list else 'No NVIDIA GPU detected'}</li>
   <li><strong>ONNX:</strong> {onnx.__version__} | <strong>ONNX Runtime:</strong> {ort.__version__}</li>
